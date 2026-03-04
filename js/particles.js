@@ -1,5 +1,5 @@
 /* ============================================================
-   PARTICLES.JS - Three.js 3D Particle System
+   PARTICLES.JS - Three.js 3D Particle System (OPTIMIZED)
    Interactive particle field with mouse attraction
    ============================================================ */
 
@@ -15,13 +15,15 @@
     const renderer = new THREE.WebGLRenderer({
         canvas: canvas,
         alpha: true,
-        antialias: true
+        antialias: false // tắt antialias để tăng FPS
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Giới hạn pixel ratio tối đa 1.5 (thay vì 2) để đỡ nặng trên màn hình Retina
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
     // ==================== PARTICLES ====================
-    const particleCount = window.innerWidth < 768 ? 1500 : 3000;
+    // Giảm số particles: desktop 1500, mobile 600
+    const particleCount = window.innerWidth < 768 ? 600 : 1500;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
@@ -39,7 +41,6 @@
     for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3;
 
-        // Position - spread in a sphere
         const radius = 50 + Math.random() * 60;
         const theta = Math.random() * Math.PI * 2;
         const phi = Math.acos(2 * Math.random() - 1);
@@ -48,19 +49,16 @@
         positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
         positions[i3 + 2] = radius * Math.cos(phi) - 30;
 
-        // Colors
         const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
         colors[i3] = color.r;
         colors[i3 + 1] = color.g;
         colors[i3 + 2] = color.b;
 
-        // Sizes
         sizes[i] = Math.random() * 2.5 + 0.5;
 
-        // Velocities
-        velocities[i3] = (Math.random() - 0.5) * 0.02;
-        velocities[i3 + 1] = (Math.random() - 0.5) * 0.02;
-        velocities[i3 + 2] = (Math.random() - 0.5) * 0.02;
+        velocities[i3] = (Math.random() - 0.5) * 0.015;
+        velocities[i3 + 1] = (Math.random() - 0.5) * 0.015;
+        velocities[i3 + 2] = (Math.random() - 0.5) * 0.015;
     }
 
     const geometry = new THREE.BufferGeometry();
@@ -68,7 +66,6 @@
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
     geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-    // Custom shader material for better-looking particles
     const vertexShader = `
         attribute float size;
         varying vec3 vColor;
@@ -110,7 +107,8 @@
     scene.add(particles);
 
     // ==================== CONNECTING LINES ====================
-    const lineCount = 200;
+    // Giảm lineCount và số particles tham gia
+    const lineCount = 80;
     const linePositions = new Float32Array(lineCount * 6);
     const lineGeometry = new THREE.BufferGeometry();
     lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
@@ -126,7 +124,7 @@
     scene.add(lines);
 
     // ==================== CENTRAL GLOW ====================
-    const glowGeometry = new THREE.SphereGeometry(8, 32, 32);
+    const glowGeometry = new THREE.SphereGeometry(8, 16, 16); // giảm segments
     const glowMaterial = new THREE.MeshBasicMaterial({
         color: 0x6c63ff,
         transparent: true,
@@ -138,10 +136,16 @@
     scene.add(glow);
 
     // ==================== MOUSE INTERACTION ====================
+    // Dùng throttle để giảm tần suất xử lý mousemove
     const mouse = new THREE.Vector2(0, 0);
     const mouseTarget = new THREE.Vector3(0, 0, 30);
+    let mouseMoveTimeout = null;
 
     document.addEventListener('mousemove', (e) => {
+        // Throttle: chỉ cập nhật mouse mỗi 32ms (~30fps cho mouse thay vì 60fps)
+        if (mouseMoveTimeout) return;
+        mouseMoveTimeout = setTimeout(() => { mouseMoveTimeout = null; }, 32);
+
         mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
         mouseTarget.x = mouse.x * 30;
@@ -151,41 +155,37 @@
     // ==================== ANIMATION LOOP ====================
     const clock = new THREE.Clock();
     let frameCount = 0;
+    let isHidden = false;
 
     function animate() {
         requestAnimationFrame(animate);
-        frameCount++;
+        if (isHidden) return; // dừng hẳn khi tab ẩn
 
+        frameCount++;
         const elapsedTime = clock.getElapsedTime();
         const posArr = geometry.attributes.position.array;
 
-        // Animate particles
+        // Animate particles — bỏ Math.sin/cos cho mỗi particle (tốn CPU)
+        // Chỉ dùng velocity đơn giản
         for (let i = 0; i < particleCount; i++) {
             const i3 = i * 3;
 
-            // Add velocity
             posArr[i3] += velocities[i3];
             posArr[i3 + 1] += velocities[i3 + 1];
             posArr[i3 + 2] += velocities[i3 + 2];
 
-            // Gentle wave motion
-            posArr[i3 + 1] += Math.sin(elapsedTime * 0.5 + posArr[i3] * 0.01) * 0.02;
-            posArr[i3] += Math.cos(elapsedTime * 0.3 + posArr[i3 + 1] * 0.01) * 0.01;
-
-            // Mouse attraction (only for nearby particles)
+            // Mouse attraction (chỉ check khi mouse gần)
             const dx = mouseTarget.x - posArr[i3];
             const dy = mouseTarget.y - posArr[i3 + 1];
-            const dz = mouseTarget.z - posArr[i3 + 2];
-            const distToMouse = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            const distSq = dx * dx + dy * dy; // dùng distSq để tránh sqrt
 
-            if (distToMouse < 40) {
-                const force = (40 - distToMouse) / 40 * 0.003;
+            if (distSq < 1600) { // 40*40 = 1600
+                const force = (1600 - distSq) / 1600 * 0.002;
                 posArr[i3] += dx * force;
                 posArr[i3 + 1] += dy * force;
-                posArr[i3 + 2] += dz * force;
             }
 
-            // Boundary check - wrap around
+            // Boundary check
             const limit = 80;
             if (Math.abs(posArr[i3]) > limit) posArr[i3] *= -0.9;
             if (Math.abs(posArr[i3 + 1]) > limit) posArr[i3 + 1] *= -0.9;
@@ -194,22 +194,20 @@
 
         geometry.attributes.position.needsUpdate = true;
 
-        // Update connecting lines (every 3rd frame for performance)
-        if (frameCount % 3 === 0) {
+        // Connecting lines — chỉ mỗi 6 frame (10fps) và giới hạn 200 particles
+        if (frameCount % 6 === 0) {
             let lineIndex = 0;
             const threshold = 15;
+            const checkCount = Math.min(particleCount, 200); // giảm từ 500 → 200
 
-            for (let i = 0; i < Math.min(particleCount, 500) && lineIndex < lineCount; i++) {
-                for (let j = i + 1; j < Math.min(particleCount, 500) && lineIndex < lineCount; j++) {
-                    const i3 = i * 3;
-                    const j3 = j * 3;
-
+            outer: for (let i = 0; i < checkCount; i++) {
+                for (let j = i + 1; j < checkCount; j++) {
+                    if (lineIndex >= lineCount) break outer;
+                    const i3 = i * 3, j3 = j * 3;
                     const dx = posArr[i3] - posArr[j3];
                     const dy = posArr[i3 + 1] - posArr[j3 + 1];
                     const dz = posArr[i3 + 2] - posArr[j3 + 2];
-                    const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-
-                    if (dist < threshold) {
+                    if (dx * dx + dy * dy + dz * dz < threshold * threshold) {
                         const li = lineIndex * 6;
                         linePositions[li] = posArr[i3];
                         linePositions[li + 1] = posArr[i3 + 1];
@@ -222,25 +220,19 @@
                 }
             }
 
-            // Clear remaining lines
-            for (let i = lineIndex * 6; i < lineCount * 6; i++) {
-                linePositions[i] = 0;
-            }
-
+            for (let i = lineIndex * 6; i < lineCount * 6; i++) linePositions[i] = 0;
             lineGeometry.attributes.position.needsUpdate = true;
         }
 
-        // Rotate particle system slowly
+        // Rotation chậm — giữ nguyên
         particles.rotation.y = elapsedTime * 0.05;
         particles.rotation.x = Math.sin(elapsedTime * 0.03) * 0.1;
-
-        // Rotate glow
         glow.rotation.y = elapsedTime * 0.1;
         glow.scale.setScalar(1 + Math.sin(elapsedTime) * 0.1);
 
-        // Camera subtle movement
-        camera.position.x += (mouse.x * 3 - camera.position.x) * 0.02;
-        camera.position.y += (mouse.y * 2 - camera.position.y) * 0.02;
+        // Camera move — giảm tốc độ lerp
+        camera.position.x += (mouse.x * 3 - camera.position.x) * 0.01;
+        camera.position.y += (mouse.y * 2 - camera.position.y) * 0.01;
         camera.lookAt(0, 0, -20);
 
         renderer.render(scene, camera);
@@ -249,11 +241,22 @@
     animate();
 
     // ==================== RESIZE HANDLER ====================
+    let resizeTimer;
     window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        }, 200);
+    });
+
+    // ==================== VISIBILITY HANDLER ====================
+    document.addEventListener('visibilitychange', () => {
+        isHidden = document.hidden;
+        if (!isHidden) clock.start();
+        else clock.stop();
     });
 
     // ==================== THEME CHANGE HANDLER ====================
@@ -261,27 +264,9 @@
         mutations.forEach((mutation) => {
             if (mutation.attributeName === 'data-theme') {
                 const theme = document.documentElement.getAttribute('data-theme');
-                if (theme === 'light') {
-                    material.opacity = 0.3;
-                    lineMaterial.opacity = 0.03;
-                    renderer.setClearColor(0x000000, 0);
-                } else {
-                    material.opacity = 1;
-                    lineMaterial.opacity = 0.06;
-                    renderer.setClearColor(0x000000, 0);
-                }
+                lineMaterial.opacity = theme === 'light' ? 0.03 : 0.06;
             }
         });
     });
-
     observer.observe(document.documentElement, { attributes: true });
-
-    // ==================== VISIBILITY HANDLER ====================
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            clock.stop();
-        } else {
-            clock.start();
-        }
-    });
 })();

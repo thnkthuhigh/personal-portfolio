@@ -3,22 +3,16 @@
    Custom cursor, navigation, theme, forms, interactions
    ============================================================ */
 
-// Global site data loaded from JSON
+// Global site data loaded from content.js script tag
 let siteData = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Load content.json then initialize
-    fetch('data/content.json')
-        .then(res => res.json())
-        .then(data => {
-            siteData = data;
-            renderSiteContent(data);
-            initApp();
-        })
-        .catch(err => {
-            console.warn('Could not load content.json, using defaults:', err);
-            initApp();
-        });
+    // data/content.js sets window.siteData before this runs
+    if (window.siteData) {
+        siteData = window.siteData;
+        renderSiteContent(siteData);
+    }
+    initApp();
 });
 
 function initApp() {
@@ -54,32 +48,25 @@ function initApp() {
     const follower = document.getElementById('cursor-follower');
     let mouseX = 0, mouseY = 0;
     let followerX = 0, followerY = 0;
+    let cursorRAF = false;
 
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-
-        gsap.to(cursor, {
-            x: mouseX,
-            y: mouseY,
-            duration: 0.1,
-            ease: 'power2.out'
-        });
     });
 
-    // Smooth follower
-    function animateFollower() {
-        followerX += (mouseX - followerX) * 0.15;
-        followerY += (mouseY - followerY) * 0.15;
+    // Dùng 1 RAF loop duy nhất thay vì gọi gsap.to() mỗi mousemove
+    function animateCursor() {
+        if (cursor) cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 
-        gsap.set(follower, {
-            x: followerX,
-            y: followerY
-        });
+        followerX += (mouseX - followerX) * 0.12;
+        followerY += (mouseY - followerY) * 0.12;
+        if (follower) follower.style.transform = `translate(${followerX}px, ${followerY}px)`;
 
-        requestAnimationFrame(animateFollower);
+        requestAnimationFrame(animateCursor);
     }
-    animateFollower();
+    animateCursor();
+
 
     // Cursor hover effects
     const hoverElements = document.querySelectorAll('a, button, [data-magnetic], input, textarea');
