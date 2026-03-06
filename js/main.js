@@ -1,917 +1,842 @@
-/* ============================================================
-   MAIN.JS - Core functionality
-   Custom cursor, navigation, theme, forms, interactions
-   ============================================================ */
+﻿(function () {
+  const root = document.documentElement;
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeMeta = document.getElementById("theme-color-meta");
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const header = document.getElementById("site-header");
 
-// Global site data loaded from content.js script tag
-let siteData = null;
+  const THEME_KEY = "portfolio_theme";
+  const THEME_COLORS = {
+    light: "#f4f6f8",
+    dark: "#0f141a",
+  };
 
-document.addEventListener('DOMContentLoaded', () => {
-    // data/content.js sets window.siteData before this runs
-    if (window.siteData) {
-        siteData = window.siteData;
-        renderSiteContent(siteData);
+  const PROJECT_CASES = {
+    "ops-dashboard": {
+      badge: "Public Case · Frontend + Product",
+      title: "Admin Dashboard cho vận hành bán lẻ",
+      summary:
+        "Tối ưu dashboard theo flow thao tác thực tế, giảm nhầm thao tác ở khối vận hành và giúp lead theo dõi trạng thái đơn hàng nhanh hơn.",
+      meta: [
+        "Vai trò: Frontend Contributor (Student Project)",
+        "Team: 4 người",
+        "Thời gian: 4 tháng",
+        "Stack: React + TypeScript + Chart.js",
+      ],
+      proof: [
+        { value: "4 tháng", label: "Thời gian triển khai" },
+        { value: "4 người", label: "Quy mô team" },
+        { value: "2 đợt", label: "Release nội bộ" },
+        { value: "~30%", label: "Giảm thao tác chính" },
+      ],
+      problem:
+        "Dashboard cũ khó đọc khi số lượng đơn tăng cao, thao tác đổi trạng thái đơn nhiều bước, dữ liệu biểu đồ không đồng nhất giữa các màn hình.",
+      solution:
+        "Thiết kế lại cấu trúc màn hình theo tác vụ ưu tiên, chuẩn hóa filter/table/chart, và tách state rõ ràng để giảm lỗi runtime.",
+      architecture: [
+        "Chia module theo domain: Orders, Inventory, Analytics.",
+        "Tách state truy vấn và state UI để hạn chế side-effects.",
+        "Xây component library nội bộ cho form/table/charts.",
+      ],
+      impact: [
+        "Giảm số bước ở thao tác xử lý đơn chính.",
+        "Onboard dev mới nhanh hơn nhờ module hóa.",
+        "Giảm bug giao diện lặp lại qua các sprint.",
+      ],
+      roleScope: [
+        "Phụ trách UI architecture cho luồng Order Queue và Inventory.",
+        "Thiết kế reusable components: table, filter, status-tag, empty/loading states.",
+        "Chuẩn hóa token màu và khoảng cách để thống nhất light/dark mode.",
+      ],
+      evidence: [
+        "Flow map trước/sau tối ưu thao tác (PDF).",
+        "Checklist QA responsive + accessibility cho release.",
+        "Clip walkthrough 60-90 giây (có thể gửi theo yêu cầu).",
+      ],
+      challenges: [
+        "Giữ consistency giữa nhiều màn hình sử dụng data table.",
+        "Tránh rerender thừa khi filter và sort dữ liệu lớn.",
+        "Đảm bảo chart hiển thị đúng ở cả light/dark mode.",
+      ],
+      lessons: [
+        "UX flow quan trọng hơn số lượng hiệu ứng.",
+        "State design tốt giúp giảm bug lâu dài.",
+        "Checklist release giúp team giữ chất lượng ổn định.",
+      ],
+      nda:
+        "Repo có thể chia sẻ ở mức code sample public; dữ liệu production và logic nội bộ đã được ẩn.",
+      videoEmbed: "",
+      videoFile: "",
+      videoPoster: "",
+      videoNote:
+        "Bạn có thể đặt `videoEmbed` (YouTube) hoặc `videoFile` (MP4 local) để hiển thị demo trực tiếp.",
+      gallery: [
+        {
+          title: "Order Queue Screen",
+          desc: "Màn hình ưu tiên thao tác nhanh cho đội vận hành.",
+          image: "assets/cases/ops-queue.svg",
+          alt: "Order queue screen preview",
+        },
+        {
+          title: "Analytics View",
+          desc: "Biểu đồ và KPI theo ngày/tuần, đồng bộ style token.",
+          image: "assets/cases/ops-analytics.svg",
+          alt: "Analytics view preview",
+        },
+        {
+          title: "Filter System",
+          desc: "Bộ lọc nhiều điều kiện, tránh reset trạng thái ngoài ý muốn.",
+          image: "assets/cases/ops-filter.svg",
+          alt: "Filter system preview",
+        },
+        {
+          title: "Reusable Table",
+          desc: "Table component dùng lại cho nhiều module.",
+          image: "assets/cases/ops-table.svg",
+          alt: "Reusable table preview",
+        },
+      ],
+      links: [
+        { label: "GitHub", href: "https://github.com/thu-high" },
+        {
+          label: "LinkedIn Case Note",
+          href: "https://www.linkedin.com/in/thu-high",
+        },
+      ],
+    },
+
+    "b2b-workflow": {
+      badge: "Private Case · NDA",
+      title: "Nền tảng quản lý quy trình nội bộ (B2B)",
+      summary:
+        "Hệ thống xử lý form nghiệp vụ nhiều bước với phân quyền theo phòng ban, tập trung vào ổn định và khả năng mở rộng dài hạn.",
+      meta: [
+        "Vai trò: Frontend Contributor (Core Workflow)",
+        "Team: 6 người",
+        "Thời gian: 7 tháng",
+        "Stack: Next.js + TypeScript",
+      ],
+      proof: [
+        { value: "7 tháng", label: "Thời gian dự án" },
+        { value: "6 người", label: "Team cross-functional" },
+        { value: "NDA", label: "Dữ liệu bảo mật" },
+        { value: "Nhiều vai trò", label: "Phân quyền phức tạp" },
+      ],
+      problem:
+        "Luồng duyệt hồ sơ cũ phụ thuộc nhiều màn hình rời rạc, role handling thiếu nhất quán và khó mở rộng khi thêm nghiệp vụ mới.",
+      solution:
+        "Xây kiến trúc route theo domain và rule engine cho UI visibility. Chuẩn hóa form schema, validation pipeline, và activity log cho từng bước duyệt.",
+      architecture: [
+        "Feature-sliced architecture: workflow, approvals, reports.",
+        "Form schema-driven rendering để tái sử dụng nhiều bước duyệt.",
+        "Permission map theo role + hành động để đảm bảo tính nhất quán.",
+      ],
+      impact: [
+        "Giảm rework khi thêm nghiệp vụ mới.",
+        "Tăng độ ổn định ở màn hình có logic phân quyền phức tạp.",
+        "Rút ngắn thời gian bàn giao giữa các sprint.",
+      ],
+      roleScope: [
+        "Thiết kế lại luồng form nhiều bước cho nhóm nghiệp vụ trọng điểm.",
+        "Xây layer kiểm tra quyền hiển thị/cho phép thao tác theo role.",
+        "Thiết lập component pattern cho form schema để giảm code trùng lặp.",
+      ],
+      evidence: [
+        "Ảnh kiến trúc luồng duyệt đã ẩn dữ liệu nhạy cảm.",
+        "Mẫu bảng role-matrix (đã lược bỏ tên nghiệp vụ thật).",
+        "Walkthrough trực tiếp trong phỏng vấn, không ghi hình.",
+      ],
+      challenges: [
+        "Mỗi phòng ban có rule xử lý khác nhau theo trạng thái hồ sơ.",
+        "Nhiều bước duyệt liên quan dữ liệu nhạy cảm.",
+        "Cần kiểm soát regression khi update form schema.",
+      ],
+      lessons: [
+        "Schema-first giúp scale project nhanh hơn hardcode UI.",
+        "Rule map rõ ràng giảm bug phân quyền đáng kể.",
+        "Log hành động là yếu tố bắt buộc cho sản phẩm nội bộ.",
+      ],
+      nda:
+        "Toàn bộ source code và dữ liệu thuộc phạm vi NDA. Có thể demo trực tiếp qua buổi walkthrough không ghi hình.",
+      videoEmbed: "",
+      videoFile: "",
+      videoPoster: "",
+      videoNote:
+        "Do NDA, video công khai không khả dụng. Có thể trình bày live flow trong buổi phỏng vấn.",
+      gallery: [
+        {
+          title: "Workflow Timeline",
+          desc: "Minh hoạ chuỗi duyệt nhiều bước theo role.",
+          image: "assets/cases/b2b-workflow.svg",
+          alt: "Workflow timeline preview",
+        },
+        {
+          title: "Role Matrix",
+          desc: "Bảng quyền hành động theo trạng thái hồ sơ.",
+          image: "assets/cases/b2b-role.svg",
+          alt: "Role matrix preview",
+        },
+        {
+          title: "Form Schema",
+          desc: "Cấu trúc dynamic fields cho nhiều nghiệp vụ.",
+          image: "assets/cases/b2b-schema.svg",
+          alt: "Form schema preview",
+        },
+        {
+          title: "Audit Log",
+          desc: "Theo dõi lịch sử cập nhật phục vụ truy vết.",
+          image: "assets/cases/b2b-audit.svg",
+          alt: "Audit log preview",
+        },
+      ],
+      links: [{ label: "Repo theo NDA" }, { label: "Demo theo lịch hẹn" }],
+    },
+
+    "hiring-landing": {
+      badge: "Public Case · Frontend",
+      title: "Website tuyển dụng cho thương hiệu công nghệ",
+      summary:
+        "Landing page tuyển dụng ưu tiên readability và tốc độ tải, giúp đội HR chủ động cập nhật nội dung mà không phá vỡ layout.",
+      meta: [
+        "Vai trò: Frontend Developer",
+        "Team: 3 người",
+        "Thời gian: 2 tháng",
+        "Stack: HTML/CSS/JavaScript",
+      ],
+      proof: [
+        { value: "2 tháng", label: "Thời gian triển khai" },
+        { value: "3 người", label: "Quy mô team" },
+        { value: "Mobile-first", label: "Trọng tâm UX" },
+        { value: "Nhẹ & nhanh", label: "Ưu tiên performance" },
+      ],
+      problem:
+        "Trang tuyển dụng cũ thiếu hierarchy nội dung, animation gây nhiễu và tốc độ tải trang đầu chậm trên mobile.",
+      solution:
+        "Thiết kế lại grid và typography theo ưu tiên đọc, cắt giảm script block render, tối ưu CTA và biểu mẫu ứng tuyển.",
+      architecture: [
+        "Thiết kế token màu + spacing thống nhất toàn trang.",
+        "Progressive enhancement cho hiệu ứng thay vì bắt buộc JavaScript.",
+        "Kiểm soát ảnh và asset theo performance budget.",
+      ],
+      impact: [
+        "Tăng thời gian đọc nội dung JD trên mobile.",
+        "Giảm tỷ lệ thoát ở hero section.",
+        "Đội HR cập nhật nội dung nhanh hơn và ít lỗi format.",
+      ],
+      roleScope: [
+        "Thiết kế content hierarchy: hero, JD blocks, application flow.",
+        "Viết lại layout responsive theo mobile-first grid.",
+        "Tối ưu asset tải ban đầu và giảm script gây block render.",
+      ],
+      evidence: [
+        "Ảnh so sánh trước/sau ở hero và phần mô tả vị trí.",
+        "Checklist tối ưu mobile performance.",
+        "Recording ngắn luồng đọc JD và gửi form ứng tuyển.",
+      ],
+      challenges: [
+        "Giữ brand identity mà không làm UI rối.",
+        "Đảm bảo tính nhất quán giữa desktop và mobile.",
+        "Tối ưu tải trang khi nội dung có nhiều ảnh.",
+      ],
+      lessons: [
+        "Hierarchy tốt có tác động trực tiếp đến conversion.",
+        "Animation chỉ nên hỗ trợ nội dung, không chiếm spotlight.",
+        "Performance nên được đo và kiểm soát từ đầu.",
+      ],
+      nda:
+        "Repo có thể chia sẻ public nhưng đã loại bỏ toàn bộ dữ liệu nội bộ trước khi xuất bản.",
+      videoEmbed: "",
+      videoFile: "",
+      videoPoster: "",
+      videoNote:
+        "Có thể thêm video demo thao tác ứng tuyển để tăng độ tin cậy cho case public.",
+      gallery: [
+        {
+          title: "Hero Section",
+          desc: "Tối ưu headline, CTA và content hierarchy.",
+          image: "assets/cases/hire-hero.svg",
+          alt: "Hiring hero section preview",
+        },
+        {
+          title: "Job Detail Layout",
+          desc: "Thiết kế block JD dễ scan trong 15-20 giây.",
+          image: "assets/cases/hire-jd.svg",
+          alt: "Job detail layout preview",
+        },
+        {
+          title: "Application Form",
+          desc: "Form tối giản, validation rõ ràng và ít friction.",
+          image: "assets/cases/hire-form.svg",
+          alt: "Application form preview",
+        },
+        {
+          title: "Mobile View",
+          desc: "Giữ readability tốt trên màn hình nhỏ.",
+          image: "assets/cases/hire-mobile.svg",
+          alt: "Mobile view preview",
+        },
+      ],
+      links: [{ label: "GitHub", href: "https://github.com/thu-high" }],
+    },
+
+    "task-workspace": {
+      badge: "Private Case · Product",
+      title: "Task Workspace cho team cross-functional",
+      summary:
+        "Workspace quản lý sprint và block issue theo thời gian thực, tập trung vào việc giảm nghẽn giao tiếp giữa PM, QA và Engineer.",
+      meta: [
+        "Vai trò: Frontend Contributor",
+        "Team: 5 người",
+        "Thời gian: 5 tháng",
+        "Stack: Vue + TypeScript + Node.js",
+      ],
+      proof: [
+        { value: "5 tháng", label: "Thời gian dự án" },
+        { value: "5 người", label: "Team triển khai" },
+        { value: "Realtime", label: "Trọng tâm dữ liệu" },
+        { value: "Nội bộ", label: "Private product" },
+      ],
+      problem:
+        "Thông tin task rải rác giữa nhiều công cụ, PM khó nắm bottleneck theo sprint và đội dev mất thời gian đồng bộ trạng thái thủ công.",
+      solution:
+        "Xây dashboard tập trung theo sprint health, timeline tiến độ và dependency map; kết nối webhook để đồng bộ trạng thái giữa các hệ thống.",
+      architecture: [
+        "State store tách theo board, sprint và insights.",
+        "Realtime cập nhật trạng thái qua event channel.",
+        "UI kit chung cho task board, filters và progress view.",
+      ],
+      impact: [
+        "Giảm thời gian check trạng thái đầu ngày của team.",
+        "Phát hiện bottleneck sớm hơn trong sprint.",
+        "Giảm xung đột thông tin giữa PM và dev.",
+      ],
+      roleScope: [
+        "Phụ trách dashboard sprint health và dependency map.",
+        "Thiết kế interaction cho filters, board grouping và timeline view.",
+        "Phối hợp BE để chuẩn hóa event naming khi đồng bộ realtime.",
+      ],
+      evidence: [
+        "Ảnh wireframe và bản final cho luồng theo dõi sprint.",
+        "Decision log ngắn về state management và event flow.",
+        "Demo private theo lịch hẹn với nhà tuyển dụng.",
+      ],
+      challenges: [
+        "Đồng bộ dữ liệu từ nhiều nguồn trong thời gian ngắn.",
+        "Giữ UI dễ dùng khi số task tăng mạnh.",
+        "Thiết kế quyền truy cập hợp lý theo vai trò.",
+      ],
+      lessons: [
+        "Visualization tốt giúp team quyết định nhanh hơn.",
+        "Event-driven flow cần theo dõi trạng thái chặt chẽ.",
+        "Product nội bộ vẫn cần UX rõ ràng như sản phẩm public.",
+      ],
+      nda:
+        "Sản phẩm nội bộ chưa public. Có thể trình bày chi tiết kiến trúc và decision log trong buổi phỏng vấn kỹ thuật.",
+      videoEmbed: "",
+      videoFile: "",
+      videoPoster: "",
+      videoNote:
+        "Do phạm vi nội bộ, video demo chỉ chia sẻ trong buổi trao đổi trực tiếp.",
+      gallery: [
+        {
+          title: "Sprint Health Panel",
+          desc: "Theo dõi trạng thái sprint theo thời gian thực.",
+          image: "assets/cases/task-sprint.svg",
+          alt: "Sprint health panel preview",
+        },
+        {
+          title: "Dependency Map",
+          desc: "Minh họa task bị chặn và mức độ ảnh hưởng.",
+          image: "assets/cases/task-dependency.svg",
+          alt: "Dependency map preview",
+        },
+        {
+          title: "Team Board",
+          desc: "Quản lý task theo team và ưu tiên.",
+          image: "assets/cases/task-board.svg",
+          alt: "Team board preview",
+        },
+        {
+          title: "Insight View",
+          desc: "Tổng hợp xu hướng tiến độ qua các sprint.",
+          image: "assets/cases/task-insight.svg",
+          alt: "Insight view preview",
+        },
+      ],
+      links: [{ label: "Case private" }, { label: "Repo theo NDA" }],
+    },
+  };
+
+  const setTheme = (theme) => {
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem(THEME_KEY, theme);
+    if (themeMeta) {
+      themeMeta.setAttribute("content", THEME_COLORS[theme] || THEME_COLORS.light);
     }
-    initApp();
-});
+  };
 
-function initApp() {
-    // ==================== PRELOADER ====================
-    const preloader = document.getElementById('preloader');
-    const loaderNumber = document.getElementById('loader-number');
-    let count = 0;
+  const initTheme = () => {
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved === "dark" || saved === "light") {
+      setTheme(saved);
+    } else {
+      setTheme("light");
+    }
+  };
 
-    const counterInterval = setInterval(() => {
-        count += Math.floor(Math.random() * 10) + 1;
-        if (count > 100) count = 100;
-        loaderNumber.textContent = count;
+  const toggleTheme = () => {
+    const current = root.getAttribute("data-theme") || "light";
+    setTheme(current === "light" ? "dark" : "light");
+  };
 
-        if (count >= 100) {
-            clearInterval(counterInterval);
-            setTimeout(() => {
-                gsap.to(preloader, {
-                    yPercent: -100,
-                    duration: 0.8,
-                    ease: 'power4.inOut',
-                    onComplete: () => {
-                        preloader.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                        initAnimations();
-                    }
-                });
-            }, 500);
+  const closeMobileMenu = () => {
+    if (!mobileMenu || !menuToggle) return;
+    mobileMenu.classList.remove("is-open");
+    menuToggle.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  };
+
+  const initMobileMenu = () => {
+    if (!menuToggle || !mobileMenu) return;
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("is-open");
+      menuToggle.classList.toggle("is-open", isOpen);
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMobileMenu);
+    });
+  };
+
+  const initHeaderScroll = () => {
+    if (!header) return;
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        header.classList.toggle("is-scrolled", window.scrollY > 8);
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  };
+
+  const initReveal = () => {
+    const revealElements = document.querySelectorAll("[data-reveal]");
+    if (revealElements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -10% 0px",
+      },
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+  };
+
+  const initActiveNav = () => {
+    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+    const navTargets = new Set(
+      navLinks
+        .map((link) => link.getAttribute("href") || "")
+        .filter((href) => href.startsWith("#")),
+    );
+    const sections = Array.from(document.querySelectorAll("main section[id]")).filter((section) =>
+      navTargets.has(`#${section.id}`),
+    );
+
+    if (sections.length === 0 || navLinks.length === 0) return;
+
+    const setActive = (sectionId) => {
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === `#${sectionId}`;
+        link.classList.toggle("is-active", isActive);
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length > 0) {
+          setActive(visible[0].target.id);
         }
-    }, 30);
+      },
+      {
+        rootMargin: "-35% 0px -45% 0px",
+        threshold: [0.2, 0.45, 0.7],
+      },
+    );
 
-    // ==================== CUSTOM CURSOR ====================
-    const cursor = document.getElementById('cursor');
-    const follower = document.getElementById('cursor-follower');
-    let mouseX = 0, mouseY = 0;
-    let followerX = 0, followerY = 0;
-    let cursorRAF = false;
+    sections.forEach((section) => observer.observe(section));
+  };
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+  const initCaseSectionNav = () => {
+    const links = Array.from(document.querySelectorAll(".project-case-nav a"));
+    if (links.length === 0) return;
+
+    const items = links
+      .map((link) => {
+        const href = link.getAttribute("href") || "";
+        if (!href.startsWith("#")) return null;
+        const section = document.querySelector(href);
+        if (!section) return null;
+
+        return {
+          id: href.slice(1),
+          link,
+          section,
+        };
+      })
+      .filter(Boolean);
+
+    if (items.length === 0) return;
+
+    const setActive = (id) => {
+      items.forEach((item) => {
+        item.link.classList.toggle("is-active", item.id === id);
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length === 0) return;
+
+        const current = items.find((item) => item.section === visible[0].target);
+        if (current) {
+          setActive(current.id);
+        }
+      },
+      {
+        rootMargin: "-28% 0px -52% 0px",
+        threshold: [0.2, 0.45, 0.7],
+      },
+    );
+
+    items.forEach((item) => observer.observe(item.section));
+    setActive(items[0].id);
+  };
+
+  const initProjectFilter = () => {
+    const buttons = Array.from(document.querySelectorAll(".filter-btn"));
+    const cards = Array.from(document.querySelectorAll(".project-card"));
+
+    if (buttons.length === 0 || cards.length === 0) return;
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter || "all";
+
+        buttons.forEach((btn) => btn.classList.toggle("active", btn === button));
+
+        cards.forEach((card) => {
+          if (filter === "all") {
+            card.classList.remove("is-hidden");
+            return;
+          }
+
+          const type = card.dataset.projectType || "";
+          const match = type.split(" ").includes(filter);
+          card.classList.toggle("is-hidden", !match);
+        });
+      });
     });
+  };
 
-    // Dùng 1 RAF loop duy nhất thay vì gọi gsap.to() mỗi mousemove
-    function animateCursor() {
-        if (cursor) cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+  const renderList = (container, items = []) => {
+    if (!container) return;
+    container.innerHTML = "";
+    items.forEach((item) => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      container.appendChild(li);
+    });
+  };
 
-        followerX += (mouseX - followerX) * 0.12;
-        followerY += (mouseY - followerY) * 0.12;
-        if (follower) follower.style.transform = `translate(${followerX}px, ${followerY}px)`;
+  const renderProof = (container, items = []) => {
+    if (!container) return;
+    container.innerHTML = "";
 
-        requestAnimationFrame(animateCursor);
+    if (!items.length) {
+      const fallback = document.createElement("article");
+      fallback.className = "proof-item";
+
+      const value = document.createElement("strong");
+      value.textContent = "Case Study";
+      const label = document.createElement("span");
+      label.textContent = "Chi tiết kết quả sẽ được cập nhật theo dữ liệu thực tế.";
+
+      fallback.appendChild(value);
+      fallback.appendChild(label);
+      container.appendChild(fallback);
+      return;
     }
-    animateCursor();
 
+    items.forEach((item) => {
+      const card = document.createElement("article");
+      card.className = "proof-item";
 
-    // Cursor hover effects
-    const hoverElements = document.querySelectorAll('a, button, [data-magnetic], input, textarea');
+      const value = document.createElement("strong");
+      value.textContent = item.value || "";
+      const label = document.createElement("span");
+      label.textContent = item.label || "";
 
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('hover');
-            follower.classList.add('hover');
-        });
-
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('hover');
-            follower.classList.remove('hover');
-        });
+      card.appendChild(value);
+      card.appendChild(label);
+      container.appendChild(card);
     });
+  };
 
-    // ==================== MAGNETIC EFFECT ====================
-    const magneticElements = document.querySelectorAll('[data-magnetic]');
+  const renderProjectPage = () => {
+    const projectMain = document.getElementById("project-main");
+    if (!projectMain) return;
 
-    magneticElements.forEach(el => {
-        el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get("id") || "";
+    const detail = PROJECT_CASES[projectId];
 
-            gsap.to(el, {
-                x: x * 0.3,
-                y: y * 0.3,
-                duration: 0.4,
-                ease: 'power2.out'
-            });
-        });
+    const setText = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value || "";
+    };
 
-        el.addEventListener('mouseleave', () => {
-            gsap.to(el, {
-                x: 0,
-                y: 0,
-                duration: 0.7,
-                ease: 'elastic.out(1, 0.3)'
-            });
-        });
-    });
+    if (!detail) {
+      setText("project-case-title", "Không tìm thấy case study");
+      setText(
+        "project-case-summary",
+        "ID dự án không hợp lệ hoặc chưa được cấu hình. Vui lòng quay lại trang chính để chọn dự án hợp lệ.",
+      );
+      return;
+    }
 
-    // ==================== NAVBAR ====================
-    const navbar = document.getElementById('navbar');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section[id]');
+    document.title = `${detail.title} | Case Study`;
 
-    // Scroll effect
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
+    setText("project-case-badge", detail.badge);
+    setText("project-case-title", detail.title);
+    setText("project-case-summary", detail.summary);
+    setText("project-problem", detail.problem);
+    setText("project-solution", detail.solution);
+    setText("project-nda", detail.nda);
+    setText("project-video-note", detail.videoNote);
 
-        // Navbar background
-        if (scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+    const metaContainer = document.getElementById("project-case-meta");
+    if (metaContainer) {
+      metaContainer.innerHTML = "";
+      (detail.meta || []).forEach((item) => {
+        const chip = document.createElement("span");
+        chip.textContent = item;
+        metaContainer.appendChild(chip);
+      });
+    }
+
+    renderProof(document.getElementById("project-proof-grid"), detail.proof || []);
+    renderList(document.getElementById("project-architecture"), detail.architecture);
+    renderList(document.getElementById("project-impact"), detail.impact);
+    renderList(document.getElementById("project-role-scope"), detail.roleScope);
+    renderList(document.getElementById("project-evidence"), detail.evidence);
+    renderList(document.getElementById("project-challenges"), detail.challenges);
+    renderList(document.getElementById("project-lessons"), detail.lessons);
+
+    const videoContainer = document.getElementById("project-video");
+    if (videoContainer) {
+      videoContainer.innerHTML = "";
+
+      if (detail.videoFile) {
+        const video = document.createElement("video");
+        video.controls = true;
+        video.preload = "metadata";
+        if (detail.videoPoster) {
+          video.poster = detail.videoPoster;
         }
 
-        // Scroll progress
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollProgress = (scrollY / docHeight) * 100;
-        document.getElementById('scroll-progress').style.width = `${scrollProgress}%`;
+        const source = document.createElement("source");
+        source.src = detail.videoFile;
+        source.type = "video/mp4";
 
-        // Active nav link
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 200;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    });
-
-    // Smooth scroll for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const target = document.querySelector(link.getAttribute('href'));
-            if (target) {
-                gsap.to(window, {
-                    scrollTo: { y: target, offsetY: 80 },
-                    duration: 1,
-                    ease: 'power3.inOut'
-                });
-            }
-
-            // Close mobile menu if open
-            if (mobileMenu.classList.contains('active')) {
-                toggleMobileMenu();
-            }
-        });
-    });
-
-    // ==================== HAMBURGER / MOBILE MENU ====================
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    function toggleMobileMenu() {
-        hamburger.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-    }
-
-    hamburger.addEventListener('click', toggleMobileMenu);
-
-    document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', () => {
-            toggleMobileMenu();
-        });
-    });
-
-    // ==================== THEME TOGGLE ====================
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-
-    // Check saved theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    html.setAttribute('data-theme', savedTheme);
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-
-        // Animate toggle
-        gsap.fromTo(themeToggle,
-            { rotation: 0, scale: 0.5 },
-            { rotation: 360, scale: 1, duration: 0.5, ease: 'back.out(1.7)' }
+        video.appendChild(source);
+        video.appendChild(
+          document.createTextNode("Trình duyệt không hỗ trợ phát video cho định dạng này."),
         );
-    });
 
-    // ==================== TYPING EFFECT ====================
-    const typedTextEl = document.getElementById('typed-text');
-    const phrases = (siteData && siteData.hero && siteData.hero.typingPhrases) ? siteData.hero.typingPhrases : [
-        'Full Stack Developer',
-        'UI/UX Designer',
-        'Creative Coder',
-        'Problem Solver',
-        'Tech Enthusiast'
-    ];
+        videoContainer.appendChild(video);
+      } else if (detail.videoEmbed) {
+        const iframe = document.createElement("iframe");
+        iframe.src = detail.videoEmbed;
+        iframe.loading = "lazy";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        iframe.title = `${detail.title} walkthrough`;
+        videoContainer.appendChild(iframe);
+      } else {
+        const placeholder = document.createElement("div");
+        placeholder.className = "video-placeholder";
 
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typeSpeed = 100;
+        const strong = document.createElement("strong");
+        strong.textContent = "Video không public";
+        const note = document.createElement("span");
+        note.textContent = "Dự án thuộc phạm vi private/NDA. Có thể demo trực tiếp khi phỏng vấn.";
 
-    function typeEffect() {
-        const currentPhrase = phrases[phraseIndex];
+        placeholder.appendChild(strong);
+        placeholder.appendChild(note);
+        videoContainer.appendChild(placeholder);
+      }
+    }
 
-        if (isDeleting) {
-            typedTextEl.textContent = currentPhrase.substring(0, charIndex - 1);
-            charIndex--;
-            typeSpeed = 50;
+    const gallery = document.getElementById("project-gallery");
+    if (gallery) {
+      gallery.innerHTML = "";
+      (detail.gallery || []).forEach((item) => {
+        const hasImage = typeof item.image === "string" && item.image.trim().length > 0;
+        if (hasImage) {
+          const figure = document.createElement("figure");
+          figure.className = "gallery-item gallery-item-media";
+
+          const img = document.createElement("img");
+          img.src = item.image;
+          img.alt = item.alt || item.title || "Project media";
+          img.loading = "lazy";
+          img.decoding = "async";
+
+          const caption = document.createElement("figcaption");
+          caption.className = "gallery-item-caption";
+
+          const title = document.createElement("strong");
+          title.textContent = item.title;
+          const desc = document.createElement("span");
+          desc.textContent = item.desc;
+
+          caption.appendChild(title);
+          caption.appendChild(desc);
+          figure.appendChild(img);
+          figure.appendChild(caption);
+          gallery.appendChild(figure);
+          return;
+        }
+
+        const card = document.createElement("div");
+        card.className = "gallery-item";
+
+        const title = document.createElement("strong");
+        title.textContent = item.title;
+        const desc = document.createElement("span");
+        desc.textContent = item.desc;
+
+        card.appendChild(title);
+        card.appendChild(desc);
+        gallery.appendChild(card);
+      });
+    }
+
+    const links = document.getElementById("project-links");
+    if (links) {
+      links.innerHTML = "";
+      (detail.links || []).forEach((item) => {
+        if (item.href) {
+          const a = document.createElement("a");
+          a.href = item.href;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = item.label;
+          links.appendChild(a);
         } else {
-            typedTextEl.textContent = currentPhrase.substring(0, charIndex + 1);
-            charIndex++;
-            typeSpeed = 100;
+          const span = document.createElement("span");
+          span.textContent = item.label;
+          links.appendChild(span);
         }
-
-        if (!isDeleting && charIndex === currentPhrase.length) {
-            typeSpeed = 2000; // Pause at end
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            typeSpeed = 500; // Pause before typing new phrase
-        }
-
-        setTimeout(typeEffect, typeSpeed);
+      });
     }
+  };
 
-    typeEffect();
+  const initContactForm = () => {
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+    if (!form) return;
 
-    // ==================== COUNTER ANIMATION ====================
-    function animateCounters() {
-        const counters = document.querySelectorAll('[data-count]');
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
 
-        counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-count'));
-            const duration = 2;
+      const formData = new FormData(form);
+      const name = String(formData.get("name") || "").trim();
+      const email = String(formData.get("email") || "").trim();
+      const subject = String(formData.get("subject") || "").trim();
+      const message = String(formData.get("message") || "").trim();
 
-            gsap.to(counter, {
-                textContent: target,
-                duration: duration,
-                ease: 'power2.out',
-                snap: { textContent: 1 },
-                scrollTrigger: {
-                    trigger: counter,
-                    start: 'top 80%',
-                    once: true
-                }
-            });
-        });
-    }
+      if (!name || !email || !subject || !message) {
+        if (status) status.textContent = "Vui lòng điền đầy đủ thông tin trước khi gửi.";
+        return;
+      }
 
-    // ==================== PROJECT FILTERING ====================
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
+      const mailtoSubject = encodeURIComponent(`[Portfolio] ${subject}`);
+      const bodyLines = [
+        `Họ tên: ${name}`,
+        `Email: ${email}`,
+        "",
+        "Nội dung:",
+        message,
+      ];
+      const mailtoBody = encodeURIComponent(bodyLines.join("\n"));
 
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update active button
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+      if (status) {
+        status.textContent = "Đang mở ứng dụng email...";
+      }
 
-            const filter = btn.getAttribute('data-filter');
-
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-
-                if (filter === 'all' || category.includes(filter)) {
-                    gsap.to(card, {
-                        opacity: 1,
-                        scale: 1,
-                        duration: 0.4,
-                        ease: 'power2.out',
-                        onStart: () => card.classList.remove('hidden')
-                    });
-                } else {
-                    gsap.to(card, {
-                        opacity: 0,
-                        scale: 0.8,
-                        duration: 0.4,
-                        ease: 'power2.out',
-                        onComplete: () => card.classList.add('hidden')
-                    });
-                }
-            });
-        });
+      window.location.href = `mailto:thu.high.dev@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
     });
+  };
 
-    // ==================== TESTIMONIAL SLIDER ====================
-    const track = document.getElementById('testimonial-track');
-    const cards = track ? track.querySelectorAll('.testimonial-card') : [];
-    const dotsContainer = document.getElementById('testimonial-dots');
-    const prevBtn = document.getElementById('testimonial-prev');
-    const nextBtn = document.getElementById('testimonial-next');
-    let currentSlide = 0;
+  const initFooterYear = () => {
+    const yearEl = document.getElementById("current-year");
+    if (yearEl) {
+      yearEl.textContent = String(new Date().getFullYear());
+    }
+  };
 
-    if (cards.length > 0 && dotsContainer) {
-        // Create dots
-        cards.forEach((_, i) => {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        });
+  const init = () => {
+    initTheme();
+    initMobileMenu();
+    initHeaderScroll();
+    initReveal();
+    initActiveNav();
+    initCaseSectionNav();
+    initProjectFilter();
+    renderProjectPage();
+    initContactForm();
+    initFooterYear();
 
-        function goToSlide(index) {
-            currentSlide = index;
-            track.style.transform = `translateX(-${index * 100}%)`;
-
-            dotsContainer.querySelectorAll('.dot').forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-        }
-
-        prevBtn.addEventListener('click', () => {
-            currentSlide = currentSlide === 0 ? cards.length - 1 : currentSlide - 1;
-            goToSlide(currentSlide);
-        });
-
-        nextBtn.addEventListener('click', () => {
-            currentSlide = currentSlide === cards.length - 1 ? 0 : currentSlide + 1;
-            goToSlide(currentSlide);
-        });
-
-        // Auto-play
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % cards.length;
-            goToSlide(currentSlide);
-        }, 5000);
+    if (themeToggle) {
+      themeToggle.addEventListener("click", toggleTheme);
     }
 
-    // ==================== CONTACT FORM ====================
-    const contactForm = document.getElementById('contact-form');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const submitBtn = contactForm.querySelector('.btn-submit');
-            const originalText = submitBtn.querySelector('.btn-text').textContent;
-
-            // Animate button
-            submitBtn.querySelector('.btn-text').textContent = 'Đang gửi...';
-            submitBtn.disabled = true;
-
-            // Simulate form submission
-            setTimeout(() => {
-                submitBtn.querySelector('.btn-text').textContent = 'Đã gửi! ✓';
-                submitBtn.style.background = 'linear-gradient(135deg, #00ff88, #00cc6a)';
-
-                gsap.fromTo(submitBtn,
-                    { scale: 0.95 },
-                    { scale: 1, duration: 0.5, ease: 'elastic.out(1, 0.3)' }
-                );
-
-                setTimeout(() => {
-                    submitBtn.querySelector('.btn-text').textContent = originalText;
-                    submitBtn.style.background = '';
-                    submitBtn.disabled = false;
-                    contactForm.reset();
-                }, 3000);
-            }, 1500);
-        });
-    }
-
-    // ==================== SKILL BAR ANIMATION ====================
-    function initSkillBars() {
-        const skillBars = document.querySelectorAll('.skill-progress');
-
-        skillBars.forEach(bar => {
-            ScrollTrigger.create({
-                trigger: bar,
-                start: 'top 85%',
-                once: true,
-                onEnter: () => {
-                    const width = bar.getAttribute('data-width');
-                    gsap.to(bar, {
-                        width: `${width}%`,
-                        duration: 1.5,
-                        ease: 'power2.out'
-                    });
-                }
-            });
-        });
-    }
-
-    // ==================== INIT ALL ANIMATIONS ====================
-    function initAnimations() {
-        // Register GSAP plugins
-        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-        // Reveal animations
-        const reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale');
-
-        reveals.forEach((el, i) => {
-            ScrollTrigger.create({
-                trigger: el,
-                start: 'top 85%',
-                once: true,
-                onEnter: () => {
-                    gsap.to(el, {
-                        opacity: 1,
-                        x: 0,
-                        y: 0,
-                        scale: 1,
-                        duration: 0.8,
-                        delay: i % 3 * 0.1,
-                        ease: 'power3.out'
-                    });
-                    el.classList.add('revealed');
-                }
-            });
-        });
-
-        // Hero entrance animation
-        const heroTl = gsap.timeline({ delay: 0.2 });
-
-        heroTl
-            .from('.hero-badge', { y: 30, opacity: 0, duration: 0.6, ease: 'power3.out' })
-            .from('.title-line', { y: 60, opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' }, '-=0.3')
-            .from('.hero-description', { y: 30, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-            .from('.hero-cta .btn', { y: 20, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'power3.out' }, '-=0.3')
-            .from('.social-link', { y: 20, opacity: 0, duration: 0.4, stagger: 0.08, ease: 'power3.out' }, '-=0.3')
-            .from('.hero-visual', { scale: 0.8, opacity: 0, duration: 1, ease: 'power3.out' }, '-=0.8')
-            .from('.floating-card', { scale: 0, opacity: 0, duration: 0.6, stagger: 0.15, ease: 'back.out(1.7)' }, '-=0.5')
-            .from('.scroll-indicator', { y: 20, opacity: 0, duration: 0.5 }, '-=0.3');
-
-        // Parallax effects
-        gsap.utils.toArray('.section').forEach(section => {
-            const header = section.querySelector('.section-header');
-            if (header) {
-                gsap.to(header, {
-                    yPercent: -20,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: section,
-                        start: 'top bottom',
-                        end: 'bottom top',
-                        scrub: 1
-                    }
-                });
-            }
-        });
-
-        // Initialize skill bars
-        initSkillBars();
-
-        // Initialize counters
-        animateCounters();
-
-        // Timeline line animation
-        const timelineLine = document.querySelector('.timeline-line');
-        if (timelineLine) {
-            gsap.to(timelineLine, {
-                '--progress': '100%',
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.timeline',
-                    start: 'top 60%',
-                    end: 'bottom 40%',
-                    scrub: 1
-                }
-            });
-        }
-
-        // Marquee speed on scroll
-        const marqueeTrack = document.querySelector('.marquee-track');
-        if (marqueeTrack) {
-            ScrollTrigger.create({
-                trigger: '.marquee-section',
-                start: 'top bottom',
-                end: 'bottom top',
-                onUpdate: (self) => {
-                    const speed = 1 + self.getVelocity() / 1000;
-                    gsap.to('.marquee-content', {
-                        skewX: Math.min(Math.max(self.getVelocity() / 500, -5), 5),
-                        duration: 0.3
-                    });
-                }
-            });
-        }
-    }
-
-    // ==================== VANILLA TILT INIT ====================
-    if (typeof VanillaTilt !== 'undefined') {
-        VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
-            max: 8,
-            speed: 400,
-            glare: true,
-            'max-glare': 0.15,
-            gyroscope: true
-        });
-    }
-
-    // ==================== RESUME TABS ====================
-    const resumeTabs = document.querySelectorAll('.resume-tab');
-    const resumePanels = document.querySelectorAll('.resume-panel');
-
-    resumeTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const target = tab.getAttribute('data-tab');
-
-            resumeTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
-            resumePanels.forEach(panel => {
-                panel.classList.remove('active');
-                if (panel.id === 'tab-' + target) {
-                    panel.classList.add('active');
-                    // Re-init tilt on newly visible cards
-                    if (typeof VanillaTilt !== 'undefined') {
-                        const tiltElements = panel.querySelectorAll('[data-tilt]');
-                        tiltElements.forEach(el => {
-                            if (el.vanillaTilt) el.vanillaTilt.destroy();
-                        });
-                        VanillaTilt.init(tiltElements, {
-                            max: 5,
-                            speed: 400,
-                            glare: true,
-                            'max-glare': 0.1
-                        });
-                    }
-                }
-            });
-        });
+    document.addEventListener("click", (event) => {
+      if (!mobileMenu || !menuToggle) return;
+      if (!mobileMenu.classList.contains("is-open")) return;
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (mobileMenu.contains(target) || menuToggle.contains(target)) return;
+      closeMobileMenu();
     });
+  };
 
-    // ==================== PROJECT DETAIL MODAL ====================
-    // Build projectsData from JSON
-    const projectsData = {};
-    if (siteData && siteData.projects && siteData.projects.items) {
-        siteData.projects.items.forEach(p => {
-            if (p.detail) {
-                projectsData[p.id] = {
-                    title: p.detail.subtitle ? p.title : p.title,
-                    subtitle: p.detail.subtitle,
-                    category: p.detail.categoryLabel,
-                    heroGradient: p.detail.heroGradient,
-                    overview: p.detail.overview,
-                    problem: p.detail.problem,
-                    solution: p.detail.solution,
-                    tech: p.detail.tech,
-                    features: p.detail.features,
-                    metrics: p.detail.metrics,
-                    role: p.detail.role,
-                    duration: p.detail.duration,
-                    team: p.detail.team,
-                    status: p.detail.status,
-                    challenges: p.detail.challenges,
-                    links: p.detail.links
-                };
-            }
-        });
-    }
-
-    // Open modal
-    const modal = document.getElementById('projectModal');
-    const modalClose = document.getElementById('modalClose');
-    const detailButtons = document.querySelectorAll('.btn-detail');
-
-    function openProjectModal(projectId) {
-        const data = projectsData[projectId];
-        if (!data) return;
-
-        // Fill hero
-        document.getElementById('modalHeroBg').style.background = data.heroGradient;
-        document.getElementById('modalCategory').textContent = data.category;
-        document.getElementById('modalTitle').textContent = data.title;
-        document.getElementById('modalSubtitle').textContent = data.subtitle;
-
-        // Fill body
-        document.getElementById('modalOverview').textContent = data.overview;
-        document.getElementById('modalProblem').textContent = data.problem;
-        document.getElementById('modalSolution').textContent = data.solution;
-
-        // Tech
-        const techContainer = document.getElementById('modalTech');
-        techContainer.innerHTML = data.tech.map(t => `<span class="tech-tag">${t}</span>`).join('');
-
-        // Features
-        const featuresContainer = document.getElementById('modalFeatures');
-        featuresContainer.innerHTML = data.features.map(f => `
-            <div class="feature-item">
-                <span class="feature-icon">${f.icon}</span>
-                <div class="feature-text">
-                    <strong>${f.title}</strong>
-                    ${f.desc}
-                </div>
-            </div>
-        `).join('');
-
-        // Metrics
-        const metricsContainer = document.getElementById('modalMetrics');
-        metricsContainer.innerHTML = data.metrics.map(m => `
-            <div class="metric-card">
-                <div class="metric-value">${m.value}</div>
-                <div class="metric-label">${m.label}</div>
-            </div>
-        `).join('');
-
-        // Gallery placeholders
-        const galleryContainer = document.getElementById('modalGallery');
-        galleryContainer.innerHTML = [1, 2, 3].map(i => `
-            <div class="gallery-placeholder">Screenshot ${i}</div>
-        `).join('');
-
-        // Project info
-        document.getElementById('modalRole').textContent = data.role;
-        document.getElementById('modalDuration').textContent = data.duration;
-        document.getElementById('modalTeam').textContent = data.team;
-        document.getElementById('modalStatus').textContent = data.status;
-
-        // Challenges
-        const challengesContainer = document.getElementById('modalChallenges');
-        challengesContainer.innerHTML = data.challenges.map(c => `
-            <div class="challenge-item">${c}</div>
-        `).join('');
-
-        // Links
-        const linksContainer = document.getElementById('modalLinks');
-        linksContainer.innerHTML = `
-            <a href="${data.links.demo}" class="modal-link" target="_blank">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Live Demo
-            </a>
-            <a href="${data.links.github}" class="modal-link" target="_blank">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                GitHub Repo
-            </a>
-        `;
-
-        // Show modal
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-
-        // Reset scroll
-        const modalScroll = modal.querySelector('.modal-scroll');
-        if (modalScroll) modalScroll.scrollTop = 0;
-
-        // GSAP animation
-        if (typeof gsap !== 'undefined') {
-            gsap.fromTo('.modal-hero-content > *',
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0, stagger: 0.1, duration: 0.6, delay: 0.3, ease: 'power3.out' }
-            );
-            gsap.fromTo('.modal-section',
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, stagger: 0.08, duration: 0.5, delay: 0.5, ease: 'power2.out' }
-            );
-            gsap.fromTo('.sidebar-card',
-                { opacity: 0, x: 30 },
-                { opacity: 1, x: 0, stagger: 0.1, duration: 0.5, delay: 0.6, ease: 'power2.out' }
-            );
-        }
-    }
-
-    function closeProjectModal() {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    detailButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const card = btn.closest('.project-card');
-            const projectId = card ? card.getAttribute('data-project-id') : null;
-            if (projectId) openProjectModal(projectId);
-        });
-    });
-
-    // Also open on card click
-    document.querySelectorAll('.project-card[data-project-id]').forEach(card => {
-        card.addEventListener('click', (e) => {
-            if (e.target.closest('.project-link')) return; // Don't intercept external links
-            if (e.target.closest('.btn-detail')) return; // Already handled
-            const projectId = card.getAttribute('data-project-id');
-            if (projectId) openProjectModal(projectId);
-        });
-        card.style.cursor = 'pointer';
-    });
-
-    if (modalClose) {
-        modalClose.addEventListener('click', closeProjectModal);
-    }
-
-    modal?.addEventListener('click', (e) => {
-        if (e.target === modal) closeProjectModal();
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal?.classList.contains('active')) {
-            closeProjectModal();
-        }
-    });
-
-    // ==================== GSAP SCROLL ANIMATIONS FOR RESUME ====================
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        gsap.utils.toArray('.resume-card').forEach((card, i) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                },
-                opacity: 0,
-                y: 40,
-                duration: 0.6,
-                delay: i * 0.1,
-                ease: 'power3.out'
-            });
-        });
-
-        gsap.utils.toArray('.language-card, .interest-card').forEach((card, i) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                },
-                opacity: 0,
-                scale: 0.8,
-                duration: 0.5,
-                delay: i * 0.05,
-                ease: 'back.out(1.5)'
-            });
-        });
-    }
-}
-
-// ==================== RENDER SITE CONTENT FROM JSON ====================
-function renderSiteContent(data) {
-    if (!data) return;
-
-    // --- META ---
-    if (data.meta) {
-        document.title = data.meta.title || document.title;
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc && data.meta.description) metaDesc.setAttribute('content', data.meta.description);
-    }
-
-    // --- HERO ---
-    if (data.hero) {
-        const badge = document.querySelector('.hero-badge span:last-child');
-        if (badge) badge.textContent = data.hero.badge;
-
-        const greeting = document.querySelector('.title-word');
-        if (greeting) greeting.textContent = data.hero.greeting;
-
-        const name = document.querySelector('.title-name');
-        if (name) {
-            name.textContent = data.hero.name;
-            name.setAttribute('data-text', data.hero.name);
-        }
-
-        const desc = document.querySelector('.hero-description');
-        if (desc) desc.innerHTML = data.hero.description;
-
-        // Floating cards
-        if (data.hero.floatingCards) {
-            data.hero.floatingCards.forEach((card, i) => {
-                const el = document.querySelector(`.floating-card.card-${i + 1}`);
-                if (el) {
-                    const icon = el.querySelector('.floating-card-icon');
-                    const num = el.querySelector('.card-number');
-                    const lbl = el.querySelector('.card-label');
-                    if (icon) icon.textContent = card.icon;
-                    if (num) num.textContent = card.number;
-                    if (lbl) lbl.textContent = card.label;
-                }
-            });
-        }
-
-        // Scroll text
-        const scrollText = document.querySelector('.scroll-indicator span');
-        if (scrollText && data.hero.scrollText) scrollText.textContent = data.hero.scrollText;
-    }
-
-    // --- ABOUT ---
-    if (data.about) {
-        const subtitle = document.querySelector('.about-subtitle');
-        if (subtitle) subtitle.textContent = data.about.subtitle;
-
-        const paragraphs = document.querySelectorAll('.about-text p');
-        if (data.about.paragraphs) {
-            data.about.paragraphs.forEach((text, i) => {
-                if (paragraphs[i]) paragraphs[i].textContent = text;
-            });
-        }
-
-        // Stats
-        if (data.about.stats) {
-            const statItems = document.querySelectorAll('.stat-item');
-            data.about.stats.forEach((stat, i) => {
-                if (statItems[i]) {
-                    const num = statItems[i].querySelector('.stat-number');
-                    const lbl = statItems[i].querySelector('.stat-label');
-                    if (num) num.setAttribute('data-count', stat.count);
-                    if (lbl) lbl.textContent = stat.label;
-                }
-            });
-        }
-
-        // Info items
-        if (data.about.info) {
-            const infoItems = document.querySelectorAll('.about-info .info-item');
-            data.about.info.forEach((info, i) => {
-                if (infoItems[i]) {
-                    const lbl = infoItems[i].querySelector('.info-label');
-                    const val = infoItems[i].querySelector('.info-value');
-                    if (lbl) lbl.textContent = info.label;
-                    if (val) val.textContent = info.value;
-                }
-            });
-        }
-
-        // Experience badge
-        const expNum = document.querySelector('.exp-number');
-        if (expNum && data.about.experienceYears) expNum.textContent = data.about.experienceYears;
-    }
-
-    // --- SKILLS ---
-    if (data.skills && data.skills.categories) {
-        const cats = document.querySelectorAll('.skill-category');
-        data.skills.categories.forEach((cat, ci) => {
-            if (!cats[ci]) return;
-            const h3 = cats[ci].querySelector('.skill-category-header h3');
-            if (h3) h3.textContent = cat.name;
-
-            const items = cats[ci].querySelectorAll('.skill-item');
-            cat.items.forEach((skill, si) => {
-                if (!items[si]) return;
-                const name = items[si].querySelector('.skill-name');
-                const pct = items[si].querySelector('.skill-percent');
-                const bar = items[si].querySelector('.skill-progress');
-                if (name) name.textContent = skill.name;
-                if (pct) pct.textContent = skill.percent + '%';
-                if (bar) bar.setAttribute('data-width', skill.percent);
-            });
-        });
-    }
-
-    // --- EXPERIENCE ---
-    if (data.experience && data.experience.timeline) {
-        const items = document.querySelectorAll('.timeline-item');
-        data.experience.timeline.forEach((exp, i) => {
-            if (!items[i]) return;
-            const date = items[i].querySelector('.timeline-date');
-            const title = items[i].querySelector('.timeline-title');
-            const company = items[i].querySelector('.timeline-company');
-            const desc = items[i].querySelector('.timeline-description');
-            if (date) date.textContent = exp.date;
-            if (title) title.textContent = exp.title;
-            if (company) company.textContent = exp.company;
-            if (desc) desc.textContent = exp.description;
-
-            const tags = items[i].querySelectorAll('.timeline-tags span');
-            exp.tags.forEach((tag, ti) => {
-                if (tags[ti]) tags[ti].textContent = tag;
-            });
-        });
-    }
-
-    // --- TESTIMONIALS ---
-    if (data.testimonials && data.testimonials.items) {
-        const cards = document.querySelectorAll('.testimonial-card');
-        data.testimonials.items.forEach((t, i) => {
-            if (!cards[i]) return;
-            const text = cards[i].querySelector('.testimonial-text');
-            const name = cards[i].querySelector('.author-name');
-            const role = cards[i].querySelector('.author-role');
-            const avatar = cards[i].querySelector('.author-avatar');
-            if (text) text.textContent = '"' + t.text + '"';
-            if (name) name.textContent = t.authorName;
-            if (role) role.textContent = t.authorRole;
-            if (avatar) avatar.textContent = t.authorInitials;
-        });
-    }
-
-    // --- CONTACT ---
-    if (data.contact) {
-        const subtitle = document.querySelector('.contact-subtitle');
-        if (subtitle) subtitle.textContent = data.contact.subtitle;
-
-        const text = document.querySelector('.contact-text');
-        if (text) text.textContent = data.contact.text;
-    }
-
-    // --- FOOTER ---
-    if (data.footer) {
-        const tagline = document.querySelector('.footer-col p');
-        if (tagline) tagline.textContent = data.footer.tagline;
-    }
-}
+  document.addEventListener("DOMContentLoaded", init);
+})();

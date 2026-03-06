@@ -4,7 +4,7 @@
     "description": "Creative Developer Portfolio - Showcasing innovative web experiences",
     "language": "vi",
     "copyright": "© 2026 Thư High. Tất cả quyền được bảo lưu.",
-    "madeWith": "Thiết kế & phát triển với ❤️"
+    "madeWith": "Thiết kế & phát triển với tình yêu"
   },
 
   "nav": {
@@ -43,9 +43,9 @@
       { "url": "mailto:hello@example.com", "platform": "Email" }
     ],
     "floatingCards": [
-      { "icon": "🚀", "number": "50+", "label": "Dự án" },
-      { "icon": "⭐", "number": "3+", "label": "Năm KN" },
-      { "icon": "💡", "number": "100%", "label": "Đam mê" }
+      { "icon": "rocket", "number": "50+", "label": "Dự án" },
+      { "icon": "star", "number": "3+", "label": "Năm KN" },
+      { "icon": "lightbulb", "number": "100%", "label": "Đam mê" }
     ],
     "scrollText": "Cuộn xuống"
   },
@@ -74,7 +74,7 @@
     "info": [
       { "label": "Tên:", "value": "Thư High" },
       { "label": "Email:", "value": "hello@example.com" },
-      { "label": "Địa điểm:", "value": "Việt Nam 🇻🇳" },
+      { "label": "Địa điểm:", "value": "Việt Nam" },
       { "label": "Freelance:", "value": "Sẵn sàng", "highlight": true }
     ],
     "experienceYears": "3+",
@@ -120,8 +120,8 @@
       }
     ],
     "techOrbit": {
-      "ring1": ["⚛️", "🟢", "🔷", "🐍", "🎨", "🐳"],
-      "ring2": ["📦", "🔥", "☁️", "🗄️", "⚡", "🧪"]
+      "ring1": ["Re", "Nj", "TS", "Py", "Fg", "Dk"],
+      "ring2": ["Wp", "Fb", "Cd", "DB", "Vt", "Js"]
     }
   },
 
@@ -153,12 +153,12 @@
           "solution": "Xây dựng platform AI tự động phân tích data streams, áp dụng ML models để predict trends, detect anomalies real-time và generate actionable insights automatically.",
           "tech": ["React", "TypeScript", "Python", "TensorFlow", "FastAPI", "PostgreSQL", "Redis", "Docker", "AWS", "GraphQL"],
           "features": [
-            { "icon": "🧠", "title": "AI Predictions", "desc": "Dự đoán xu hướng với độ chính xác 94%" },
-            { "icon": "⚡", "title": "Real-time Processing", "desc": "Xử lý 10M+ data points/ngày" },
-            { "icon": "🔔", "title": "Smart Alerts", "desc": "Phát hiện bất thường tự động" },
-            { "icon": "📊", "title": "Auto Reports", "desc": "Tạo báo cáo tự động hàng tuần" },
-            { "icon": "🎨", "title": "Custom Dashboards", "desc": "Drag-and-drop dashboard builder" },
-            { "icon": "🔐", "title": "Enterprise Security", "desc": "SOC2 Type II compliance" }
+            { "icon": "brain", "title": "AI Predictions", "desc": "Dự đoán xu hướng với độ chính xác 94%" },
+            { "icon": "zap", "title": "Real-time Processing", "desc": "Xử lý 10M+ data points/ngày" },
+            { "icon": "bell", "title": "Smart Alerts", "desc": "Phát hiện bất thường tự động" },
+            { "icon": "bar-chart", "title": "Auto Reports", "desc": "Tạo báo cáo tự động hàng tuần" },
+            { "icon": "palette", "title": "Custom Dashboards", "desc": "Drag-and-drop dashboard builder" },
+            { "icon": "shield", "title": "Enterprise Security", "desc": "SOC2 Type II compliance" }
           ],
           "metrics": [
             { "value": "500+", "label": "Doanh nghiệp" },
@@ -195,12 +195,12 @@
           "solution": "Thiết kế microservices architecture với AI recommendation engine, one-click checkout, và real-time inventory sync giảm abandon cart xuống 25%.",
           "tech": ["Next.js", "Node.js", "MongoDB", "Redis", "Stripe", "Elasticsearch", "RabbitMQ", "Kubernetes", "GCP"],
           "features": [
-            { "icon": "🛒", "title": "Smart Cart", "desc": "AI-powered product recommendations" },
-            { "icon": "💳", "title": "One-Click Pay", "desc": "Checkout trong 10 giây" },
-            { "icon": "📦", "title": "Real-time Inventory", "desc": "Sync kho hàng real-time" },
-            { "icon": "🔍", "title": "Smart Search", "desc": "Elasticsearch + NLP" },
-            { "icon": "📱", "title": "Mobile-First", "desc": "PWA với offline support" },
-            { "icon": "📊", "title": "Seller Dashboard", "desc": "Analytics cho nhà bán hàng" }
+            { "icon": "shopping-cart", "title": "Smart Cart", "desc": "AI-powered product recommendations" },
+            { "icon": "credit-card", "title": "One-Click Pay", "desc": "Checkout trong 10 giây" },
+            { "icon": "package", "title": "Real-time Inventory", "desc": "Sync kho hàng real-time" },
+            { "icon": "search", "title": "Smart Search", "desc": "Elasticsearch + NLP" },
+            { "icon": "smartphone", "title": "Mobile-First", "desc": "PWA với offline support" },
+            { "icon": "bar-chart", "title": "Seller Dashboard", "desc": "Analytics cho nhà bán hàng" }
           ],
           "metrics": [
             { "value": "100K+", "label": "Active Users" },
@@ -237,18 +237,18 @@
           "solution": "Phát triển messaging platform với military-grade E2E encryption, WebRTC cho calls, và AI chatbot hỗ trợ tác vụ nội bộ doanh nghiệp.",
           "tech": ["React Native", "Socket.io", "WebRTC", "Node.js", "MongoDB", "Redis", "Firebase", "AWS", "OpenAI API"],
           "features": [
-            { "icon": "🔒", "title": "E2E Encryption", "desc": "Signal Protocol implementation" },
-            { "icon": "📹", "title": "Video Calls", "desc": "WebRTC HD với screen sharing" },
-            { "icon": "🤖", "title": "AI Assistant", "desc": "GPT-powered chatbot" },
-            { "icon": "📁", "title": "File Sharing", "desc": "Encrypted file transfer đến 2GB" },
-            { "icon": "👥", "title": "Group Chat", "desc": "Nhóm lên đến 1000 thành viên" },
-            { "icon": "🔔", "title": "Smart Notifications", "desc": "Priority-based notification" }
+            { "icon": "lock", "title": "E2E Encryption", "desc": "Signal Protocol implementation" },
+            { "icon": "video", "title": "Video Calls", "desc": "WebRTC HD với screen sharing" },
+            { "icon": "cpu", "title": "AI Assistant", "desc": "GPT-powered chatbot" },
+            { "icon": "folder", "title": "File Sharing", "desc": "Encrypted file transfer đến 2GB" },
+            { "icon": "users", "title": "Group Chat", "desc": "Nhóm lên đến 1000 thành viên" },
+            { "icon": "bell", "title": "Smart Notifications", "desc": "Priority-based notification" }
           ],
           "metrics": [
             { "value": "50K+", "label": "Concurrent Users" },
             { "value": "<50ms", "label": "Latency" },
             { "value": "2M+", "label": "Messages/ngày" },
-            { "value": "4.8⭐", "label": "App Store" }
+            { "value": "4.8/5", "label": "App Store" }
           ],
           "role": "Full Stack Developer",
           "duration": "6 tháng",
@@ -279,18 +279,18 @@
           "solution": "Xây dựng tool quản lý dự án đơn giản nhưng powerful, tích hợp AI để auto-estimate tasks, suggest priorities, và predict project timeline.",
           "tech": ["Vue.js", "Vuex", "Express.js", "PostgreSQL", "Socket.io", "Docker", "CI/CD", "OpenAI"],
           "features": [
-            { "icon": "📋", "title": "Kanban Boards", "desc": "Drag-and-drop task management" },
-            { "icon": "📈", "title": "Gantt Charts", "desc": "Interactive project timeline" },
-            { "icon": "⏱️", "title": "Time Tracking", "desc": "Automatic time logging" },
-            { "icon": "🤖", "title": "AI Estimator", "desc": "Auto-estimate story points" },
-            { "icon": "📊", "title": "Sprint Analytics", "desc": "Velocity & burndown charts" },
-            { "icon": "🔗", "title": "Integrations", "desc": "GitHub, Slack, Jira sync" }
+            { "icon": "clipboard", "title": "Kanban Boards", "desc": "Drag-and-drop task management" },
+            { "icon": "trending-up", "title": "Gantt Charts", "desc": "Interactive project timeline" },
+            { "icon": "clock", "title": "Time Tracking", "desc": "Automatic time logging" },
+            { "icon": "cpu", "title": "AI Estimator", "desc": "Auto-estimate story points" },
+            { "icon": "bar-chart", "title": "Sprint Analytics", "desc": "Velocity & burndown charts" },
+            { "icon": "link", "title": "Integrations", "desc": "GitHub, Slack, Jira sync" }
           ],
           "metrics": [
             { "value": "200+", "label": "Teams" },
             { "value": "35%", "label": "Tăng productivity" },
             { "value": "10K+", "label": "Tasks/ngày" },
-            { "value": "4.7⭐", "label": "User Rating" }
+            { "value": "4.7/5", "label": "User Rating" }
           ],
           "role": "Lead Frontend",
           "duration": "10 tháng",
@@ -321,12 +321,12 @@
           "solution": "Tạo trải nghiệm immersive 3D hoàn toàn với custom shaders, physics engine, và narrative-driven navigation khiến visitors nhớ lâu.",
           "tech": ["Three.js", "GLSL Shaders", "GSAP", "Cannon.js", "WebGL", "Blender", "Figma"],
           "features": [
-            { "icon": "🌐", "title": "3D World", "desc": "Interactive 3D environment" },
-            { "icon": "✨", "title": "Custom Shaders", "desc": "GLSL vertex & fragment shaders" },
-            { "icon": "🎭", "title": "Physics", "desc": "Cannon.js physics simulation" },
-            { "icon": "📖", "title": "Storytelling", "desc": "Scroll-driven narrative" },
-            { "icon": "🎨", "title": "Dynamic Themes", "desc": "Shader-based theme transitions" },
-            { "icon": "📱", "title": "Responsive 3D", "desc": "Adaptive quality cho mobile" }
+            { "icon": "globe", "title": "3D World", "desc": "Interactive 3D environment" },
+            { "icon": "sparkles", "title": "Custom Shaders", "desc": "GLSL vertex & fragment shaders" },
+            { "icon": "layers", "title": "Physics", "desc": "Cannon.js physics simulation" },
+            { "icon": "book-open", "title": "Storytelling", "desc": "Scroll-driven narrative" },
+            { "icon": "palette", "title": "Dynamic Themes", "desc": "Shader-based theme transitions" },
+            { "icon": "smartphone", "title": "Responsive 3D", "desc": "Adaptive quality cho mobile" }
           ],
           "metrics": [
             { "value": "SOTD", "label": "CSS Design Awards" },
@@ -363,18 +363,18 @@
           "solution": "Xây dựng all-in-one platform cho creators với AI writing/image tools, subscription model, tip system, và detailed audience analytics.",
           "tech": ["Next.js", "React Native", "GraphQL", "PostgreSQL", "AWS S3", "Cloudflare", "Stripe Connect", "OpenAI", "FFmpeg"],
           "features": [
-            { "icon": "✍️", "title": "AI Content Tools", "desc": "AI writing & image generation" },
-            { "icon": "💰", "title": "Monetization", "desc": "Subscriptions, tips, paid content" },
-            { "icon": "📊", "title": "Creator Analytics", "desc": "Chi tiết audience insights" },
-            { "icon": "🎬", "title": "Video Platform", "desc": "Upload, transcode, stream" },
-            { "icon": "🏪", "title": "Creator Store", "desc": "Digital products marketplace" },
-            { "icon": "🤝", "title": "Community", "desc": "Forums, events, collaborations" }
+            { "icon": "edit", "title": "AI Content Tools", "desc": "AI writing & image generation" },
+            { "icon": "dollar-sign", "title": "Monetization", "desc": "Subscriptions, tips, paid content" },
+            { "icon": "bar-chart", "title": "Creator Analytics", "desc": "Chi tiết audience insights" },
+            { "icon": "film", "title": "Video Platform", "desc": "Upload, transcode, stream" },
+            { "icon": "store", "title": "Creator Store", "desc": "Digital products marketplace" },
+            { "icon": "handshake", "title": "Community", "desc": "Forums, events, collaborations" }
           ],
           "metrics": [
             { "value": "30K+", "label": "Active Creators" },
             { "value": "$2M+", "label": "Creator Earnings" },
             { "value": "5M+", "label": "Monthly Views" },
-            { "value": "4.6⭐", "label": "App Rating" }
+            { "value": "4.6/5", "label": "App Rating" }
           ],
           "role": "Co-founder / CTO",
           "duration": "18 tháng",
@@ -469,33 +469,33 @@
     ],
     "education": [
       {
-        "icon": "🎓",
+        "icon": "graduation",
         "period": "2018 - 2022",
         "title": "Cử nhân Khoa học Máy tính",
         "org": "Đại học Bách Khoa TP.HCM",
         "desc": "Tốt nghiệp loại Giỏi (GPA 3.6/4.0). Chuyên ngành Công nghệ Phần mềm. Nghiên cứu về AI/ML và Web Technologies.",
-        "highlights": ["🏆 Thủ khoa khoa CNPM", "📊 GPA: 3.6/4.0", "📝 Luận văn xuất sắc"]
+        "highlights": ["Thủ khoa khoa CNPM", "GPA: 3.6/4.0", "Luận văn xuất sắc"]
       },
       {
-        "icon": "📚",
+        "icon": "book-stack",
         "period": "2022 - 2024",
         "title": "Thạc sĩ Trí tuệ Nhân tạo",
         "org": "Đại học Quốc gia HN",
         "desc": "Nghiên cứu chuyên sâu về Deep Learning, NLP và Computer Vision. Xuất bản 2 bài báo khoa học quốc tế.",
-        "highlights": ["📄 2 bài báo quốc tế", "🔬 Research Assistant", "🌟 Học bổng 100%"]
+        "highlights": ["2 bài báo quốc tế", "Research Assistant", "Học bổng 100%"]
       },
       {
-        "icon": "💻",
+        "icon": "monitor",
         "period": "2020",
         "title": "Full Stack Web Development",
         "org": "Le Wagon Bootcamp",
         "desc": "Chương trình deep dive 9 tuần vào full-stack development. Xây dựng 3 products hoàn chỉnh từ idea đến deployment.",
-        "highlights": ["🚀 3 products shipped", "👥 Team Lead", "⭐ Top 3 batch"]
+        "highlights": ["3 products shipped", "Team Lead", "Top 3 batch"]
       }
     ],
     "certifications": [
       {
-        "icon": "☁️",
+        "icon": "cloud",
         "period": "2024",
         "title": "AWS Solutions Architect",
         "org": "Amazon Web Services",
@@ -503,7 +503,7 @@
         "badge": "Professional"
       },
       {
-        "icon": "🔷",
+        "icon": "diamond",
         "period": "2023",
         "title": "Google Cloud Professional",
         "org": "Google Cloud Platform",
@@ -511,7 +511,7 @@
         "badge": "Professional"
       },
       {
-        "icon": "🧠",
+        "icon": "brain",
         "period": "2024",
         "title": "TensorFlow Developer",
         "org": "Google / DeepLearning.AI",
@@ -519,7 +519,7 @@
         "badge": "Specialist"
       },
       {
-        "icon": "🎨",
+        "icon": "palette",
         "period": "2023",
         "title": "Meta Frontend Developer",
         "org": "Meta (Facebook)",
@@ -529,45 +529,45 @@
     ],
     "awards": [
       {
-        "trophy": "🏆",
+        "trophy": "trophy",
         "title": "Best Innovation Award",
         "org": "Vietnam Web Summit 2024",
         "desc": "Giải nhất hạng mục Innovation cho dự án AI-powered Education Platform."
       },
       {
-        "trophy": "🥇",
+        "trophy": "medal",
         "title": "Hackathon Champion",
         "org": "Google Developer Hackathon 2023",
         "desc": "Quán quân cuộc thi với giải pháp Climate Change Monitoring System sử dụng satellite data."
       },
       {
-        "trophy": "🌟",
+        "trophy": "award",
         "title": "Top 30 Under 30",
         "org": "Forbes Vietnam 2025",
         "desc": "Được vinh danh trong danh sách 30 gương mặt trẻ nổi bật trong lĩnh vực Technology."
       },
       {
-        "trophy": "⭐",
+        "trophy": "star",
         "title": "Open Source Contributor",
         "org": "GitHub Stars 2024",
         "desc": "Được công nhận là GitHub Star cho đóng góp xuất sắc cho cộng đồng open source."
       }
     ],
     "languages": [
-      { "flag": "🇻🇳", "name": "Tiếng Việt", "level": "Bản ngữ", "dots": 5 },
-      { "flag": "🇬🇧", "name": "English", "level": "IELTS 7.5", "dots": 4 },
-      { "flag": "🇯🇵", "name": "日本語", "level": "JLPT N3", "dots": 3 },
-      { "flag": "🇨🇳", "name": "中文", "level": "HSK 3", "dots": 2 }
+      { "flag": "VN", "name": "Tiếng Việt", "level": "Bản ngữ", "dots": 5 },
+      { "flag": "EN", "name": "English", "level": "IELTS 7.5", "dots": 4 },
+      { "flag": "JP", "name": "日本語", "level": "JLPT N3", "dots": 3 },
+      { "flag": "CN", "name": "中文", "level": "HSK 3", "dots": 2 }
     ],
     "interests": [
-      { "icon": "🎮", "title": "Gaming", "desc": "Indie games & game development" },
-      { "icon": "📸", "title": "Photography", "desc": "Street & landscape photography" },
-      { "icon": "✈️", "title": "Travel", "desc": "Khám phá văn hóa mới" },
-      { "icon": "📖", "title": "Reading", "desc": "Tech books & sci-fi novels" },
-      { "icon": "🎵", "title": "Music", "desc": "Lo-fi & electronic music" },
-      { "icon": "🏋️", "title": "Fitness", "desc": "Gym & running" },
-      { "icon": "🤖", "title": "AI Research", "desc": "Exploring latest AI papers" },
-      { "icon": "☕", "title": "Coffee", "desc": "Specialty coffee enthusiast" }
+      { "icon": "gamepad", "title": "Gaming", "desc": "Indie games & game development" },
+      { "icon": "camera", "title": "Photography", "desc": "Street & landscape photography" },
+      { "icon": "plane", "title": "Travel", "desc": "Khám phá văn hóa mới" },
+      { "icon": "book-open", "title": "Reading", "desc": "Tech books & sci-fi novels" },
+      { "icon": "music", "title": "Music", "desc": "Lo-fi & electronic music" },
+      { "icon": "activity", "title": "Fitness", "desc": "Gym & running" },
+      { "icon": "cpu", "title": "AI Research", "desc": "Exploring latest AI papers" },
+      { "icon": "coffee", "title": "Coffee", "desc": "Specialty coffee enthusiast" }
     ],
     "downloadCvText": "Tải CV đầy đủ (PDF)"
   },
@@ -580,7 +580,7 @@
     "details": [
       { "type": "email", "label": "Email", "value": "hello@example.com", "href": "mailto:hello@example.com" },
       { "type": "phone", "label": "Điện thoại", "value": "+84 123 456 789", "href": "tel:+84123456789" },
-      { "type": "location", "label": "Địa điểm", "value": "Việt Nam 🇻🇳" }
+      { "type": "location", "label": "Địa điểm", "value": "Việt Nam" }
     ],
     "socialLinks": [
       { "url": "https://github.com", "label": "GitHub" },
