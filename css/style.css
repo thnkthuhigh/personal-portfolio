@@ -161,7 +161,8 @@ a {
 .bg-grid {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       to right,
       color-mix(in srgb, var(--line) 35%, transparent) 1px,
       transparent 1px
@@ -196,7 +197,9 @@ a {
   top: 0;
   z-index: 60;
   border-bottom: 1px solid transparent;
-  transition: background-color 0.25s ease, border-color 0.25s ease,
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
     backdrop-filter 0.25s ease;
 }
 
@@ -221,6 +224,11 @@ a {
   font-family: var(--font-heading);
   font-weight: 700;
   letter-spacing: 0.04em;
+}
+
+.brand-logo {
+  height: 36px;
+  width: auto;
 }
 
 .brand-dot {
@@ -289,7 +297,9 @@ a {
   gap: 8px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .theme-toggle:hover {
@@ -317,7 +327,9 @@ a {
   height: 2px;
   background: var(--text);
   border-radius: 999px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .menu-toggle.is-open span:nth-child(1) {
@@ -433,7 +445,10 @@ h1 {
   font-size: 0.86rem;
   font-weight: 600;
   color: var(--text-muted);
-  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .hero-social-links a:hover {
@@ -455,7 +470,10 @@ h1 {
   border-radius: 12px;
   font-weight: 600;
   border: 1px solid transparent;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease,
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
     border-color 0.2s ease;
 }
 
@@ -465,7 +483,11 @@ h1 {
 
 .btn-primary {
   color: white;
-  background: linear-gradient(120deg, var(--brand), color-mix(in srgb, var(--accent) 78%, black));
+  background: linear-gradient(
+    120deg,
+    var(--brand),
+    color-mix(in srgb, var(--accent) 78%, black)
+  );
   box-shadow: var(--shadow-sm);
 }
 
@@ -593,7 +615,10 @@ h1 {
   padding: 10px 12px;
   display: grid;
   gap: 4px;
-  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .hero-rail-item strong {
@@ -694,7 +719,10 @@ h1 {
   background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
   padding: 11px 14px;
   font-weight: 600;
-  transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .lane-links a:hover {
@@ -771,7 +799,10 @@ h1 {
   padding: var(--card-pad);
   position: relative;
   overflow: hidden;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
 }
 
 .snapshot-card::before {
@@ -904,7 +935,10 @@ h1 {
   padding: 8px 12px;
   font-weight: 600;
   font-size: 0.88rem;
-  transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .github-proof a:hover {
@@ -989,7 +1023,10 @@ h1 {
   padding: 7px 11px;
   font-weight: 600;
   font-size: 0.88rem;
-  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .fit-row a:hover {
@@ -1094,7 +1131,10 @@ h1 {
   background: var(--bg-elevated);
   padding: var(--card-pad);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
 }
 
 .skill-card:hover {
@@ -1164,7 +1204,10 @@ h1 {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease,
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
     opacity 0.2s ease;
 }
 
@@ -1367,7 +1410,10 @@ h1 {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-muted);
-  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .project-case-nav a:hover {
@@ -1379,7 +1425,11 @@ h1 {
 .project-case-nav a.is-active {
   color: white;
   border-color: color-mix(in srgb, var(--brand) 78%, transparent);
-  background: linear-gradient(120deg, var(--brand), color-mix(in srgb, var(--accent) 68%, black));
+  background: linear-gradient(
+    120deg,
+    var(--brand),
+    color-mix(in srgb, var(--accent) 68%, black)
+  );
 }
 
 .project-case-badge {

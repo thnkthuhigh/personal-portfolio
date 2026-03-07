@@ -75,8 +75,7 @@
         "State design tốt giúp giảm bug lâu dài.",
         "Checklist release giúp team giữ chất lượng ổn định.",
       ],
-      nda:
-        "Repo có thể chia sẻ ở mức code sample public; dữ liệu production và logic nội bộ đã được ẩn.",
+      nda: "Repo có thể chia sẻ ở mức code sample public; dữ liệu production và logic nội bộ đã được ẩn.",
       videoEmbed: "",
       videoFile: "",
       videoPoster: "",
@@ -178,8 +177,7 @@
         "Rule map rõ ràng giảm bug phân quyền đáng kể.",
         "Log hành động là yếu tố bắt buộc cho sản phẩm nội bộ.",
       ],
-      nda:
-        "Toàn bộ source code và dữ liệu thuộc phạm vi NDA. Có thể demo trực tiếp qua buổi walkthrough không ghi hình.",
+      nda: "Toàn bộ source code và dữ liệu thuộc phạm vi NDA. Có thể demo trực tiếp qua buổi walkthrough không ghi hình.",
       videoEmbed: "",
       videoFile: "",
       videoPoster: "",
@@ -275,8 +273,7 @@
         "Animation chỉ nên hỗ trợ nội dung, không chiếm spotlight.",
         "Performance nên được đo và kiểm soát từ đầu.",
       ],
-      nda:
-        "Repo có thể chia sẻ public nhưng đã loại bỏ toàn bộ dữ liệu nội bộ trước khi xuất bản.",
+      nda: "Repo có thể chia sẻ public nhưng đã loại bỏ toàn bộ dữ liệu nội bộ trước khi xuất bản.",
       videoEmbed: "",
       videoFile: "",
       videoPoster: "",
@@ -372,8 +369,7 @@
         "Event-driven flow cần theo dõi trạng thái chặt chẽ.",
         "Product nội bộ vẫn cần UX rõ ràng như sản phẩm public.",
       ],
-      nda:
-        "Sản phẩm nội bộ chưa public. Có thể trình bày chi tiết kiến trúc và decision log trong buổi phỏng vấn kỹ thuật.",
+      nda: "Sản phẩm nội bộ chưa public. Có thể trình bày chi tiết kiến trúc và decision log trong buổi phỏng vấn kỹ thuật.",
       videoEmbed: "",
       videoFile: "",
       videoPoster: "",
@@ -413,7 +409,16 @@
     root.setAttribute("data-theme", theme);
     localStorage.setItem(THEME_KEY, theme);
     if (themeMeta) {
-      themeMeta.setAttribute("content", THEME_COLORS[theme] || THEME_COLORS.light);
+      themeMeta.setAttribute(
+        "content",
+        THEME_COLORS[theme] || THEME_COLORS.light,
+      );
+    }
+    const logoLight = document.getElementById("logo-light");
+    const logoDark = document.getElementById("logo-dark");
+    if (logoLight && logoDark) {
+      logoLight.style.display = theme === "light" ? "" : "none";
+      logoDark.style.display = theme === "dark" ? "" : "none";
     }
   };
 
@@ -544,8 +549,12 @@
   };
 
   const initSpotlightCards = () => {
-    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia(
+      "(hover: hover) and (pointer: fine)",
+    ).matches;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (!finePointer || reducedMotion) return;
 
     const targets = document.querySelectorAll(
@@ -597,9 +606,9 @@
         .map((link) => link.getAttribute("href") || "")
         .filter((href) => href.startsWith("#")),
     );
-    const sections = Array.from(document.querySelectorAll("main section[id]")).filter((section) =>
-      navTargets.has(`#${section.id}`),
-    );
+    const sections = Array.from(
+      document.querySelectorAll("main section[id]"),
+    ).filter((section) => navTargets.has(`#${section.id}`));
 
     if (sections.length === 0 || navLinks.length === 0) return;
 
@@ -689,7 +698,9 @@
 
         if (visible.length === 0) return;
 
-        const current = items.find((item) => item.section === visible[0].target);
+        const current = items.find(
+          (item) => item.section === visible[0].target,
+        );
         if (current) {
           setActive(current.id);
         }
@@ -714,7 +725,9 @@
       button.addEventListener("click", () => {
         const filter = button.dataset.filter || "all";
 
-        buttons.forEach((btn) => btn.classList.toggle("active", btn === button));
+        buttons.forEach((btn) =>
+          btn.classList.toggle("active", btn === button),
+        );
 
         cards.forEach((card) => {
           if (filter === "all") {
@@ -751,7 +764,8 @@
       const value = document.createElement("strong");
       value.textContent = "Case Study";
       const label = document.createElement("span");
-      label.textContent = "Chi tiết kết quả sẽ được cập nhật theo dữ liệu thực tế.";
+      label.textContent =
+        "Chi tiết kết quả sẽ được cập nhật theo dữ liệu thực tế.";
 
       fallback.appendChild(value);
       fallback.appendChild(label);
@@ -824,7 +838,8 @@
     if (heroMedia) {
       heroMedia.innerHTML = "";
       const cover = (detail.gallery || []).find(
-        (item) => typeof item.image === "string" && item.image.trim().length > 0,
+        (item) =>
+          typeof item.image === "string" && item.image.trim().length > 0,
       );
 
       if (cover) {
@@ -837,13 +852,18 @@
       } else {
         const fallback = document.createElement("div");
         fallback.className = "project-hero-media-fallback";
-        fallback.textContent = "Case preview media sẽ hiển thị tại đây khi bạn thêm ảnh cover.";
+        fallback.textContent =
+          "Case preview media sẽ hiển thị tại đây khi bạn thêm ảnh cover.";
         heroMedia.appendChild(fallback);
       }
     }
 
-    const architectureDiagram = document.getElementById("project-architecture-diagram");
-    const architectureCaption = document.getElementById("project-architecture-caption");
+    const architectureDiagram = document.getElementById(
+      "project-architecture-diagram",
+    );
+    const architectureCaption = document.getElementById(
+      "project-architecture-caption",
+    );
     if (architectureDiagram) {
       if (detail.architectureDiagram) {
         architectureDiagram.src = detail.architectureDiagram;
@@ -858,12 +878,24 @@
         "Sơ đồ kiến trúc minh họa cấu trúc UI, data flow và các quyết định tổ chức module.";
     }
 
-    renderProof(document.getElementById("project-proof-grid"), detail.proof || []);
-    renderList(document.getElementById("project-architecture"), detail.architecture);
-    renderList(document.getElementById("project-tech-decisions"), detail.technicalDecisions);
+    renderProof(
+      document.getElementById("project-proof-grid"),
+      detail.proof || [],
+    );
+    renderList(
+      document.getElementById("project-architecture"),
+      detail.architecture,
+    );
+    renderList(
+      document.getElementById("project-tech-decisions"),
+      detail.technicalDecisions,
+    );
     renderList(document.getElementById("project-role-scope"), detail.roleScope);
     renderList(document.getElementById("project-evidence"), detail.evidence);
-    renderList(document.getElementById("project-challenges"), detail.challenges);
+    renderList(
+      document.getElementById("project-challenges"),
+      detail.challenges,
+    );
     renderList(document.getElementById("project-lessons"), detail.lessons);
 
     const videoContainer = document.getElementById("project-video");
@@ -884,7 +916,9 @@
 
         video.appendChild(source);
         video.appendChild(
-          document.createTextNode("Trình duyệt không hỗ trợ phát video cho định dạng này."),
+          document.createTextNode(
+            "Trình duyệt không hỗ trợ phát video cho định dạng này.",
+          ),
         );
 
         videoContainer.appendChild(video);
@@ -892,7 +926,8 @@
         const iframe = document.createElement("iframe");
         iframe.src = detail.videoEmbed;
         iframe.loading = "lazy";
-        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allow =
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
         iframe.allowFullscreen = true;
         iframe.title = `${detail.title} walkthrough`;
         videoContainer.appendChild(iframe);
@@ -903,7 +938,8 @@
         const strong = document.createElement("strong");
         strong.textContent = "Video không public";
         const note = document.createElement("span");
-        note.textContent = "Dự án thuộc phạm vi private/NDA. Có thể demo trực tiếp khi phỏng vấn.";
+        note.textContent =
+          "Dự án thuộc phạm vi private/NDA. Có thể demo trực tiếp khi phỏng vấn.";
 
         placeholder.appendChild(strong);
         placeholder.appendChild(note);
@@ -915,7 +951,8 @@
     if (gallery) {
       gallery.innerHTML = "";
       (detail.gallery || []).forEach((item) => {
-        const hasImage = typeof item.image === "string" && item.image.trim().length > 0;
+        const hasImage =
+          typeof item.image === "string" && item.image.trim().length > 0;
         if (hasImage) {
           const figure = document.createElement("figure");
           figure.className = "gallery-item gallery-item-media";
@@ -991,7 +1028,8 @@
       const message = String(formData.get("message") || "").trim();
 
       if (!name || !email || !subject || !message) {
-        if (status) status.textContent = "Vui lòng điền đầy đủ thông tin trước khi gửi.";
+        if (status)
+          status.textContent = "Vui lòng điền đầy đủ thông tin trước khi gửi.";
         return;
       }
 

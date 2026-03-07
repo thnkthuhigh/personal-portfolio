@@ -9,13 +9,17 @@
       content="Portfolio tuyển dụng của Thư High - Frontend Engineer tập trung vào sản phẩm web hiệu quả, trải nghiệm tốt và mã nguồn sạch."
     />
     <meta name="theme-color" content="#f4f6f8" id="theme-color-meta" />
-    <meta property="og:title" content="Thư High | Frontend Engineer Portfolio" />
+    <meta
+      property="og:title"
+      content="Thư High | Frontend Engineer Portfolio"
+    />
     <meta
       property="og:description"
       content="Sản phẩm đã làm, kinh nghiệm thực tế và cách tôi giải quyết vấn đề trong đội ngũ product engineering."
     />
     <meta property="og:type" content="website" />
 
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -43,8 +47,19 @@
     <header class="site-header" id="site-header">
       <div class="container header-inner">
         <a href="#home" class="brand" aria-label="Về đầu trang">
-          <span class="brand-dot"></span>
-          <span class="brand-text">TH</span>
+          <img
+            src="logonavlight.svg"
+            alt="TH Logo"
+            class="brand-logo"
+            id="logo-light"
+          />
+          <img
+            src="logonavdark.svg"
+            alt="TH Logo"
+            class="brand-logo"
+            id="logo-dark"
+            style="display: none"
+          />
         </a>
 
         <nav class="site-nav" aria-label="Điều hướng chính">
@@ -98,8 +113,8 @@
             <p class="eyebrow">Final-year CS Student · Frontend-focused</p>
             <h1>
               Junior-ready portfolio: thiết kế tốt,
-              <span class="headline-accent">code chắc</span>,
-              và tư duy sản phẩm rõ ràng.
+              <span class="headline-accent">code chắc</span>, và tư duy sản phẩm
+              rõ ràng.
             </h1>
             <p class="hero-lead">
               Mình là <strong>Thư High</strong>, sinh viên năm 4 ngành CNTT.
@@ -113,7 +128,11 @@
             </div>
 
             <div class="hero-social-links">
-              <a href="https://github.com/thu-high" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/thu-high"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     fill="currentColor"
@@ -122,7 +141,11 @@
                 </svg>
                 GitHub
               </a>
-              <a href="https://www.linkedin.com/in/thu-high" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.linkedin.com/in/thu-high"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     fill="currentColor"
@@ -171,7 +194,9 @@
               </li>
               <li>
                 <span class="kpi-value">Core stack</span>
-                <span class="kpi-label">React, TypeScript, Next.js, UI System</span>
+                <span class="kpi-label"
+                  >React, TypeScript, Next.js, UI System</span
+                >
               </li>
             </ul>
 
@@ -223,8 +248,8 @@
               <p class="section-label">Recruiter Fast Lane</p>
               <h2>Quét nhanh hồ sơ trong 60 giây</h2>
               <p>
-                Nếu bạn cần ra quyết định nhanh, hãy đi theo 3 mục dưới đây:
-                CV snapshot, case study nổi bật và thông tin liên hệ để đặt lịch
+                Nếu bạn cần ra quyết định nhanh, hãy đi theo 3 mục dưới đây: CV
+                snapshot, case study nổi bật và thông tin liên hệ để đặt lịch
                 demo private project.
               </p>
             </div>
@@ -241,7 +266,9 @@
         <div class="container split-grid">
           <div data-reveal="left">
             <p class="section-label">Giới thiệu</p>
-            <h2 class="section-title">SV năm 4 nhưng có thể đóng góp gì ngay?</h2>
+            <h2 class="section-title">
+              SV năm 4 nhưng có thể đóng góp gì ngay?
+            </h2>
           </div>
           <div class="about-content" data-reveal="right">
             <p>
@@ -251,8 +278,8 @@
             </p>
             <p>
               Trong team, mình có thể nhận các task frontend production-level:
-              xây component chuẩn, tích hợp API, tối ưu UX và xử lý lỗi giao diện
-              theo checklist rõ ràng.
+              xây component chuẩn, tích hợp API, tối ưu UX và xử lý lỗi giao
+              diện theo checklist rõ ràng.
             </p>
             <ul class="about-list">
               <li>Đọc hiểu codebase nhanh và tự tách task rõ ràng.</li>
@@ -267,7 +294,9 @@
         <div class="container">
           <div class="section-head" data-reveal="up">
             <p class="section-label">CV Snapshot</p>
-            <h2 class="section-title">Thông tin CV recruiter cần trong 30 giây</h2>
+            <h2 class="section-title">
+              Thông tin CV recruiter cần trong 30 giây
+            </h2>
           </div>
 
           <div class="snapshot-grid">
@@ -279,7 +308,11 @@
                 <li>Làm việc tốt với REST API, state management và UX flow</li>
               </ul>
             </article>
-            <article class="snapshot-card snapshot-card-wide" data-reveal="up" data-delay="80">
+            <article
+              class="snapshot-card snapshot-card-wide"
+              data-reveal="up"
+              data-delay="80"
+            >
               <h3>Projects</h3>
               <p>4 case studies có cả public và private/NDA</p>
               <ul>
@@ -343,9 +376,12 @@
         <div class="container">
           <div class="section-head" data-reveal="up">
             <p class="section-label">JD Fit</p>
-            <h2 class="section-title">Mức độ phù hợp cho Internship / Junior Frontend</h2>
+            <h2 class="section-title">
+              Mức độ phù hợp cho Internship / Junior Frontend
+            </h2>
             <p class="section-subtitle">
-              Bảng này giúp recruiter đối chiếu nhanh yêu cầu JD với bằng chứng từ case study.
+              Bảng này giúp recruiter đối chiếu nhanh yêu cầu JD với bằng chứng
+              từ case study.
             </p>
           </div>
 
@@ -353,28 +389,32 @@
             <article class="fit-row">
               <h3>Responsive UI & component structure</h3>
               <p>
-                Thiết kế layout có hierarchy, chia component dễ maintain, chuẩn hóa token và trạng thái UI.
+                Thiết kế layout có hierarchy, chia component dễ maintain, chuẩn
+                hóa token và trạng thái UI.
               </p>
               <a href="project.html?id=ops-dashboard">Xem bằng chứng</a>
             </article>
             <article class="fit-row">
               <h3>TypeScript + quản lý state rõ ràng</h3>
               <p>
-                Tách state theo domain, giảm side-effects, hỗ trợ scale codebase và onboarding nhanh.
+                Tách state theo domain, giảm side-effects, hỗ trợ scale codebase
+                và onboarding nhanh.
               </p>
               <a href="project.html?id=b2b-workflow">Xem bằng chứng</a>
             </article>
             <article class="fit-row">
               <h3>UX thực dụng cho business flow</h3>
               <p>
-                Ưu tiên readability và conversion, cắt hiệu ứng dư thừa, giữ trải nghiệm mượt trên mobile.
+                Ưu tiên readability và conversion, cắt hiệu ứng dư thừa, giữ
+                trải nghiệm mượt trên mobile.
               </p>
               <a href="project.html?id=hiring-landing">Xem bằng chứng</a>
             </article>
             <article class="fit-row">
               <h3>Làm việc nhóm và tư duy sản phẩm</h3>
               <p>
-                Có kinh nghiệm phối hợp PM/QA/Designer, trình bày decision log và xử lý trade-off kỹ thuật.
+                Có kinh nghiệm phối hợp PM/QA/Designer, trình bày decision log
+                và xử lý trade-off kỹ thuật.
               </p>
               <a href="project.html?id=task-workspace">Xem bằng chứng</a>
             </article>
@@ -386,35 +426,52 @@
         <div class="container">
           <div class="section-head" data-reveal="up">
             <p class="section-label">Why I’m Junior-Ready</p>
-            <h2 class="section-title">Vì sao có thể đóng góp ngay từ sprint đầu</h2>
+            <h2 class="section-title">
+              Vì sao có thể đóng góp ngay từ sprint đầu
+            </h2>
           </div>
 
           <div class="junior-ready-grid">
             <article class="jr-card" data-reveal="up">
               <h3>4 real case studies</h3>
-              <p>Có public và private project, trình bày được decision từ problem đến impact.</p>
+              <p>
+                Có public và private project, trình bày được decision từ problem
+                đến impact.
+              </p>
             </article>
             <article class="jr-card" data-reveal="up" data-delay="80">
               <h3>Product thinking</h3>
-              <p>Luôn đi theo user flow, business constraints và release quality checklist.</p>
+              <p>
+                Luôn đi theo user flow, business constraints và release quality
+                checklist.
+              </p>
             </article>
             <article class="jr-card" data-reveal="up" data-delay="160">
               <h3>UI architecture focus</h3>
-              <p>Xây component system rõ ràng, dễ maintain và dễ onboard trong team.</p>
+              <p>
+                Xây component system rõ ràng, dễ maintain và dễ onboard trong
+                team.
+              </p>
             </article>
             <article class="jr-card" data-reveal="up">
               <h3>Ready for code test</h3>
-              <p>Sẵn sàng nhận test task, walkthrough kiến trúc và live coding khi cần.</p>
+              <p>
+                Sẵn sàng nhận test task, walkthrough kiến trúc và live coding
+                khi cần.
+              </p>
             </article>
           </div>
 
           <div class="github-proof" data-reveal="up" data-delay="120">
             <h3>GitHub Proof</h3>
             <p>
-              Có thể xem repo highlights và commit history để đánh giá thói quen code, cách đặt tên,
-              structure và khả năng maintain.
+              Có thể xem repo highlights và commit history để đánh giá thói quen
+              code, cách đặt tên, structure và khả năng maintain.
             </p>
-            <a href="https://github.com/thu-high" target="_blank" rel="noopener noreferrer"
+            <a
+              href="https://github.com/thu-high"
+              target="_blank"
+              rel="noopener noreferrer"
               >Xem GitHub contributions & repo highlights</a
             >
           </div>
@@ -435,11 +492,15 @@
             </article>
             <article class="faq-item" data-reveal="up" data-delay="80">
               <h3>Có thể demo project private không?</h3>
-              <p>Có thể demo trực tiếp trong buổi phỏng vấn theo phạm vi NDA.</p>
+              <p>
+                Có thể demo trực tiếp trong buổi phỏng vấn theo phạm vi NDA.
+              </p>
             </article>
             <article class="faq-item" data-reveal="up" data-delay="160">
               <h3>Có thể làm part-time không?</h3>
-              <p>Có, linh hoạt lịch part-time/full-time theo giai đoạn học kỳ.</p>
+              <p>
+                Có, linh hoạt lịch part-time/full-time theo giai đoạn học kỳ.
+              </p>
             </article>
           </div>
         </div>
@@ -449,7 +510,9 @@
         <div class="container">
           <div class="section-head" data-reveal="up">
             <p class="section-label">Kỹ năng</p>
-            <h2 class="section-title">Stack tập trung cho môi trường product</h2>
+            <h2 class="section-title">
+              Stack tập trung cho môi trường product
+            </h2>
           </div>
 
           <div class="skills-grid">
@@ -489,7 +552,8 @@
             <p class="section-label">Dự án</p>
             <h2 class="section-title">Case studies dành cho nhà tuyển dụng</h2>
             <p class="section-subtitle">
-              Tập trung vào vấn đề, giải pháp và kết quả, không làm phô hiệu ứng.
+              Tập trung vào vấn đề, giải pháp và kết quả, không làm phô hiệu
+              ứng.
             </p>
           </div>
 
@@ -546,7 +610,9 @@
               </ul>
               <div class="project-stack">React · TypeScript · Chart.js</div>
               <div class="project-actions">
-                <a href="project.html?id=ops-dashboard" class="project-link project-detail-btn"
+                <a
+                  href="project.html?id=ops-dashboard"
+                  class="project-link project-detail-btn"
                   >Xem case study đầy đủ</a
                 >
                 <a
@@ -690,7 +756,9 @@
               </ul>
               <div class="project-stack">Vue · TypeScript · Node.js</div>
               <div class="project-actions">
-                <a href="project.html?id=task-workspace" class="project-link project-detail-btn"
+                <a
+                  href="project.html?id=task-workspace"
+                  class="project-link project-detail-btn"
                   >Xem case study đầy đủ</a
                 >
                 <span class="project-link is-disabled" aria-disabled="true"
@@ -706,7 +774,9 @@
         <div class="container">
           <div class="section-head" data-reveal="up">
             <p class="section-label">Hành trình</p>
-            <h2 class="section-title">Các cột mốc học tập và thực chiến dự án</h2>
+            <h2 class="section-title">
+              Các cột mốc học tập và thực chiến dự án
+            </h2>
           </div>
 
           <div class="timeline">
@@ -714,14 +784,21 @@
               <div class="timeline-period">2026 - Hiện tại</div>
               <div class="timeline-main">
                 <h3>Sinh viên năm 4 · Xây portfolio hướng tuyển dụng</h3>
-                <p class="timeline-company">Định hướng Frontend / Product Engineering</p>
+                <p class="timeline-company">
+                  Định hướng Frontend / Product Engineering
+                </p>
                 <p>
                   Tập trung hệ thống hóa 4 case study theo chuẩn recruiter:
                   problem, constraints, kiến trúc, kết quả và bài học kỹ thuật.
                 </p>
                 <ul>
-                  <li>Chuẩn hóa template case-study cho cả public và private repo.</li>
-                  <li>Rèn khả năng trình bày quyết định kỹ thuật ngắn gọn, rõ ràng.</li>
+                  <li>
+                    Chuẩn hóa template case-study cho cả public và private repo.
+                  </li>
+                  <li>
+                    Rèn khả năng trình bày quyết định kỹ thuật ngắn gọn, rõ
+                    ràng.
+                  </li>
                 </ul>
               </div>
             </article>
@@ -736,8 +813,12 @@
                   workflow nội bộ, landing page tuyển dụng, task workspace.
                 </p>
                 <ul>
-                  <li>Xây component tái sử dụng và quy ước code review trong nhóm.</li>
-                  <li>Tự kiểm thử responsive, accessibility và hiệu năng cơ bản.</li>
+                  <li>
+                    Xây component tái sử dụng và quy ước code review trong nhóm.
+                  </li>
+                  <li>
+                    Tự kiểm thử responsive, accessibility và hiệu năng cơ bản.
+                  </li>
                 </ul>
               </div>
             </article>
@@ -746,13 +827,17 @@
               <div class="timeline-period">2023 - 2025</div>
               <div class="timeline-main">
                 <h3>Nền tảng kỹ thuật</h3>
-                <p class="timeline-company">Luyện thuật toán + web fundamentals</p>
+                <p class="timeline-company">
+                  Luyện thuật toán + web fundamentals
+                </p>
                 <p>
                   Rèn nền tảng HTML/CSS/JavaScript, sau đó chuyển sang React và
                   TypeScript để làm các bài toán sản phẩm thực tế hơn.
                 </p>
                 <ul>
-                  <li>Thói quen viết code có tổ chức, tách component rõ ràng.</li>
+                  <li>
+                    Thói quen viết code có tổ chức, tách component rõ ràng.
+                  </li>
                   <li>Luyện tư duy phân tích bài toán trước khi code.</li>
                 </ul>
               </div>
@@ -797,14 +882,19 @@
         <div class="container contact-grid">
           <div data-reveal="left">
             <p class="section-label">Liên hệ</p>
-            <h2 class="section-title">Phù hợp vị trí nào, mình có thể trao đổi ngay</h2>
+            <h2 class="section-title">
+              Phù hợp vị trí nào, mình có thể trao đổi ngay
+            </h2>
             <p class="contact-lead">
               Mình ưu tiên vị trí Internship / Junior Frontend. Có thể gửi CV
-              PDF, transcript và walkthrough dự án private qua email theo yêu cầu.
+              PDF, transcript và walkthrough dự án private qua email theo yêu
+              cầu.
             </p>
 
             <div class="contact-quick-actions">
-              <a class="btn btn-primary" href="mailto:thu.high.dev@gmail.com?subject=Interview%20Schedule%20-%20Thu%20High"
+              <a
+                class="btn btn-primary"
+                href="mailto:thu.high.dev@gmail.com?subject=Interview%20Schedule%20-%20Thu%20High"
                 >Schedule interview</a
               >
               <a
@@ -819,7 +909,9 @@
             <ul class="contact-list">
               <li>
                 <span>Email</span>
-                <a href="mailto:thu.high.dev@gmail.com">thu.high.dev@gmail.com</a>
+                <a href="mailto:thu.high.dev@gmail.com"
+                  >thu.high.dev@gmail.com</a
+                >
               </li>
               <li>
                 <span>Điện thoại</span>
@@ -870,10 +962,17 @@
 
             <div class="field">
               <label for="message">Nội dung</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+              ></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Mở email để gửi</button>
+            <button type="submit" class="btn btn-primary">
+              Mở email để gửi
+            </button>
             <p class="form-status" id="form-status" aria-live="polite"></p>
           </form>
         </div>
@@ -882,7 +981,9 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>© <span id="current-year"></span> Thư High. Portfolio for recruitment.</p>
+        <p>
+          © <span id="current-year"></span> Thư High. Portfolio for recruitment.
+        </p>
         <a href="#home" class="back-top">Về đầu trang</a>
       </div>
     </footer>
