@@ -31,7 +31,6 @@
 
     <div class="page-bg" aria-hidden="true">
       <div class="bg-orb orb-1"></div>
-      <div class="bg-orb orb-2"></div>
       <div class="bg-grid"></div>
     </div>
 
@@ -82,11 +81,29 @@
         <div class="container">
           <nav class="project-case-nav" aria-label="Mục case study" data-reveal="up">
             <a href="#case-overview">Tổng quan</a>
-            <a href="#case-media">Media</a>
+            <a href="#case-story">Story</a>
             <a href="#case-details">Chi tiết kỹ thuật</a>
+            <a href="#case-media">Media</a>
             <a href="#case-proof">Kết quả</a>
             <a href="#case-security">NDA</a>
           </nav>
+        </div>
+      </section>
+
+      <section class="section project-story-section" id="case-story">
+        <div class="container project-story-grid">
+          <article class="project-panel" data-reveal="up">
+            <h2>Problem</h2>
+            <p id="project-story-problem"></p>
+          </article>
+          <article class="project-panel" data-reveal="up" data-delay="80">
+            <h2>Solution</h2>
+            <p id="project-story-solution"></p>
+          </article>
+          <article class="project-panel" data-reveal="up" data-delay="160">
+            <h2>Impact</h2>
+            <p id="project-story-impact"></p>
+          </article>
         </div>
       </section>
 
@@ -107,24 +124,22 @@
 
       <section class="section project-detail-section" id="case-details">
         <div class="container project-detail-grid">
-          <article class="project-panel" data-reveal="up">
-            <h2>Bài toán</h2>
-            <p id="project-problem"></p>
-          </article>
-
-          <article class="project-panel" data-reveal="up" data-delay="80">
-            <h2>Giải pháp triển khai</h2>
-            <p id="project-solution"></p>
+          <article class="project-panel project-panel-wide" data-reveal="up">
+            <h2>Architecture Diagram</h2>
+            <figure class="architecture-diagram">
+              <img id="project-architecture-diagram" alt="Architecture diagram" loading="lazy" />
+              <figcaption id="project-architecture-caption"></figcaption>
+            </figure>
           </article>
 
           <article class="project-panel" data-reveal="up">
-            <h2>Kiến trúc & quyết định kỹ thuật</h2>
+            <h2>UI Architecture & Data Flow</h2>
             <ul id="project-architecture"></ul>
           </article>
 
           <article class="project-panel" data-reveal="up" data-delay="80">
-            <h2>Kết quả</h2>
-            <ul class="project-impact-list" id="project-impact"></ul>
+            <h2>Technical Decisions</h2>
+            <ul id="project-tech-decisions"></ul>
           </article>
 
           <article class="project-panel" data-reveal="up">
@@ -138,7 +153,7 @@
           </article>
 
           <article class="project-panel" data-reveal="up">
-            <h2>Thách thức & cách xử lý</h2>
+            <h2>Engineering Challenges</h2>
             <ul id="project-challenges"></ul>
           </article>
 

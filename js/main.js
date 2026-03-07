@@ -34,10 +34,20 @@
         "Dashboard cũ khó đọc khi số lượng đơn tăng cao, thao tác đổi trạng thái đơn nhiều bước, dữ liệu biểu đồ không đồng nhất giữa các màn hình.",
       solution:
         "Thiết kế lại cấu trúc màn hình theo tác vụ ưu tiên, chuẩn hóa filter/table/chart, và tách state rõ ràng để giảm lỗi runtime.",
+      storyImpact:
+        "Giảm thời gian xử lý thao tác chính khoảng 30%, giảm lỗi lặp ở các sprint sau và giúp onboarding dev mới nhanh hơn.",
+      architectureDiagram: "assets/diagrams/ops-dashboard-arch.svg",
+      architectureCaption:
+        "Tách rõ UI modules, domain rules và data layer để giảm side-effects và giữ tốc độ iterate.",
       architecture: [
         "Chia module theo domain: Orders, Inventory, Analytics.",
         "Tách state truy vấn và state UI để hạn chế side-effects.",
         "Xây component library nội bộ cho form/table/charts.",
+      ],
+      technicalDecisions: [
+        "Dùng React Query để quản lý cache và trạng thái async nhất quán.",
+        "Ưu tiên domain-based modules thay vì chia theo loại file.",
+        "Xây reusable table/filter để giảm duplicated logic giữa màn hình.",
       ],
       impact: [
         "Giảm số bước ở thao tác xử lý đơn chính.",
@@ -127,10 +137,20 @@
         "Luồng duyệt hồ sơ cũ phụ thuộc nhiều màn hình rời rạc, role handling thiếu nhất quán và khó mở rộng khi thêm nghiệp vụ mới.",
       solution:
         "Xây kiến trúc route theo domain và rule engine cho UI visibility. Chuẩn hóa form schema, validation pipeline, và activity log cho từng bước duyệt.",
+      storyImpact:
+        "Giảm rework khi thêm nghiệp vụ mới, giảm lỗi phân quyền và giúp team release ổn định hơn ở các flow phức tạp.",
+      architectureDiagram: "assets/diagrams/b2b-workflow-arch.svg",
+      architectureCaption:
+        "Schema engine kết hợp role gate giúp mở rộng workflow mà không hardcode UI từng màn hình.",
       architecture: [
         "Feature-sliced architecture: workflow, approvals, reports.",
         "Form schema-driven rendering để tái sử dụng nhiều bước duyệt.",
         "Permission map theo role + hành động để đảm bảo tính nhất quán.",
+      ],
+      technicalDecisions: [
+        "Chọn schema-driven form để scale nhanh khi nghiệp vụ đổi.",
+        "Thiết kế permission map trung tâm thay vì kiểm tra role rải rác.",
+        "Log hành động tại domain layer để phục vụ audit và debug.",
       ],
       impact: [
         "Giảm rework khi thêm nghiệp vụ mới.",
@@ -214,10 +234,20 @@
         "Trang tuyển dụng cũ thiếu hierarchy nội dung, animation gây nhiễu và tốc độ tải trang đầu chậm trên mobile.",
       solution:
         "Thiết kế lại grid và typography theo ưu tiên đọc, cắt giảm script block render, tối ưu CTA và biểu mẫu ứng tuyển.",
+      storyImpact:
+        "Tăng thời gian đọc JD trên mobile, giảm bounce ở hero và giúp HR cập nhật nội dung nhanh hơn.",
+      architectureDiagram: "assets/diagrams/hiring-landing-arch.svg",
+      architectureCaption:
+        "Kiến trúc content blocks + performance budget giúp trang nhẹ nhưng vẫn giữ brand consistency.",
       architecture: [
         "Thiết kế token màu + spacing thống nhất toàn trang.",
         "Progressive enhancement cho hiệu ứng thay vì bắt buộc JavaScript.",
         "Kiểm soát ảnh và asset theo performance budget.",
+      ],
+      technicalDecisions: [
+        "Giảm script blocking để tối ưu first render trên mobile.",
+        "Ưu tiên semantic HTML để tăng readability và maintainability.",
+        "Dùng token hóa spacing/typography để HR dễ cập nhật content.",
       ],
       impact: [
         "Tăng thời gian đọc nội dung JD trên mobile.",
@@ -301,10 +331,20 @@
         "Thông tin task rải rác giữa nhiều công cụ, PM khó nắm bottleneck theo sprint và đội dev mất thời gian đồng bộ trạng thái thủ công.",
       solution:
         "Xây dashboard tập trung theo sprint health, timeline tiến độ và dependency map; kết nối webhook để đồng bộ trạng thái giữa các hệ thống.",
+      storyImpact:
+        "Giảm thời gian check trạng thái đầu ngày, phát hiện bottleneck sớm hơn và giảm xung đột thông tin giữa PM và dev.",
+      architectureDiagram: "assets/diagrams/task-workspace-arch.svg",
+      architectureCaption:
+        "Event-driven data flow cho realtime sprint tracking và insights tổng hợp theo chu kỳ.",
       architecture: [
         "State store tách theo board, sprint và insights.",
         "Realtime cập nhật trạng thái qua event channel.",
         "UI kit chung cho task board, filters và progress view.",
+      ],
+      technicalDecisions: [
+        "Tách state theo domain board/sprint để tránh coupling.",
+        "Event channel giúp đồng bộ realtime nhất quán giữa module.",
+        "UI kit thống nhất giảm khác biệt tương tác ở các view phức tạp.",
       ],
       impact: [
         "Giảm thời gian check trạng thái đầu ngày của team.",
@@ -491,7 +531,7 @@
     if (!finePointer || reducedMotion) return;
 
     const targets = document.querySelectorAll(
-      ".trust-item, .lane-card, .snapshot-card, .fit-row, .skill-card, .project-card, .timeline-item, .process-card, .project-panel, .contact-form",
+      ".trust-item, .lane-card, .snapshot-card, .fit-row, .skill-card, .project-card, .timeline-item, .process-card, .project-panel, .contact-form, .jr-card, .faq-item, .github-proof, .snapshot-highlights",
     );
     if (targets.length === 0) return;
 
@@ -718,8 +758,12 @@
     setText("project-case-badge", detail.badge);
     setText("project-case-title", detail.title);
     setText("project-case-summary", detail.summary);
-    setText("project-problem", detail.problem);
-    setText("project-solution", detail.solution);
+    setText("project-story-problem", detail.problem);
+    setText("project-story-solution", detail.solution);
+    setText(
+      "project-story-impact",
+      detail.storyImpact || (detail.impact || []).slice(0, 2).join(" "),
+    );
     setText("project-nda", detail.nda);
     setText("project-video-note", detail.videoNote);
 
@@ -755,9 +799,25 @@
       }
     }
 
+    const architectureDiagram = document.getElementById("project-architecture-diagram");
+    const architectureCaption = document.getElementById("project-architecture-caption");
+    if (architectureDiagram) {
+      if (detail.architectureDiagram) {
+        architectureDiagram.src = detail.architectureDiagram;
+        architectureDiagram.alt = `${detail.title} architecture diagram`;
+      } else {
+        architectureDiagram.removeAttribute("src");
+      }
+    }
+    if (architectureCaption) {
+      architectureCaption.textContent =
+        detail.architectureCaption ||
+        "Sơ đồ kiến trúc minh họa cấu trúc UI, data flow và các quyết định tổ chức module.";
+    }
+
     renderProof(document.getElementById("project-proof-grid"), detail.proof || []);
     renderList(document.getElementById("project-architecture"), detail.architecture);
-    renderList(document.getElementById("project-impact"), detail.impact);
+    renderList(document.getElementById("project-tech-decisions"), detail.technicalDecisions);
     renderList(document.getElementById("project-role-scope"), detail.roleScope);
     renderList(document.getElementById("project-evidence"), detail.evidence);
     renderList(document.getElementById("project-challenges"), detail.challenges);

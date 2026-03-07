@@ -37,7 +37,6 @@
 
     <div class="page-bg" aria-hidden="true">
       <div class="bg-orb orb-1"></div>
-      <div class="bg-orb orb-2"></div>
       <div class="bg-grid"></div>
     </div>
 
@@ -98,8 +97,8 @@
           <div class="hero-content" data-reveal="up">
             <p class="eyebrow">Final-year CS Student · Frontend-focused</p>
             <h1>
-              Junior-ready portfolio:
-              <span class="headline-accent">thiết kế tốt, code chắc</span>,
+              Junior-ready portfolio: thiết kế tốt,
+              <span class="headline-accent">code chắc</span>,
               và tư duy sản phẩm rõ ràng.
             </h1>
             <p class="hero-lead">
@@ -111,7 +110,36 @@
             <div class="hero-actions">
               <a class="btn btn-primary" href="#projects">Xem dự án nổi bật</a>
               <a class="btn btn-secondary" href="#resume">CV snapshot</a>
-              <a class="btn btn-secondary" href="#contact">Trao đổi công việc</a>
+            </div>
+
+            <div class="hero-social-links">
+              <a href="https://github.com/thu-high" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M12 .5A11.5 11.5 0 0 0 .5 12.2a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.6v-2.1c-3.2.7-3.9-1.4-3.9-1.4-.5-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.4-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.6 3.3-1.2 3.3-1.2.7 1.6.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6a11.5 11.5 0 0 0 7.9-10.9A11.5 11.5 0 0 0 12 .5Z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/thu-high" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M6.9 8.5a1.9 1.9 0 1 1 0-3.8 1.9 1.9 0 0 1 0 3.8Zm-1.6 13V10.1h3.2v11.4H5.3Zm5.1 0V10.1h3.1v1.6h.1c.4-.8 1.5-1.9 3.2-1.9 3.4 0 4 2.2 4 5.2v6.5h-3.2v-5.8c0-1.4 0-3.2-2-3.2-2 0-2.2 1.5-2.2 3.1v5.9h-3.1Z"
+                  />
+                </svg>
+                LinkedIn
+              </a>
+              <a href="mailto:thu.high.dev@gmail.com">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M3 5.8A2.8 2.8 0 0 1 5.8 3h12.4A2.8 2.8 0 0 1 21 5.8v12.4a2.8 2.8 0 0 1-2.8 2.8H5.8A2.8 2.8 0 0 1 3 18.2V5.8Zm2.3-.5 6.7 5.2 6.7-5.2H5.3Zm13.4 2.8-6.1 4.7a1 1 0 0 1-1.2 0L5.3 8v10.2c0 .3.2.5.5.5h12.4c.3 0 .5-.2.5-.5V8.1Z"
+                  />
+                </svg>
+                Email
+              </a>
             </div>
 
             <div class="quick-contact">
@@ -123,7 +151,8 @@
             </div>
 
             <div class="hero-proof-chips">
-              <span>Case-study driven</span>
+              <span>4 case study projects</span>
+              <span>Product-thinking frontend</span>
               <span>Private repo friendly</span>
               <span>Interview ready</span>
             </div>
@@ -243,30 +272,70 @@
 
           <div class="snapshot-grid">
             <article class="snapshot-card" data-reveal="up">
-              <h3>Học vấn</h3>
-              <p>Sinh viên năm 4 · Khoa học máy tính</p>
+              <h3>Stack</h3>
+              <p>React, Next.js, TypeScript, UI systems</p>
               <ul>
-                <li>Định hướng: Frontend / Product Engineering</li>
-                <li>Quan tâm: UI architecture, performance, UX</li>
+                <li>Frontend kiến trúc rõ ràng, ưu tiên maintainability</li>
+                <li>Làm việc tốt với REST API, state management và UX flow</li>
               </ul>
             </article>
-            <article class="snapshot-card" data-reveal="up" data-delay="80">
-              <h3>Điểm mạnh kỹ thuật</h3>
-              <p>React, TypeScript, Next.js, component system</p>
+            <article class="snapshot-card snapshot-card-wide" data-reveal="up" data-delay="80">
+              <h3>Projects</h3>
+              <p>4 case studies có cả public và private/NDA</p>
               <ul>
-                <li>State management và data-flow rõ ràng</li>
-                <li>Responsive và accessibility thực dụng</li>
+                <li>Ops Dashboard: workflow UI cho operations team</li>
+                <li>B2B Workflow: dynamic form schema + role-based access</li>
+                <li>Hiring Landing: hierarchy nội dung + mobile-first UX</li>
+                <li>Task Workspace: sprint health và dependency visibility</li>
+              </ul>
+            </article>
+            <article class="snapshot-card" data-reveal="up" data-delay="120">
+              <h3>Engineering Strengths</h3>
+              <p>Không chỉ tool list, tập trung năng lực triển khai</p>
+              <ul>
+                <li>UI architecture & component systems</li>
+                <li>State/data flow rõ ràng, giảm side-effects</li>
+                <li>Responsive + accessibility thực dụng</li>
+                <li>Performance awareness khi release</li>
               </ul>
             </article>
             <article class="snapshot-card" data-reveal="up" data-delay="160">
-              <h3>Mục tiêu ứng tuyển</h3>
-              <p>Internship / Junior Frontend</p>
+              <h3>Education</h3>
+              <p>Sinh viên năm 4 · Khoa học máy tính</p>
               <ul>
-                <li>Có thể bắt đầu part-time/full-time theo lịch học</li>
-                <li>Sẵn sàng làm bài test kỹ thuật</li>
+                <li>Định hướng: Frontend / Product Engineering</li>
+                <li>Tập trung dự án thực tế thay vì chỉ bài tập mô phỏng</li>
+              </ul>
+            </article>
+            <article class="snapshot-card" data-reveal="up" data-delay="160">
+              <h3>Availability</h3>
+              <p>Seeking Internship / Junior Frontend</p>
+              <ul>
+                <li>Available for technical test</li>
+                <li>Flexible schedule: part-time/full-time theo lịch học</li>
               </ul>
             </article>
           </div>
+
+          <article class="snapshot-highlights" data-reveal="up">
+            <h3>Case Study Highlights</h3>
+            <div class="snapshot-highlights-grid">
+              <div>
+                <strong>Ops Dashboard</strong>
+                <ul>
+                  <li>Workflow UI cho operations team</li>
+                  <li>Queue management, giảm thao tác lặp</li>
+                </ul>
+              </div>
+              <div>
+                <strong>B2B Workflow</strong>
+                <ul>
+                  <li>Dynamic form schema, scale theo nghiệp vụ</li>
+                  <li>Role-based access logic rõ và dễ kiểm soát</li>
+                </ul>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -308,6 +377,69 @@
                 Có kinh nghiệm phối hợp PM/QA/Designer, trình bày decision log và xử lý trade-off kỹ thuật.
               </p>
               <a href="project.html?id=task-workspace">Xem bằng chứng</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section junior-ready-section" id="junior-ready">
+        <div class="container">
+          <div class="section-head" data-reveal="up">
+            <p class="section-label">Why I’m Junior-Ready</p>
+            <h2 class="section-title">Vì sao có thể đóng góp ngay từ sprint đầu</h2>
+          </div>
+
+          <div class="junior-ready-grid">
+            <article class="jr-card" data-reveal="up">
+              <h3>4 real case studies</h3>
+              <p>Có public và private project, trình bày được decision từ problem đến impact.</p>
+            </article>
+            <article class="jr-card" data-reveal="up" data-delay="80">
+              <h3>Product thinking</h3>
+              <p>Luôn đi theo user flow, business constraints và release quality checklist.</p>
+            </article>
+            <article class="jr-card" data-reveal="up" data-delay="160">
+              <h3>UI architecture focus</h3>
+              <p>Xây component system rõ ràng, dễ maintain và dễ onboard trong team.</p>
+            </article>
+            <article class="jr-card" data-reveal="up">
+              <h3>Ready for code test</h3>
+              <p>Sẵn sàng nhận test task, walkthrough kiến trúc và live coding khi cần.</p>
+            </article>
+          </div>
+
+          <div class="github-proof" data-reveal="up" data-delay="120">
+            <h3>GitHub Proof</h3>
+            <p>
+              Có thể xem repo highlights và commit history để đánh giá thói quen code, cách đặt tên,
+              structure và khả năng maintain.
+            </p>
+            <a href="https://github.com/thu-high" target="_blank" rel="noopener noreferrer"
+              >Xem GitHub contributions & repo highlights</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="section recruiter-faq" id="faq">
+        <div class="container">
+          <div class="section-head" data-reveal="up">
+            <p class="section-label">Recruiter FAQ</p>
+            <h2 class="section-title">Một số câu hỏi nhà tuyển dụng hay hỏi</h2>
+          </div>
+
+          <div class="faq-grid">
+            <article class="faq-item" data-reveal="up">
+              <h3>Có thể làm bài test kỹ thuật không?</h3>
+              <p>Có, sẵn sàng làm test task và giải thích approach chi tiết.</p>
+            </article>
+            <article class="faq-item" data-reveal="up" data-delay="80">
+              <h3>Có thể demo project private không?</h3>
+              <p>Có thể demo trực tiếp trong buổi phỏng vấn theo phạm vi NDA.</p>
+            </article>
+            <article class="faq-item" data-reveal="up" data-delay="160">
+              <h3>Có thể làm part-time không?</h3>
+              <p>Có, linh hoạt lịch part-time/full-time theo giai đoạn học kỳ.</p>
             </article>
           </div>
         </div>
@@ -670,6 +802,19 @@
               Mình ưu tiên vị trí Internship / Junior Frontend. Có thể gửi CV
               PDF, transcript và walkthrough dự án private qua email theo yêu cầu.
             </p>
+
+            <div class="contact-quick-actions">
+              <a class="btn btn-primary" href="mailto:thu.high.dev@gmail.com?subject=Interview%20Schedule%20-%20Thu%20High"
+                >Schedule interview</a
+              >
+              <a
+                class="btn btn-secondary"
+                href="https://www.linkedin.com/in/thu-high"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Trao đổi công việc</a
+              >
+            </div>
 
             <ul class="contact-list">
               <li>
