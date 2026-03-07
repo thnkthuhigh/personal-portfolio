@@ -110,10 +110,6 @@
     --section-pad: 70px;
   }
 
-  #home {
-    scroll-margin-top: 12px;
-  }
-
   #resume {
     scroll-margin-top: 44px;
   }
@@ -134,6 +130,19 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+  }
+
+  .hero-proof-chips span {
+    font-size: 0.78rem;
+    padding: 6px 10px;
+  }
+
+  .hero-rail-item strong {
+    font-size: 0.9rem;
+  }
+
+  .hero-rail-item span {
+    font-size: 0.81rem;
   }
 
   .quick-contact span {
@@ -181,6 +190,15 @@
   .project-link {
     width: 100%;
     text-align: center;
+  }
+
+  .project-visual-tag {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+
+  .project-hero-media img {
+    aspect-ratio: 16 / 9;
   }
 
   .project-gallery {

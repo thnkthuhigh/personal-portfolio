@@ -411,6 +411,38 @@
     });
   };
 
+  const initHomeAnchorBehavior = () => {
+    const homeLinks = Array.from(document.querySelectorAll('a[href="#home"]'));
+    if (homeLinks.length === 0) return;
+
+    const scrollToTop = (behavior = "smooth") => {
+      window.scrollTo({ top: 0, behavior });
+    };
+
+    if (window.location.hash === "#home") {
+      requestAnimationFrame(() => {
+        scrollToTop("auto");
+      });
+    }
+
+    homeLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (window.location.hash !== "#home") {
+          history.pushState(null, "", "#home");
+        }
+        scrollToTop("smooth");
+        closeMobileMenu();
+      });
+    });
+
+    window.addEventListener("hashchange", () => {
+      if (window.location.hash === "#home") {
+        scrollToTop("auto");
+      }
+    });
+  };
+
   const initHeaderScroll = () => {
     if (!header) return;
 
@@ -426,6 +458,57 @@
 
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+  };
+
+  const initScrollProgress = () => {
+    const progressFill = document.querySelector("#scroll-progress span");
+    if (!progressFill) return;
+
+    let ticking = false;
+    const update = () => {
+      const doc = document.documentElement;
+      const maxScroll = doc.scrollHeight - window.innerHeight;
+      const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      const percent = Math.min(100, Math.max(0, ratio * 100));
+      progressFill.style.width = `${percent.toFixed(2)}%`;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
+  };
+
+  const initSpotlightCards = () => {
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!finePointer || reducedMotion) return;
+
+    const targets = document.querySelectorAll(
+      ".trust-item, .lane-card, .snapshot-card, .fit-row, .skill-card, .project-card, .timeline-item, .process-card, .project-panel, .contact-form",
+    );
+    if (targets.length === 0) return;
+
+    targets.forEach((target) => {
+      target.addEventListener("pointermove", (event) => {
+        const rect = target.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        target.style.setProperty("--mx", `${x}px`);
+        target.style.setProperty("--my", `${y}px`);
+      });
+
+      target.addEventListener("pointerleave", () => {
+        target.style.removeProperty("--mx");
+        target.style.removeProperty("--my");
+      });
+    });
   };
 
   const initReveal = () => {
@@ -650,6 +733,28 @@
       });
     }
 
+    const heroMedia = document.getElementById("project-hero-media");
+    if (heroMedia) {
+      heroMedia.innerHTML = "";
+      const cover = (detail.gallery || []).find(
+        (item) => typeof item.image === "string" && item.image.trim().length > 0,
+      );
+
+      if (cover) {
+        const img = document.createElement("img");
+        img.src = cover.image;
+        img.alt = cover.alt || `${detail.title} cover preview`;
+        img.loading = "eager";
+        img.decoding = "async";
+        heroMedia.appendChild(img);
+      } else {
+        const fallback = document.createElement("div");
+        fallback.className = "project-hero-media-fallback";
+        fallback.textContent = "Case preview media sẽ hiển thị tại đây khi bạn thêm ảnh cover.";
+        heroMedia.appendChild(fallback);
+      }
+    }
+
     renderProof(document.getElementById("project-proof-grid"), detail.proof || []);
     renderList(document.getElementById("project-architecture"), detail.architecture);
     renderList(document.getElementById("project-impact"), detail.impact);
@@ -815,7 +920,10 @@
   const init = () => {
     initTheme();
     initMobileMenu();
+    initHomeAnchorBehavior();
     initHeaderScroll();
+    initScrollProgress();
+    initSpotlightCards();
     initReveal();
     initActiveNav();
     initCaseSectionNav();

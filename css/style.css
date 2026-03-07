@@ -114,6 +114,25 @@ a {
   top: 12px;
 }
 
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 95;
+  pointer-events: none;
+}
+
+.scroll-progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand), var(--accent));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 45%, transparent);
+  transition: width 0.08s linear;
+}
+
 .container {
   width: min(100% - 48px, var(--container));
   margin-inline: auto;
@@ -315,10 +334,6 @@ a {
   padding-block: var(--section-pad);
 }
 
-#home {
-  scroll-margin-top: 16px;
-}
-
 #resume {
   scroll-margin-top: 54px;
 }
@@ -438,12 +453,33 @@ h1 {
   color: var(--text);
 }
 
+.hero-proof-chips {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hero-proof-chips span {
+  border: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+  padding: 7px 11px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
 .hero-panel {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: var(--bg-elevated);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--brand) 9%, var(--bg-elevated)),
+    color-mix(in srgb, var(--accent) 6%, var(--bg-elevated))
+  );
   padding: 22px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 color-mix(in srgb, white 38%, transparent);
   position: relative;
   overflow: hidden;
 }
@@ -456,6 +492,24 @@ h1 {
   right: 0;
   height: 4px;
   background: linear-gradient(90deg, var(--brand), var(--accent));
+}
+
+.hero-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--brand) 10%, transparent),
+    transparent 40%,
+    color-mix(in srgb, var(--accent) 11%, transparent)
+  );
+  pointer-events: none;
+}
+
+.hero-panel > * {
+  position: relative;
+  z-index: 1;
 }
 
 .panel-title {
@@ -504,6 +558,46 @@ h1 {
   padding: 8px 12px;
   background: var(--accent-soft);
   font-size: 0.9rem;
+}
+
+.hero-case-rail {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.hero-rail-title {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hero-rail-item {
+  border: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
+  padding: 10px 12px;
+  display: grid;
+  gap: 4px;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.hero-rail-item strong {
+  font-family: var(--font-heading);
+  font-size: 0.96rem;
+}
+
+.hero-rail-item span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.hero-rail-item:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--brand) 58%, var(--line));
+  background: color-mix(in srgb, var(--brand) 10%, var(--bg-elevated));
 }
 
 .status-dot {
@@ -760,6 +854,74 @@ h1 {
   transform: translateY(-1px);
 }
 
+.trust-item,
+.lane-card,
+.snapshot-card,
+.fit-row,
+.skill-card,
+.project-card,
+.timeline-item,
+.process-card,
+.project-panel,
+.contact-form {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  --mx: 50%;
+  --my: 50%;
+}
+
+.trust-item::after,
+.lane-card::after,
+.snapshot-card::after,
+.fit-row::after,
+.skill-card::after,
+.project-card::after,
+.timeline-item::after,
+.process-card::after,
+.project-panel::after,
+.contact-form::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    380px circle at var(--mx) var(--my),
+    color-mix(in srgb, var(--brand) 14%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.trust-item:hover::after,
+.lane-card:hover::after,
+.snapshot-card:hover::after,
+.fit-row:hover::after,
+.skill-card:hover::after,
+.project-card:hover::after,
+.timeline-item:hover::after,
+.process-card:hover::after,
+.project-panel:hover::after,
+.contact-form:hover::after {
+  opacity: 1;
+}
+
+.trust-item > *,
+.lane-card > *,
+.snapshot-card > *,
+.fit-row > *,
+.skill-card > *,
+.project-card > *,
+.timeline-item > *,
+.process-card > *,
+.project-panel > *,
+.contact-form > * {
+  position: relative;
+  z-index: 1;
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -885,6 +1047,55 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+}
+
+.project-visual {
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: color-mix(in srgb, var(--bg-muted) 60%, var(--bg-elevated));
+}
+
+.project-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.project-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--brand) 14%, transparent),
+    transparent 42%,
+    color-mix(in srgb, #08121c 45%, transparent)
+  );
+  pointer-events: none;
+}
+
+.project-card:hover .project-visual img {
+  transform: scale(1.04);
+}
+
+.project-visual-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+  padding: 5px 9px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .project-badge {
@@ -1068,6 +1279,32 @@ h1 {
   padding: 6px 10px;
   font-size: 0.82rem;
   background: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+}
+
+.project-hero-media {
+  margin-top: 14px;
+  border: 1px solid color-mix(in srgb, var(--line) 84%, transparent);
+  border-radius: 14px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--bg-muted) 54%, var(--bg-elevated));
+  min-height: 170px;
+}
+
+.project-hero-media img {
+  width: 100%;
+  aspect-ratio: 21 / 8;
+  object-fit: cover;
+  display: block;
+}
+
+.project-hero-media-fallback {
+  min-height: 170px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  padding: 18px;
 }
 
 .project-media-section {
