@@ -216,13 +216,22 @@
   .faq-grid {
     grid-template-columns: 1fr;
   }
+
+  .cv-inline-head {
+    flex-direction: column;
+  }
+
+  .cv-inline-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 @media (max-width: 680px) {
   :root {
     --section-pad: 70px;
   }
 
-  #resume {
+  #resume,
+  #cv-document {
     scroll-margin-top: 44px;
   }
 
@@ -267,6 +276,15 @@
     padding: 6px 10px;
   }
 
+  .hero-cv-actions {
+    width: 100%;
+  }
+
+  .hero-cv-actions a {
+    flex: 1 1 calc(50% - 8px);
+    text-align: center;
+  }
+
   .hero-rail-item strong {
     font-size: 0.9rem;
   }
@@ -301,6 +319,18 @@
 
   .process-grid {
     grid-template-columns: 1fr;
+  }
+
+  .cv-inline-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-inline-actions {
+    width: 100%;
+  }
+
+  .cv-inline-actions .btn {
+    flex: 1 1 calc(50% - 8px);
   }
 
   .contact-quick-actions {
@@ -385,12 +415,23 @@
     margin-left: auto;
   }
 
+  .language-toggle {
+    padding: 2px;
+    gap: 2px;
+  }
+
+  .lang-btn {
+    min-width: 34px;
+    padding: 6px 8px;
+    font-size: 0.74rem;
+  }
+
   .brand {
     gap: 8px;
   }
 
-  .brand-text {
-    font-size: 1rem;
+  .brand-signature {
+    font-size: 1.28rem;
   }
 
   .theme-toggle {
@@ -440,6 +481,10 @@
 
   .hero-kpi li {
     padding: 14px;
+  }
+
+  .cv-inline-actions .btn {
+    width: 100%;
   }
 
   .project-case-meta span {

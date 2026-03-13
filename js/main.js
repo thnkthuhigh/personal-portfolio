@@ -4,10 +4,14 @@
   const themeMeta = document.getElementById("theme-color-meta");
   const menuToggle = document.getElementById("menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
+  const languageToggle = document.getElementById("language-toggle");
   const header = document.getElementById("site-header");
   const MOBILE_NAV_BREAKPOINT = 900;
 
   const THEME_KEY = "portfolio_theme";
+  const LANGUAGE_KEY = "portfolio_lang";
+  const SUPPORTED_LANGS = ["vi", "en"];
+  let currentLanguage = "vi";
   const THEME_COLORS = {
     light: "#f4f6f8",
     dark: "#0f141a",
@@ -15,67 +19,71 @@
 
   const PROJECT_CASES = {
     "ops-dashboard": {
-      badge: "Public Case · Frontend + Product",
-      title: "Admin Dashboard cho vận hành bán lẻ",
+      badge: "Public Case · Production SaaS",
+      title: "Language Center SaaS (englishforkids.me)",
+      year: "2026",
+      filters: ["frontend", "product"],
+      cardBadge: "Public",
+      previewTag: "Production Case",
       summary:
-        "Tối ưu dashboard theo flow thao tác thực tế, giảm nhầm thao tác ở khối vận hành và giúp lead theo dõi trạng thái đơn hàng nhanh hơn.",
+        "Nền tảng SaaS quản lý trung tâm tiếng Anh đang chạy production, tập trung vào dashboard đa vai trò, quy trình tài chính và đồng bộ thời gian thực.",
       meta: [
-        "Vai trò: Frontend Contributor (Student Project)",
-        "Team: 4 người",
-        "Thời gian: 4 tháng",
-        "Stack: React + TypeScript + Chart.js",
+        "Vai trò: Frontend/Product Contributor",
+        "Team: Nhiều vai trò (Owner/Admin/Teacher/Accountant)",
+        "Thời gian: Nhiều tháng phát triển liên tục",
+        "Stack: React + TypeScript + Node.js + MongoDB + Socket.IO",
       ],
       proof: [
-        { value: "4 tháng", label: "Thời gian triển khai" },
-        { value: "4 người", label: "Quy mô team" },
-        { value: "2 đợt", label: "Release nội bộ" },
-        { value: "~30%", label: "Giảm thao tác chính" },
+        { value: "50k+ LOC", label: "Mã nguồn production" },
+        { value: "822 tests", label: "Tự động hóa kiểm thử" },
+        { value: "200+ APIs", label: "Backend routes triển khai" },
+        { value: "Live", label: "Đang vận hành thực tế" },
       ],
       problem:
-        "Dashboard cũ khó đọc khi số lượng đơn tăng cao, thao tác đổi trạng thái đơn nhiều bước, dữ liệu biểu đồ không đồng nhất giữa các màn hình.",
+        "Quy trình vận hành trung tâm tiếng Anh rời rạc giữa quản lý học viên, lịch học, tài chính và tính lương; dữ liệu khó đồng bộ theo thời gian thực.",
       solution:
-        "Thiết kế lại cấu trúc màn hình theo tác vụ ưu tiên, chuẩn hóa filter/table/chart, và tách state rõ ràng để giảm lỗi runtime.",
+        "Thiết kế lại thành một hệ thống SaaS theo role-based dashboards, chuẩn hóa data flow và bổ sung realtime events cho các luồng quan trọng.",
       storyImpact:
-        "Giảm thời gian xử lý thao tác chính khoảng 30%, giảm lỗi lặp ở các sprint sau và giúp onboarding dev mới nhanh hơn.",
+        "Hệ thống được triển khai production, tăng khả năng theo dõi vận hành tập trung và giảm thao tác thủ công ở các quy trình chính.",
       architectureDiagram: "assets/diagrams/ops-dashboard-arch.svg",
       architectureCaption:
-        "Tách rõ UI modules, domain rules và data layer để giảm side-effects và giữ tốc độ iterate.",
+        "Kiến trúc module theo domain + RBAC giúp mở rộng nghiệp vụ mà vẫn giữ flow rõ ràng.",
       architecture: [
-        "Chia module theo domain: Orders, Inventory, Analytics.",
-        "Tách state truy vấn và state UI để hạn chế side-effects.",
-        "Xây component library nội bộ cho form/table/charts.",
+        "Phân module theo domain: học viên, lớp học, tài chính, lương.",
+        "RBAC theo 4 vai trò chính để tách quyền rõ ràng.",
+        "Realtime sync cho attendance, payment và notification flows.",
       ],
       technicalDecisions: [
-        "Dùng React Query để quản lý cache và trạng thái async nhất quán.",
-        "Ưu tiên domain-based modules thay vì chia theo loại file.",
-        "Xây reusable table/filter để giảm duplicated logic giữa màn hình.",
+        "Ưu tiên TypeScript end-to-end để giảm lỗi integration.",
+        "Áp dụng kiến trúc role-first cho dashboard và route guards.",
+        "Thiết kế API contracts theo domain để scale độc lập từng module.",
       ],
       impact: [
-        "Giảm số bước ở thao tác xử lý đơn chính.",
-        "Onboard dev mới nhanh hơn nhờ module hóa.",
-        "Giảm bug giao diện lặp lại qua các sprint.",
+        "Chuẩn hóa quy trình vận hành vào một nền tảng tập trung.",
+        "Giảm thời gian đồng bộ giữa các bộ phận vận hành.",
+        "Cải thiện khả năng theo dõi dữ liệu theo vai trò.",
       ],
       roleScope: [
-        "Phụ trách UI architecture cho luồng Order Queue và Inventory.",
-        "Thiết kế reusable components: table, filter, status-tag, empty/loading states.",
-        "Chuẩn hóa token màu và khoảng cách để thống nhất light/dark mode.",
+        "Phụ trách các flow frontend theo role và nghiệp vụ cốt lõi.",
+        "Xây component patterns cho dashboard, table và form workflows.",
+        "Tối ưu readability của dữ liệu vận hành trên desktop/mobile.",
       ],
       evidence: [
-        "Flow map trước/sau tối ưu thao tác (PDF).",
-        "Checklist QA responsive + accessibility cho release.",
-        "Clip walkthrough 60-90 giây (có thể gửi theo yêu cầu).",
+        "Live demo production: englishforkids.me.",
+        "Repository công khai kèm tài liệu kiến trúc chi tiết.",
+        "Testing và quality metrics thể hiện trực tiếp trong README.",
       ],
       challenges: [
-        "Giữ consistency giữa nhiều màn hình sử dụng data table.",
-        "Tránh rerender thừa khi filter và sort dữ liệu lớn.",
-        "Đảm bảo chart hiển thị đúng ở cả light/dark mode.",
+        "Đảm bảo tính nhất quán khi số module và vai trò tăng nhanh.",
+        "Cân bằng tốc độ phát triển và chất lượng release production.",
+        "Giữ trải nghiệm mượt với các luồng đồng bộ thời gian thực.",
       ],
       lessons: [
-        "UX flow quan trọng hơn số lượng hiệu ứng.",
-        "State design tốt giúp giảm bug lâu dài.",
-        "Checklist release giúp team giữ chất lượng ổn định.",
+        "Domain boundaries rõ ràng giúp scale nhanh hơn.",
+        "Documentation tốt giúp team onboard và review dễ hơn.",
+        "Quality gates cần được thiết kế từ giai đoạn đầu.",
       ],
-      nda: "Repo có thể chia sẻ ở mức code sample public; dữ liệu production và logic nội bộ đã được ẩn.",
+      nda: "Source code công khai trên GitHub, dữ liệu người dùng thật và thông tin vận hành production đã được bảo mật.",
       videoEmbed: "",
       videoFile: "",
       videoPoster: "",
@@ -83,44 +91,48 @@
         "Bạn có thể đặt `videoEmbed` (YouTube) hoặc `videoFile` (MP4 local) để hiển thị demo trực tiếp.",
       gallery: [
         {
-          title: "Order Queue Screen",
-          desc: "Màn hình ưu tiên thao tác nhanh cho đội vận hành.",
+          title: "Operations Dashboard",
+          desc: "Tổng quan KPI vận hành theo từng vai trò trên production SaaS.",
           image: "assets/cases/ops-queue.svg",
-          alt: "Order queue screen preview",
+          alt: "Language Center SaaS operations dashboard preview",
         },
         {
-          title: "Analytics View",
-          desc: "Biểu đồ và KPI theo ngày/tuần, đồng bộ style token.",
+          title: "Academic & Revenue Analytics",
+          desc: "Màn hình phân tích học vụ và tài chính cho quản trị viên.",
           image: "assets/cases/ops-analytics.svg",
-          alt: "Analytics view preview",
+          alt: "Language Center SaaS analytics view preview",
         },
         {
-          title: "Filter System",
-          desc: "Bộ lọc nhiều điều kiện, tránh reset trạng thái ngoài ý muốn.",
+          title: "Role-based Workflows",
+          desc: "Luồng theo vai trò Owner/Admin/Teacher/Accountant với quyền tách bạch.",
           image: "assets/cases/ops-filter.svg",
-          alt: "Filter system preview",
+          alt: "Language Center SaaS role workflow preview",
         },
         {
-          title: "Reusable Table",
-          desc: "Table component dùng lại cho nhiều module.",
+          title: "Shared Component Patterns",
+          desc: "Pattern table/form dùng lại xuyên suốt nhiều module nghiệp vụ.",
           image: "assets/cases/ops-table.svg",
-          alt: "Reusable table preview",
+          alt: "Language Center SaaS shared components preview",
         },
       ],
       links: [
-        { label: "GitHub", href: "https://github.com/thu-high" },
         {
-          label: "LinkedIn Case Note",
-          href: "https://www.linkedin.com/in/thu-high",
+          label: "GitHub Repo",
+          href: "https://github.com/thnkthuhigh/language-center-saas",
         },
+        { label: "Live Demo", href: "https://www.englishforkids.me/" },
       ],
     },
 
     "b2b-workflow": {
       badge: "Private Case · NDA",
-      title: "Nền tảng quản lý quy trình nội bộ (B2B)",
+      title: "Private Internal Workflow Suite (NDA)",
+      year: "2025",
+      filters: ["product", "private"],
+      cardBadge: "Private",
+      previewTag: "NDA Case",
       summary:
-        "Hệ thống xử lý form nghiệp vụ nhiều bước với phân quyền theo phòng ban, tập trung vào ổn định và khả năng mở rộng dài hạn.",
+        "Case study cho dự án nội bộ không public: xử lý form nghiệp vụ nhiều bước, phân quyền theo phòng ban và rule engine cho UI.",
       meta: [
         "Vai trò: Frontend Contributor (Core Workflow)",
         "Team: 6 người",
@@ -213,67 +225,71 @@
     },
 
     "hiring-landing": {
-      badge: "Public Case · Frontend",
-      title: "Website tuyển dụng cho thương hiệu công nghệ",
+      badge: "Public Case · Fullstack Monorepo",
+      title: "Healthcare Clinic System",
+      year: "2026",
+      filters: ["frontend", "product"],
+      cardBadge: "Public",
+      previewTag: "Public Case",
       summary:
-        "Landing page tuyển dụng ưu tiên readability và tốc độ tải, giúp đội HR chủ động cập nhật nội dung mà không phá vỡ layout.",
+        "Hệ thống quản lý phòng khám đa vai trò với doctor dashboard, hàng đợi bệnh nhân thông minh và luồng khám bệnh kê đơn có phân quyền rõ ràng.",
       meta: [
-        "Vai trò: Frontend Developer",
-        "Team: 3 người",
-        "Thời gian: 2 tháng",
-        "Stack: HTML/CSS/JavaScript",
+        "Vai trò: Frontend Contributor",
+        "Team: Nhóm nhiều vai trò trong môn chuyên ngành",
+        "Thời gian: Nhiều sprint liên tục",
+        "Stack: React + TypeScript + PostgreSQL + Docker",
       ],
       proof: [
-        { value: "2 tháng", label: "Thời gian triển khai" },
-        { value: "3 người", label: "Quy mô team" },
-        { value: "Mobile-first", label: "Trọng tâm UX" },
-        { value: "Nhẹ & nhanh", label: "Ưu tiên performance" },
+        { value: "Monorepo", label: "Tổ chức codebase theo module" },
+        { value: "Multi-role", label: "Owner/Admin/Doctor/Patient" },
+        { value: "Queue Smart", label: "Ưu tiên bệnh nhân theo rule" },
+        { value: "Swagger", label: "API docs rõ ràng" },
       ],
       problem:
-        "Trang tuyển dụng cũ thiếu hierarchy nội dung, animation gây nhiễu và tốc độ tải trang đầu chậm trên mobile.",
+        "Quản lý khám bệnh, hàng đợi, lịch hẹn và kê đơn tách rời khiến đội vận hành khó theo dõi toàn bộ flow theo thời gian thực.",
       solution:
-        "Thiết kế lại grid và typography theo ưu tiên đọc, cắt giảm script block render, tối ưu CTA và biểu mẫu ứng tuyển.",
+        "Xây hệ thống đồng nhất với dashboard theo vai trò, smart queue cho bác sĩ và consultation flow có kiểm soát trạng thái rõ ràng.",
       storyImpact:
-        "Tăng thời gian đọc JD trên mobile, giảm bounce ở hero và giúp HR cập nhật nội dung nhanh hơn.",
+        "Giảm độ rời rạc trong vận hành phòng khám, tăng tốc xử lý hàng đợi và cải thiện khả năng theo dõi dữ liệu lâm sàng.",
       architectureDiagram: "assets/diagrams/hiring-landing-arch.svg",
       architectureCaption:
-        "Kiến trúc content blocks + performance budget giúp trang nhẹ nhưng vẫn giữ brand consistency.",
+        "Monorepo + module boundaries giúp tách rõ domain bác sĩ, bệnh nhân, lịch hẹn và vận hành.",
       architecture: [
-        "Thiết kế token màu + spacing thống nhất toàn trang.",
-        "Progressive enhancement cho hiệu ứng thay vì bắt buộc JavaScript.",
-        "Kiểm soát ảnh và asset theo performance budget.",
+        "Tách module theo domain: doctor, patient, appointments, prescriptions.",
+        "Thiết kế queue engine ưu tiên theo trạng thái và nguồn đặt lịch.",
+        "Chuẩn hóa API contracts để frontend và backend phát triển song song.",
       ],
       technicalDecisions: [
-        "Giảm script blocking để tối ưu first render trên mobile.",
-        "Ưu tiên semantic HTML để tăng readability và maintainability.",
-        "Dùng token hóa spacing/typography để HR dễ cập nhật content.",
+        "Ưu tiên TypeScript ở frontend để giảm lỗi trạng thái UI.",
+        "Áp dụng state clarity cho luồng queue và consultation actions.",
+        "Dùng Docker cho môi trường dev nhất quán giữa các thành viên.",
       ],
       impact: [
-        "Tăng thời gian đọc nội dung JD trên mobile.",
-        "Giảm tỷ lệ thoát ở hero section.",
-        "Đội HR cập nhật nội dung nhanh hơn và ít lỗi format.",
+        "Bác sĩ theo dõi hàng đợi trực quan hơn ở từng ca khám.",
+        "Giảm thao tác thủ công khi cập nhật trạng thái khám bệnh.",
+        "Tăng khả năng maintain module theo vai trò nghiệp vụ.",
       ],
       roleScope: [
-        "Thiết kế content hierarchy: hero, JD blocks, application flow.",
-        "Viết lại layout responsive theo mobile-first grid.",
-        "Tối ưu asset tải ban đầu và giảm script gây block render.",
+        "Thiết kế UI cho doctor dashboard và queue management.",
+        "Xây các component trạng thái cho consultation flow.",
+        "Tối ưu form thao tác để giảm nhầm lẫn trong quy trình khám.",
       ],
       evidence: [
-        "Ảnh so sánh trước/sau ở hero và phần mô tả vị trí.",
-        "Checklist tối ưu mobile performance.",
-        "Recording ngắn luồng đọc JD và gửi form ứng tuyển.",
+        "README chi tiết với quick-start và module overview.",
+        "Swagger endpoints và quy trình chạy dự án rõ ràng.",
+        "Case walkthrough có thể demo trực tiếp khi phỏng vấn.",
       ],
       challenges: [
-        "Giữ brand identity mà không làm UI rối.",
-        "Đảm bảo tính nhất quán giữa desktop và mobile.",
-        "Tối ưu tải trang khi nội dung có nhiều ảnh.",
+        "Giữ UX rõ ràng khi dữ liệu bệnh nhân cập nhật liên tục.",
+        "Đồng bộ rule ưu tiên queue với trạng thái nghiệp vụ thực tế.",
+        "Kiểm soát regression khi thêm tính năng theo role mới.",
       ],
       lessons: [
-        "Hierarchy tốt có tác động trực tiếp đến conversion.",
-        "Animation chỉ nên hỗ trợ nội dung, không chiếm spotlight.",
-        "Performance nên được đo và kiểm soát từ đầu.",
+        "Role-based UI cần đi cùng rule engine rõ ràng.",
+        "Monorepo giúp reuse tốt nhưng cần kỷ luật module boundaries.",
+        "Tài liệu setup tốt giúp tăng tốc onboard và review.",
       ],
-      nda: "Repo có thể chia sẻ public nhưng đã loại bỏ toàn bộ dữ liệu nội bộ trước khi xuất bản.",
+      nda: "Repo công khai; dữ liệu thật trong môi trường production không được đưa vào mã nguồn.",
       videoEmbed: "",
       videoFile: "",
       videoPoster: "",
@@ -281,95 +297,104 @@
         "Có thể thêm video demo thao tác ứng tuyển để tăng độ tin cậy cho case public.",
       gallery: [
         {
-          title: "Hero Section",
-          desc: "Tối ưu headline, CTA và content hierarchy.",
+          title: "Doctor Dashboard",
+          desc: "Tổng quan ca khám và trạng thái bệnh nhân theo thời gian thực.",
           image: "assets/cases/hire-hero.svg",
-          alt: "Hiring hero section preview",
+          alt: "Healthcare clinic doctor dashboard preview",
         },
         {
-          title: "Job Detail Layout",
-          desc: "Thiết kế block JD dễ scan trong 15-20 giây.",
+          title: "Smart Queue Management",
+          desc: "Hàng đợi ưu tiên theo trạng thái và mức độ ưu tiên điều trị.",
           image: "assets/cases/hire-jd.svg",
-          alt: "Job detail layout preview",
+          alt: "Healthcare clinic smart queue preview",
         },
         {
-          title: "Application Form",
-          desc: "Form tối giản, validation rõ ràng và ít friction.",
+          title: "Consultation Form",
+          desc: "Form khám bệnh và cập nhật chẩn đoán theo flow rõ ràng.",
           image: "assets/cases/hire-form.svg",
-          alt: "Application form preview",
+          alt: "Healthcare clinic consultation form preview",
         },
         {
-          title: "Mobile View",
-          desc: "Giữ readability tốt trên màn hình nhỏ.",
+          title: "Prescription Workflow",
+          desc: "Luồng kê đơn có validation và kiểm soát trạng thái thuốc.",
           image: "assets/cases/hire-mobile.svg",
-          alt: "Mobile view preview",
+          alt: "Healthcare clinic prescription workflow preview",
         },
       ],
-      links: [{ label: "GitHub", href: "https://github.com/thu-high" }],
+      links: [
+        {
+          label: "GitHub Repo",
+          href: "https://github.com/thnkthuhigh/healthcare-clinic-system",
+        },
+      ],
     },
 
     "task-workspace": {
-      badge: "Private Case · Product",
-      title: "Task Workspace cho team cross-functional",
+      badge: "Public Case · Realtime Platform",
+      title: "RealTime Auction System",
+      year: "2026",
+      filters: ["frontend", "product"],
+      cardBadge: "Public",
+      previewTag: "Realtime Case",
       summary:
-        "Workspace quản lý sprint và block issue theo thời gian thực, tập trung vào việc giảm nghẽn giao tiếp giữa PM, QA và Engineer.",
+        "Nền tảng đấu giá thời gian thực với phòng đấu giá live, cập nhật giá tức thì qua Socket.IO và luồng xử lý bid history có kiểm soát.",
       meta: [
-        "Vai trò: Frontend Contributor",
+        "Vai trò: Frontend Contributor (Auction Room UI)",
         "Team: 5 người",
-        "Thời gian: 5 tháng",
-        "Stack: Vue + TypeScript + Node.js",
+        "Thời gian: Dự án chuyên ngành năm 4",
+        "Stack: React + TypeScript + Socket.IO + Redis + PostgreSQL",
       ],
       proof: [
-        { value: "5 tháng", label: "Thời gian dự án" },
+        { value: "Realtime", label: "Đặt giá tức thì qua WebSocket" },
         { value: "5 người", label: "Team triển khai" },
-        { value: "Realtime", label: "Trọng tâm dữ liệu" },
-        { value: "Nội bộ", label: "Private product" },
+        { value: "Redis", label: "Tối ưu lớp dữ liệu thời gian thực" },
+        { value: "CI/CD", label: "Workflow theo nhóm chuẩn hóa" },
       ],
       problem:
-        "Thông tin task rải rác giữa nhiều công cụ, PM khó nắm bottleneck theo sprint và đội dev mất thời gian đồng bộ trạng thái thủ công.",
+        "Bài toán đấu giá yêu cầu cập nhật liên tục và tránh sai lệch trạng thái khi nhiều người dùng đặt giá đồng thời.",
       solution:
-        "Xây dashboard tập trung theo sprint health, timeline tiến độ và dependency map; kết nối webhook để đồng bộ trạng thái giữa các hệ thống.",
+        "Thiết kế UI realtime theo event stream, kết hợp đồng bộ state bid history và thông báo để người dùng theo dõi phiên đấu giá ổn định.",
       storyImpact:
-        "Giảm thời gian check trạng thái đầu ngày, phát hiện bottleneck sớm hơn và giảm xung đột thông tin giữa PM và dev.",
+        "Tạo trải nghiệm đấu giá mượt hơn, giảm độ trễ cảm nhận ở room và tăng độ tin cậy khi người dùng tương tác đồng thời.",
       architectureDiagram: "assets/diagrams/task-workspace-arch.svg",
       architectureCaption:
-        "Event-driven data flow cho realtime sprint tracking và insights tổng hợp theo chu kỳ.",
+        "Realtime architecture kết hợp REST + Socket events để giữ state nhất quán trong phòng đấu giá.",
       architecture: [
-        "State store tách theo board, sprint và insights.",
-        "Realtime cập nhật trạng thái qua event channel.",
-        "UI kit chung cho task board, filters và progress view.",
+        "Kết hợp REST API cho CRUD và WebSocket cho events realtime.",
+        "Tách state theo auction room, bid stream và notification panel.",
+        "Dùng Redis làm lớp hỗ trợ sync và scaling cho socket events.",
       ],
       technicalDecisions: [
-        "Tách state theo domain board/sprint để tránh coupling.",
-        "Event channel giúp đồng bộ realtime nhất quán giữa module.",
-        "UI kit thống nhất giảm khác biệt tương tác ở các view phức tạp.",
+        "Ưu tiên event naming chuẩn hóa để debug dễ trong realtime flows.",
+        "Tách UI state và server state nhằm giảm race-condition hiển thị.",
+        "Áp dụng schema validation để kiểm soát payload trước khi render.",
       ],
       impact: [
-        "Giảm thời gian check trạng thái đầu ngày của team.",
-        "Phát hiện bottleneck sớm hơn trong sprint.",
-        "Giảm xung đột thông tin giữa PM và dev.",
+        "Người dùng nhận cập nhật giá nhanh và rõ ràng hơn.",
+        "Giảm lỗi hiển thị chồng chéo khi có nhiều bid liên tiếp.",
+        "Team maintain dễ hơn nhờ cấu trúc module theo luồng nghiệp vụ.",
       ],
       roleScope: [
-        "Phụ trách dashboard sprint health và dependency map.",
-        "Thiết kế interaction cho filters, board grouping và timeline view.",
-        "Phối hợp BE để chuẩn hóa event naming khi đồng bộ realtime.",
+        "Xây dựng các màn hình auction room và bid history.",
+        "Tối ưu trạng thái loading/sync/reconnect trong luồng realtime.",
+        "Phối hợp backend thống nhất contract cho socket events.",
       ],
       evidence: [
-        "Ảnh wireframe và bản final cho luồng theo dõi sprint.",
-        "Decision log ngắn về state management và event flow.",
-        "Demo private theo lịch hẹn với nhà tuyển dụng.",
+        "Repository công khai kèm kiến trúc hệ thống trong README.",
+        "Mô tả rõ stack realtime: Socket.IO, Redis, PostgreSQL.",
+        "Có thể demo trực tiếp room flow trong buổi phỏng vấn.",
       ],
       challenges: [
-        "Đồng bộ dữ liệu từ nhiều nguồn trong thời gian ngắn.",
-        "Giữ UI dễ dùng khi số task tăng mạnh.",
-        "Thiết kế quyền truy cập hợp lý theo vai trò.",
+        "Đảm bảo thứ tự cập nhật giá khi sự kiện đến dồn dập.",
+        "Giữ UI ổn định trong tình huống reconnect mạng.",
+        "Thiết kế luồng thông báo không gây nhiễu cho người dùng.",
       ],
       lessons: [
-        "Visualization tốt giúp team quyết định nhanh hơn.",
-        "Event-driven flow cần theo dõi trạng thái chặt chẽ.",
-        "Product nội bộ vẫn cần UX rõ ràng như sản phẩm public.",
+        "Realtime UX tốt phụ thuộc mạnh vào state model rõ ràng.",
+        "Chuẩn hóa event contract giảm đáng kể lỗi tích hợp.",
+        "Project nhóm cần review discipline để giữ chất lượng code.",
       ],
-      nda: "Sản phẩm nội bộ chưa public. Có thể trình bày chi tiết kiến trúc và decision log trong buổi phỏng vấn kỹ thuật.",
+      nda: "Repo công khai, có thể chia sẻ code và walkthrough kỹ thuật trực tiếp.",
       videoEmbed: "",
       videoFile: "",
       videoPoster: "",
@@ -377,32 +402,1321 @@
         "Do phạm vi nội bộ, video demo chỉ chia sẻ trong buổi trao đổi trực tiếp.",
       gallery: [
         {
-          title: "Sprint Health Panel",
-          desc: "Theo dõi trạng thái sprint theo thời gian thực.",
+          title: "Auction Room",
+          desc: "Giao diện phòng đấu giá hiển thị giá hiện tại theo thời gian thực.",
           image: "assets/cases/task-sprint.svg",
-          alt: "Sprint health panel preview",
+          alt: "Realtime auction room preview",
         },
         {
-          title: "Dependency Map",
-          desc: "Minh họa task bị chặn và mức độ ảnh hưởng.",
+          title: "Live Bid Stream",
+          desc: "Luồng cập nhật bid liên tục, đồng bộ theo sự kiện socket.",
           image: "assets/cases/task-dependency.svg",
-          alt: "Dependency map preview",
+          alt: "Realtime auction bid stream preview",
         },
         {
-          title: "Team Board",
-          desc: "Quản lý task theo team và ưu tiên.",
+          title: "Auction Notifications",
+          desc: "Thông báo thay đổi giá và trạng thái phiên đấu giá theo thời gian thực.",
           image: "assets/cases/task-board.svg",
-          alt: "Team board preview",
+          alt: "Realtime auction notification preview",
         },
         {
-          title: "Insight View",
-          desc: "Tổng hợp xu hướng tiến độ qua các sprint.",
+          title: "Bid History Panel",
+          desc: "Theo dõi lịch sử đặt giá để kiểm chứng tính nhất quán của dữ liệu.",
           image: "assets/cases/task-insight.svg",
-          alt: "Insight view preview",
+          alt: "Realtime auction bid history preview",
         },
       ],
-      links: [{ label: "Case private" }, { label: "Repo theo NDA" }],
+      links: [
+        {
+          label: "GitHub Repo",
+          href: "https://github.com/thnkthuhigh/auction",
+        },
+      ],
     },
+
+    "cloud-clipboard": {
+      badge: "Public Case · Utility App",
+      title: "Cloud Clipboard (bunker)",
+      year: "2026",
+      filters: ["frontend"],
+      cardBadge: "Public",
+      previewTag: "Utility Case",
+      summary:
+        "Ứng dụng clipboard tự host cho phép lưu text/ảnh, drag-drop upload và đồng bộ nhanh giữa nhiều thiết bị.",
+      meta: [
+        "Vai trò: Fullstack Developer",
+        "Team: Solo",
+        "Thời gian: Triển khai theo từng iteration ngắn",
+        "Stack: Node.js + Express + SQLite + Vanilla JS",
+      ],
+      proof: [
+        { value: "Self-hosted", label: "Triển khai linh hoạt trên VPS" },
+        { value: "Text + Image", label: "Lưu và truy xuất nhanh nội dung" },
+        { value: "Auto-sync", label: "Refresh dữ liệu định kỳ giữa thiết bị" },
+        { value: "Upload 50MB", label: "Hỗ trợ file ảnh thực tế" },
+      ],
+      problem:
+        "Copy dữ liệu giữa laptop/điện thoại thường rời rạc và thiếu một nơi lưu tạm tập trung cho text + image.",
+      solution:
+        "Xây ứng dụng clipboard web đơn giản, upload ảnh nhanh bằng paste/drag-drop và tổ chức nội dung theo category + pin.",
+      storyImpact:
+        "Rút ngắn thao tác chia sẻ nội dung giữa thiết bị, phù hợp nhu cầu dùng cá nhân hoặc team nhỏ cần công cụ nội bộ gọn nhẹ.",
+      architectureDiagram: "assets/diagrams/task-workspace-arch.svg",
+      architectureCaption:
+        "Kiến trúc nhỏ gọn: Express API + SQLite storage + client-side interaction tập trung vào tốc độ thao tác.",
+      architecture: [
+        "REST API đơn giản cho create/read/update/delete clipboard items.",
+        "Lưu metadata và nội dung bằng SQLite để triển khai nhẹ.",
+        "Frontend tối ưu thao tác paste image, drag-drop và pin item.",
+      ],
+      technicalDecisions: [
+        "Chọn SQLite để setup nhanh, dễ backup và phù hợp scale cá nhân/team nhỏ.",
+        "Tách upload pipeline với Multer để kiểm soát file size/type rõ ràng.",
+        "Giữ frontend thuần JS để giảm độ phức tạp khi bảo trì nhanh.",
+      ],
+      impact: [
+        "Tăng tốc luồng lưu/chia sẻ snippet hằng ngày.",
+        "Giảm phụ thuộc các công cụ third-party cho clipboard nội bộ.",
+        "Dễ deploy lên VPS với chi phí thấp.",
+      ],
+      roleScope: [
+        "Thiết kế UX thao tác nhanh cho text/image clipboard.",
+        "Xây backend CRUD và upload handling.",
+        "Chuẩn bị script deploy + vận hành cơ bản trên server.",
+      ],
+      evidence: [
+        "README mô tả đầy đủ features và luồng deploy.",
+        "Cấu trúc dự án rõ giữa backend, frontend và scripts.",
+        "Có thể demo trực tiếp các flow paste, pin, category.",
+      ],
+      challenges: [
+        "Giữ trải nghiệm upload ổn định cho nhiều định dạng ảnh.",
+        "Tổ chức dữ liệu đơn giản nhưng vẫn dễ mở rộng theo category.",
+        "Đảm bảo UX mượt trên desktop/mobile với thao tác nhanh.",
+      ],
+      lessons: [
+        "Công cụ nội bộ nhỏ nhưng UX tốc độ cao tạo giá trị lớn.",
+        "Thiết kế API tối giản giúp maintain lâu dài dễ hơn.",
+        "Deploy scripts rõ ràng giúp tiết kiệm thời gian vận hành.",
+      ],
+      nda: "Repo public, có thể chia sẻ code đầy đủ và demo ngay.",
+      videoEmbed: "",
+      videoFile: "",
+      videoPoster: "",
+      videoNote:
+        "Có thể bổ sung clip ngắn 60 giây để recruiter xem nhanh workflow chính.",
+      gallery: [
+        {
+          title: "Clipboard Feed",
+          desc: "Danh sách snippet text/ảnh được đồng bộ theo thời gian.",
+          image: "assets/cases/task-board.svg",
+          alt: "Cloud clipboard feed preview",
+        },
+        {
+          title: "Image Paste & Upload",
+          desc: "Hỗ trợ Ctrl+V và drag-drop để lưu ảnh nhanh.",
+          image: "assets/cases/task-dependency.svg",
+          alt: "Cloud clipboard upload preview",
+        },
+        {
+          title: "Category & Pin",
+          desc: "Phân loại nội dung và ghim item quan trọng lên đầu.",
+          image: "assets/cases/task-sprint.svg",
+          alt: "Cloud clipboard category and pin preview",
+        },
+        {
+          title: "Cross-device Usage",
+          desc: "Truy cập cùng một dữ liệu clipboard trên nhiều thiết bị.",
+          image: "assets/cases/task-insight.svg",
+          alt: "Cloud clipboard cross-device preview",
+        },
+      ],
+      links: [
+        {
+          label: "GitHub Repo",
+          href: "https://github.com/thnkthuhigh/bunker",
+        },
+      ],
+    },
+  };
+
+  const PROJECT_CASES_EN = {
+    "ops-dashboard": {
+      badge: "Public Case · Production SaaS",
+      title: "Language Center SaaS (englishforkids.me)",
+      summary:
+        "A production SaaS platform for language centers, focused on role-based dashboards, finance workflows, and real-time synchronization.",
+      meta: [
+        "Role: Frontend/Product Contributor",
+        "Team: Multi-role (Owner/Admin/Teacher/Accountant)",
+        "Duration: Multi-month iterative development",
+        "Stack: React + TypeScript + Node.js + MongoDB + Socket.IO",
+      ],
+      proof: [
+        { value: "50k+ LOC", label: "Production codebase scale" },
+        { value: "822 tests", label: "Automated test coverage" },
+        { value: "200+ APIs", label: "Implemented backend endpoints" },
+        { value: "Live", label: "Running in production" },
+      ],
+      problem:
+        "Operations were fragmented across enrollment, scheduling, finance, and payroll, with weak real-time visibility.",
+      solution:
+        "Designed a role-based SaaS architecture with domain-driven modules and real-time event flows for critical operations.",
+      storyImpact:
+        "Improved operational visibility and reduced manual synchronization across departments.",
+      architectureCaption:
+        "Domain boundaries + RBAC structure improve scalability while keeping workflows understandable.",
+      architecture: [
+        "Domain modules for academics, scheduling, finance, and payroll.",
+        "RBAC for four main user roles with explicit permissions.",
+        "Realtime sync for attendance, payment, and notifications.",
+      ],
+      technicalDecisions: [
+        "TypeScript end-to-end for safer integrations.",
+        "Role-first dashboard routing and permission guards.",
+        "Domain-based API contracts for scalable team development.",
+      ],
+      impact: [
+        "Centralized operations into one cohesive platform.",
+        "Reduced cross-team handoff and data mismatch.",
+        "Improved role-specific visibility and decision speed.",
+      ],
+      roleScope: [
+        "Built key frontend workflows for role-based dashboards.",
+        "Developed reusable table/form component patterns.",
+        "Improved readability of dense operational data.",
+      ],
+      evidence: [
+        "Live production demo at englishforkids.me.",
+        "Public repository with architecture documentation.",
+        "Test and quality metrics documented in README.",
+      ],
+      challenges: [
+        "Maintaining consistency while module count grew fast.",
+        "Balancing delivery speed with production quality.",
+        "Keeping realtime interactions stable under heavy usage.",
+      ],
+      lessons: [
+        "Clear domain boundaries accelerate scaling.",
+        "Documentation quality is a force multiplier.",
+        "Quality gates must be designed from the beginning.",
+      ],
+      nda: "Repository is public; real user data and production operational details remain protected.",
+      videoNote:
+        "You can set `videoEmbed` (YouTube) or `videoFile` (local MP4) to display a walkthrough.",
+      gallery: [
+        {
+          title: "Operations Dashboard",
+          desc: "Role-specific KPI overview for daily operations.",
+          image: "assets/cases/ops-queue.svg",
+          alt: "Language Center SaaS operations dashboard preview",
+        },
+        {
+          title: "Academic & Revenue Analytics",
+          desc: "Academic and financial analytics views for admins.",
+          image: "assets/cases/ops-analytics.svg",
+          alt: "Language Center SaaS analytics preview",
+        },
+        {
+          title: "Role-based Workflows",
+          desc: "Workflow boundaries by role with explicit access rules.",
+          image: "assets/cases/ops-filter.svg",
+          alt: "Language Center SaaS workflow preview",
+        },
+        {
+          title: "Shared Component Patterns",
+          desc: "Reusable table and form patterns across modules.",
+          image: "assets/cases/ops-table.svg",
+          alt: "Language Center SaaS shared components preview",
+        },
+      ],
+      links: [
+        {
+          label: "GitHub Repo",
+          href: "https://github.com/thnkthuhigh/language-center-saas",
+        },
+        { label: "Live Demo", href: "https://www.englishforkids.me/" },
+      ],
+    },
+
+    "b2b-workflow": {
+      badge: "Private Case · NDA",
+      title: "Private Internal Workflow Suite (NDA)",
+      summary:
+        "A private multi-step workflow system with schema-driven forms and role-based access controls.",
+      meta: [
+        "Role: Frontend Contributor (Core Workflow)",
+        "Team: 6 members",
+        "Duration: 7 months",
+        "Stack: Next.js + TypeScript",
+      ],
+      proof: [
+        { value: "7 months", label: "Project duration" },
+        { value: "6 members", label: "Cross-functional team" },
+        { value: "NDA", label: "Data confidentiality scope" },
+        { value: "Multi-role", label: "Permission-heavy workflows" },
+      ],
+      problem:
+        "Approval flows were fragmented across screens and permission handling was inconsistent.",
+      solution:
+        "Implemented domain-based routes, schema-driven forms, and centralized role visibility rules.",
+      storyImpact:
+        "Reduced rework for new business rules and improved release stability in permission-heavy flows.",
+      architectureCaption:
+        "Schema engine and centralized permission mapping make workflow changes predictable.",
+      architecture: [
+        "Feature-sliced domains: workflow, approvals, reports.",
+        "Schema-driven form rendering for reusable multi-step flows.",
+        "Central permission map for consistent role behavior.",
+      ],
+      technicalDecisions: [
+        "Schema-driven approach for easier business scaling.",
+        "Centralized permission map to avoid scattered role checks.",
+        "Domain-layer activity logging for audit and debugging.",
+      ],
+      impact: [
+        "Lower rework when adding new workflows.",
+        "Higher reliability in role-sensitive screens.",
+        "Faster handoff between sprints.",
+      ],
+      roleScope: [
+        "Redesigned core multi-step form workflows.",
+        "Implemented role-based visibility and action gating.",
+        "Built reusable schema component patterns.",
+      ],
+      evidence: [
+        "Sanitized workflow architecture screenshots.",
+        "Role matrix sample without sensitive details.",
+        "Live private walkthrough during interviews.",
+      ],
+      challenges: [
+        "Different departments required different state transitions.",
+        "Sensitive data constraints under NDA.",
+        "Regression control when schema changes frequently.",
+      ],
+      lessons: [
+        "Schema-first approach scales faster than hardcoded flows.",
+        "Clear role maps significantly reduce permission bugs.",
+        "Audit logging is essential for internal products.",
+      ],
+      nda: "Source code and production data are NDA-protected. A private live walkthrough can be arranged.",
+      videoNote:
+        "Public video is not available due NDA; a live walkthrough can be provided in interview.",
+      links: [{ label: "NDA Repository" }, { label: "Private Demo by Appointment" }],
+    },
+
+    "hiring-landing": {
+      badge: "Public Case · Fullstack Monorepo",
+      title: "Healthcare Clinic System",
+      summary:
+        "A multi-role clinic management system with doctor dashboard, smart queue handling, and consultation/prescription workflows.",
+      meta: [
+        "Role: Frontend Contributor",
+        "Team: Course project with multiple roles",
+        "Duration: Multi-sprint implementation",
+        "Stack: React + TypeScript + PostgreSQL + Docker",
+      ],
+      proof: [
+        { value: "Monorepo", label: "Modular code structure" },
+        { value: "Multi-role", label: "Owner/Admin/Doctor/Patient" },
+        { value: "Smart Queue", label: "Rule-based patient prioritization" },
+        { value: "Swagger", label: "Clear API documentation" },
+      ],
+      problem:
+        "Appointments, queue, and consultation flows were hard to track consistently in real time.",
+      solution:
+        "Built role-based dashboards with smart queue rules and explicit consultation state transitions.",
+      storyImpact:
+        "Improved queue handling speed and reduced operational fragmentation in clinic workflows.",
+      architectureCaption:
+        "Monorepo module boundaries separate doctor, patient, appointment, and operations domains.",
+      architecture: [
+        "Domain modules for doctor, patient, appointment, and prescriptions.",
+        "Queue rules by source and status priority.",
+        "API contracts aligned for parallel frontend/backend work.",
+      ],
+      technicalDecisions: [
+        "TypeScript for safer UI state transitions.",
+        "Explicit state design for queue and consultation actions.",
+        "Dockerized setup for team consistency.",
+      ],
+      impact: [
+        "Doctors can process queue state with less friction.",
+        "Reduced manual state updates in consultation flow.",
+        "Improved maintainability through domain modules.",
+      ],
+      roleScope: [
+        "Designed doctor dashboard and queue interfaces.",
+        "Implemented consultation-state UI components.",
+        "Improved form clarity in high-stress medical operations.",
+      ],
+      evidence: [
+        "Comprehensive README with quick-start and architecture.",
+        "Swagger endpoints and environment setup guide.",
+        "Live walkthrough available for interviews.",
+      ],
+      challenges: [
+        "Keeping UX clear while patient data updates rapidly.",
+        "Aligning queue priority rules with real operations.",
+        "Preventing regressions when adding new role features.",
+      ],
+      lessons: [
+        "Role-based UI must be backed by clear rule mapping.",
+        "Monorepo reuse requires strict module boundaries.",
+        "Strong setup docs dramatically improve onboarding.",
+      ],
+      nda: "Repository is public; real patient and production data are not exposed.",
+      videoNote:
+        "A concise walkthrough video can be added for faster recruiter review.",
+      gallery: [
+        {
+          title: "Doctor Dashboard",
+          desc: "Shift overview and patient status at a glance.",
+          image: "assets/cases/hire-hero.svg",
+          alt: "Healthcare clinic doctor dashboard preview",
+        },
+        {
+          title: "Smart Queue Management",
+          desc: "Priority queue behavior by operational rules.",
+          image: "assets/cases/hire-jd.svg",
+          alt: "Healthcare clinic queue preview",
+        },
+        {
+          title: "Consultation Form",
+          desc: "Structured consultation and diagnosis workflow.",
+          image: "assets/cases/hire-form.svg",
+          alt: "Healthcare consultation form preview",
+        },
+        {
+          title: "Prescription Workflow",
+          desc: "Validation-aware prescription flow and medicine state.",
+          image: "assets/cases/hire-mobile.svg",
+          alt: "Healthcare prescription workflow preview",
+        },
+      ],
+      links: [
+        {
+          label: "GitHub Repo",
+          href: "https://github.com/thnkthuhigh/healthcare-clinic-system",
+        },
+      ],
+    },
+
+    "task-workspace": {
+      badge: "Public Case · Realtime Platform",
+      title: "RealTime Auction System",
+      summary:
+        "A real-time auction platform with live room updates, bid stream synchronization, and event-driven UI states.",
+      meta: [
+        "Role: Frontend Contributor (Auction Room UI)",
+        "Team: 5 members",
+        "Duration: Final-year specialization project",
+        "Stack: React + TypeScript + Socket.IO + Redis + PostgreSQL",
+      ],
+      proof: [
+        { value: "Realtime", label: "Live bidding over WebSocket" },
+        { value: "5 members", label: "Team implementation scale" },
+        { value: "Redis", label: "Realtime synchronization layer" },
+        { value: "CI/CD", label: "Structured team workflow" },
+      ],
+      problem:
+        "Auction rooms require low-latency updates and stable state consistency under concurrent bidding.",
+      solution:
+        "Implemented event-driven realtime UI with explicit bid-state sync and reconnect-safe interaction flow.",
+      storyImpact:
+        "Improved perceived responsiveness and reliability in high-concurrency auction sessions.",
+      architectureCaption:
+        "Hybrid REST + Socket architecture keeps auction state coherent across clients.",
+      architecture: [
+        "REST API for CRUD and Socket events for realtime actions.",
+        "State split by auction room, bid stream, and notifications.",
+        "Redis-backed sync support for event consistency.",
+      ],
+      technicalDecisions: [
+        "Standardized event naming for reliable debugging.",
+        "Separated UI state from server state to reduce race conditions.",
+        "Schema validation for incoming event payloads.",
+      ],
+      impact: [
+        "Faster and clearer live price updates for users.",
+        "Lower UI inconsistency during burst bidding.",
+        "Improved maintainability through flow-oriented modules.",
+      ],
+      roleScope: [
+        "Built auction room and bid history interfaces.",
+        "Handled loading/sync/reconnect UX for realtime flow.",
+        "Aligned socket contracts with backend team.",
+      ],
+      evidence: [
+        "Public repository with architecture explanation.",
+        "Documented realtime stack and design decisions.",
+        "Live demo walkthrough can be provided in interviews.",
+      ],
+      challenges: [
+        "Preserving bid-order consistency under high event volume.",
+        "Stabilizing UX during network reconnect scenarios.",
+        "Avoiding notification overload while keeping users informed.",
+      ],
+      lessons: [
+        "Realtime UX quality depends on clear state modeling.",
+        "Event contract discipline reduces integration bugs.",
+        "Team review rigor is critical in concurrent systems.",
+      ],
+      nda: "Repository is public; code and implementation details can be shared openly.",
+      videoNote:
+        "A short recorded demo can be added for faster recruiter screening.",
+      gallery: [
+        {
+          title: "Auction Room",
+          desc: "Live auction room with current price and bidder context.",
+          image: "assets/cases/task-sprint.svg",
+          alt: "Realtime auction room preview",
+        },
+        {
+          title: "Live Bid Stream",
+          desc: "Continuous bid event stream synchronized across users.",
+          image: "assets/cases/task-dependency.svg",
+          alt: "Realtime auction bid stream preview",
+        },
+        {
+          title: "Auction Notifications",
+          desc: "Status notifications for bid and auction state updates.",
+          image: "assets/cases/task-board.svg",
+          alt: "Realtime auction notifications preview",
+        },
+        {
+          title: "Bid History Panel",
+          desc: "Historical bid timeline for consistency verification.",
+          image: "assets/cases/task-insight.svg",
+          alt: "Realtime auction bid history preview",
+        },
+      ],
+      links: [
+        {
+          label: "GitHub Repo",
+          href: "https://github.com/thnkthuhigh/auction",
+        },
+      ],
+    },
+
+    "cloud-clipboard": {
+      badge: "Public Case · Utility App",
+      title: "Cloud Clipboard (bunker)",
+      summary:
+        "A self-hosted cloud clipboard for storing text and images, with fast upload and multi-device access.",
+      meta: [
+        "Role: Fullstack Developer",
+        "Team: Solo",
+        "Duration: Incremental short iterations",
+        "Stack: Node.js + Express + SQLite + Vanilla JS",
+      ],
+      proof: [
+        { value: "Self-hosted", label: "Deployable on low-cost VPS" },
+        { value: "Text + Image", label: "Unified clipboard content types" },
+        { value: "Auto-sync", label: "Periodic refresh across devices" },
+        { value: "50MB upload", label: "Practical image handling limit" },
+      ],
+      problem:
+        "Cross-device text/image sharing is often fragmented and slow in daily workflow.",
+      solution:
+        "Built a lightweight web clipboard with paste/drag-drop upload, categories, and pinning for quick recall.",
+      storyImpact:
+        "Reduced friction when sharing snippets and media between personal devices or small teams.",
+      architectureCaption:
+        "Lean architecture: Express API + SQLite storage + interaction-focused client UI.",
+      architecture: [
+        "Simple CRUD API for clipboard items.",
+        "SQLite for lightweight local persistence and easy backup.",
+        "Client optimized for paste image, drag-drop, and pin action speed.",
+      ],
+      technicalDecisions: [
+        "SQLite chosen for simple setup and maintenance.",
+        "Multer upload pipeline for explicit file-size/type control.",
+        "Vanilla JS frontend to keep complexity low and iteration fast.",
+      ],
+      impact: [
+        "Faster daily capture/share workflow for snippets.",
+        "Reduced dependency on third-party clipboard tools.",
+        "Low-cost deployment and straightforward maintenance.",
+      ],
+      roleScope: [
+        "Designed UX for high-speed text/image capture.",
+        "Implemented backend CRUD and upload handling.",
+        "Prepared deployment scripts for server setup.",
+      ],
+      evidence: [
+        "README with features and deployment instructions.",
+        "Clear repo structure across app and deploy scripts.",
+        "Live walkthrough possible for key interaction flows.",
+      ],
+      challenges: [
+        "Maintaining upload stability across image formats.",
+        "Keeping data model simple while supporting categories and pinning.",
+        "Ensuring responsive interaction across device sizes.",
+      ],
+      lessons: [
+        "Small internal tools can deliver major workflow value.",
+        "Minimal APIs are easier to maintain over time.",
+        "Operational scripts should be part of product quality.",
+      ],
+      nda: "Public repository with shareable implementation details.",
+      videoNote:
+        "A short 60-second demo can be added for recruiter quick scan.",
+      gallery: [
+        {
+          title: "Clipboard Feed",
+          desc: "Unified feed for text snippets and image items.",
+          image: "assets/cases/task-board.svg",
+          alt: "Cloud clipboard feed preview",
+        },
+        {
+          title: "Image Paste & Upload",
+          desc: "Fast paste and drag-drop upload interactions.",
+          image: "assets/cases/task-dependency.svg",
+          alt: "Cloud clipboard upload preview",
+        },
+        {
+          title: "Category & Pin",
+          desc: "Categorization and pinning for priority items.",
+          image: "assets/cases/task-sprint.svg",
+          alt: "Cloud clipboard category preview",
+        },
+        {
+          title: "Cross-device Usage",
+          desc: "Access the same clipboard content on multiple devices.",
+          image: "assets/cases/task-insight.svg",
+          alt: "Cloud clipboard cross-device preview",
+        },
+      ],
+      links: [
+        {
+          label: "GitHub Repo",
+          href: "https://github.com/thnkthuhigh/bunker",
+        },
+      ],
+    },
+  };
+
+  const PROJECT_CARD_ORDER = [
+    "ops-dashboard",
+    "hiring-landing",
+    "task-workspace",
+    "cloud-clipboard",
+    "b2b-workflow",
+  ];
+
+  const UI_TEXT = {
+    vi: {
+      themeLabel: "Theme",
+      detailButton: "Xem case study đầy đủ",
+      stackFallback: "Tech stack cập nhật trong case study.",
+      notFoundTitle: "Không tìm thấy case study",
+      notFoundSummary:
+        "ID dự án không hợp lệ hoặc chưa được cấu hình. Vui lòng quay lại trang chính để chọn dự án hợp lệ.",
+      formMissing: "Vui lòng điền đầy đủ thông tin trước khi gửi.",
+      formOpening: "Đang mở ứng dụng email...",
+      menuOpen: "Mở menu",
+      menuClose: "Đóng menu",
+      mobileMenuAria: "Điều hướng di động",
+    },
+    en: {
+      themeLabel: "Theme",
+      detailButton: "View full case study",
+      stackFallback: "Tech stack will be updated in this case study.",
+      notFoundTitle: "Case study not found",
+      notFoundSummary:
+        "Invalid project ID or case data is not configured yet. Please return to the portfolio and pick a valid project.",
+      formMissing: "Please complete all required fields before sending.",
+      formOpening: "Opening your email client...",
+      menuOpen: "Open menu",
+      menuClose: "Close menu",
+      mobileMenuAria: "Mobile navigation",
+    },
+  };
+
+  const INDEX_TRANSLATIONS = {
+    vi: [
+      { selector: "a.skip-link", text: "Bỏ qua điều hướng" },
+      { selector: ".site-nav .nav-link[href=\"#about\"]", text: "Giới thiệu" },
+      { selector: ".site-nav .nav-link[href=\"#skills\"]", text: "Kỹ năng" },
+      { selector: ".site-nav .nav-link[href=\"#cv-document\"]", text: "CV" },
+      { selector: ".site-nav .nav-link[href=\"#projects\"]", text: "Dự án" },
+      { selector: ".site-nav .nav-link[href=\"#experience\"]", text: "Hành trình" },
+      { selector: ".site-nav .nav-link[href=\"#contact\"]", text: "Liên hệ" },
+      { selector: "#mobile-menu .mobile-link[href=\"#about\"]", text: "Giới thiệu" },
+      { selector: "#mobile-menu .mobile-link[href=\"#skills\"]", text: "Kỹ năng" },
+      { selector: "#mobile-menu .mobile-link[href=\"#cv-document\"]", text: "CV" },
+      { selector: "#mobile-menu .mobile-link[href=\"#projects\"]", text: "Dự án" },
+      { selector: "#mobile-menu .mobile-link[href=\"#experience\"]", text: "Hành trình" },
+      { selector: "#mobile-menu .mobile-link[href=\"#contact\"]", text: "Liên hệ" },
+      {
+        selector: ".hero-content .eyebrow",
+        text: "Sinh viên năm 4 CNTT · Tập trung Frontend",
+      },
+      {
+        selector: ".hero-content h1",
+        html: true,
+        text: "Junior-ready portfolio: thiết kế tốt, <span class=\"headline-accent\">code chắc</span>, và tư duy sản phẩm rõ ràng.",
+      },
+      {
+        selector: ".hero-lead",
+        html: true,
+        text: "Mình là <strong>Thư High</strong>, sinh viên năm 4 ngành CNTT. Mình tập trung vào Frontend và xây các case-study thực tế để chứng minh năng lực triển khai sản phẩm từ UI đến logic.",
+      },
+      { selector: ".hero-actions .btn-primary", text: "Xem dự án nổi bật" },
+      { selector: ".hero-actions .btn-secondary", text: "Xem CV đầy đủ" },
+      { selector: ".hero-actions .btn-tertiary", text: "Tải CV PDF" },
+      { selector: ".hero-proof-chips span:nth-child(1)", text: "5 case study projects" },
+      { selector: ".hero-proof-chips span:nth-child(2)", text: "Product-thinking frontend" },
+      { selector: ".hero-proof-chips span:nth-child(3)", text: "Private repo friendly" },
+      { selector: ".hero-proof-chips span:nth-child(4)", text: "Interview ready" },
+      { selector: ".quick-contact span:last-child", text: "Tìm cơ hội Internship / Junior Frontend" },
+      { selector: ".panel-title", text: "Tóm tắt nhanh" },
+      { selector: ".hero-kpi li:nth-child(1) .kpi-value", text: "Năm 4" },
+      { selector: ".hero-kpi li:nth-child(1) .kpi-label", text: "Sinh viên Khoa học máy tính" },
+      { selector: ".hero-kpi li:nth-child(2) .kpi-value", text: "5 case study" },
+      { selector: ".hero-kpi li:nth-child(2) .kpi-label", text: "4 public + 1 private/NDA project" },
+      { selector: ".hero-kpi li:nth-child(3) .kpi-value", text: "Core stack" },
+      { selector: ".hero-kpi li:nth-child(3) .kpi-label", text: "React, TypeScript, Next.js, UI System" },
+      { selector: ".availability-text", text: "Sẵn sàng phỏng vấn và test task" },
+      { selector: ".hero-cv-card .hero-rail-title", text: "CV Recruiter" },
+      {
+        selector: ".hero-cv-note",
+        text: "CV bản đầy đủ đã sẵn sàng để xem online hoặc tải PDF ngay.",
+      },
+      { selector: ".hero-cv-actions a:nth-child(1)", text: "Xem CV online" },
+      { selector: ".hero-cv-actions a:nth-child(2)", text: "Tải CV PDF" },
+      { selector: ".hero-case-rail .hero-rail-title", text: "Case preview" },
+      { selector: "#cv-document .section-label", text: "CV Đầy Đủ" },
+      { selector: "#cv-document .section-title", text: "CV sẵn sàng cho recruiter xem ngay" },
+      {
+        selector: "#cv-document .section-subtitle",
+        text: "Đây là bản CV gói gọn thông tin cốt lõi để tuyển dụng. Bạn có thể mở online hoặc tải PDF trực tiếp.",
+      },
+      { selector: ".lane-card .section-label", text: "Làn tuyển dụng nhanh" },
+      { selector: ".trust-item:nth-child(1) h2", text: "Tư duy theo dự án" },
+      { selector: ".trust-item:nth-child(1) p", text: "Không nói chung chung, luôn đi từ bài toán tới kết quả." },
+      { selector: ".trust-item:nth-child(2) h2", text: "Code sạch và có tổ chức" },
+      { selector: ".trust-item:nth-child(2) p", text: "Ưu tiên maintainability, dễ review, dễ mở rộng." },
+      { selector: ".trust-item:nth-child(3) h2", text: "Hợp tác tốt trong team" },
+      { selector: ".trust-item:nth-child(3) p", text: "Giao tiếp rõ, chủ động nhận feedback và iterate nhanh." },
+      { selector: ".lane-card h2", text: "Quét nhanh hồ sơ trong 60 giây" },
+      {
+        selector: ".lane-card > div p:last-of-type",
+        text: "Nếu bạn cần ra quyết định nhanh, hãy đi theo 3 mục dưới đây: CV snapshot, case study nổi bật và thông tin liên hệ để đặt lịch demo private project.",
+      },
+      { selector: ".lane-links a:nth-child(1)", text: "1. CV Full" },
+      { selector: ".lane-links a:nth-child(2)", text: "2. Case Studies" },
+      { selector: ".lane-links a:nth-child(3)", text: "3. Contact / Interview" },
+      { selector: "#about .section-label", text: "Giới thiệu" },
+      { selector: "#about .section-title", text: "SV năm 4 nhưng có thể đóng góp gì ngay?" },
+      {
+        selector: "#about .about-content p:nth-child(1)",
+        text: "Mình không dùng portfolio để “trang trí”, mà dùng để thể hiện cách giải quyết vấn đề. Mỗi project đều có bối cảnh, ràng buộc, quyết định kỹ thuật và kết quả cụ thể.",
+      },
+      {
+        selector: "#about .about-content p:nth-child(2)",
+        text: "Trong team, mình có thể nhận các task frontend production-level: xây component chuẩn, tích hợp API, tối ưu UX và xử lý lỗi giao diện theo checklist rõ ràng.",
+      },
+      { selector: "#resume .section-label", text: "CV Snapshot" },
+      { selector: "#resume .section-title", text: "Thông tin CV recruiter cần trong 30 giây" },
+      { selector: "#fit .section-label", text: "JD Fit" },
+      { selector: "#fit .section-title", text: "Mức độ phù hợp cho Internship / Junior Frontend" },
+      {
+        selector: "#fit .section-subtitle",
+        text: "Bảng này giúp recruiter đối chiếu nhanh yêu cầu JD với bằng chứng từ case study.",
+      },
+      { selector: "#junior-ready .section-label", text: "Sẵn sàng cho Junior" },
+      { selector: "#junior-ready .section-title", text: "Vì sao có thể đóng góp ngay từ sprint đầu" },
+      { selector: "#faq .section-label", text: "FAQ tuyển dụng" },
+      { selector: "#faq .section-title", text: "Một số câu hỏi nhà tuyển dụng hay hỏi" },
+      { selector: "#skills .section-label", text: "Kỹ năng" },
+      { selector: "#skills .section-title", text: "Stack tập trung cho môi trường product" },
+      { selector: "#projects .section-label", text: "Dự án" },
+      { selector: "#projects .section-title", text: "Case studies dành cho nhà tuyển dụng" },
+      {
+        selector: "#projects .section-subtitle",
+        text: "Tập trung vào vấn đề, giải pháp và kết quả, không làm phô hiệu ứng.",
+      },
+      { selector: "#experience .section-label", text: "Hành trình" },
+      { selector: "#experience .section-title", text: "Các cột mốc học tập và thực chiến dự án" },
+      { selector: ".process-section .section-label", text: "Cách làm việc" },
+      { selector: ".process-section .section-title", text: "Quy trình 4 bước khi nhận một feature" },
+      { selector: "#contact .section-label", text: "Liên hệ" },
+      { selector: "#contact .section-title", text: "Phù hợp vị trí nào, mình có thể trao đổi ngay" },
+      {
+        selector: ".contact-lead",
+        text: "Mình ưu tiên vị trí Internship / Junior Frontend. Có thể gửi CV PDF, transcript và walkthrough dự án private qua email theo yêu cầu.",
+      },
+      { selector: "#about .about-list li:nth-child(1)", text: "Đọc hiểu codebase nhanh và tự tách task rõ ràng." },
+      { selector: "#about .about-list li:nth-child(2)", text: "Viết UI có structure để người khác maintain được." },
+      { selector: "#about .about-list li:nth-child(3)", text: "Ưu tiên hiệu năng và accessibility ngay từ đầu." },
+      { selector: ".junior-ready-grid .jr-card:nth-child(1) h3", text: "5 real case studies" },
+      { selector: ".junior-ready-grid .jr-card:nth-child(1) p", text: "Có public và private project, trình bày được decision từ problem đến impact." },
+      { selector: ".junior-ready-grid .jr-card:nth-child(2) h3", text: "Product thinking" },
+      { selector: ".junior-ready-grid .jr-card:nth-child(2) p", text: "Luôn đi theo user flow, business constraints và release quality checklist." },
+      { selector: ".junior-ready-grid .jr-card:nth-child(3) h3", text: "UI architecture focus" },
+      { selector: ".junior-ready-grid .jr-card:nth-child(3) p", text: "Xây component system rõ ràng, dễ maintain và dễ onboard trong team." },
+      { selector: ".junior-ready-grid .jr-card:nth-child(4) h3", text: "Ready for code test" },
+      { selector: ".junior-ready-grid .jr-card:nth-child(4) p", text: "Sẵn sàng nhận test task, walkthrough kiến trúc và live coding khi cần." },
+      { selector: ".github-proof h3", text: "GitHub Proof" },
+      {
+        selector: ".github-proof p",
+        text: "Có thể xem repo highlights và commit history để đánh giá thói quen code, cách đặt tên, structure và khả năng maintain.",
+      },
+      { selector: ".github-proof a", text: "Xem GitHub và repo nổi bật" },
+      { selector: ".faq-grid .faq-item:nth-child(1) h3", text: "Có thể làm bài test kỹ thuật không?" },
+      { selector: ".faq-grid .faq-item:nth-child(1) p", text: "Có, sẵn sàng làm test task và giải thích approach chi tiết." },
+      { selector: ".faq-grid .faq-item:nth-child(2) h3", text: "Có thể demo project private không?" },
+      { selector: ".faq-grid .faq-item:nth-child(2) p", text: "Có thể demo trực tiếp trong buổi phỏng vấn theo phạm vi NDA." },
+      { selector: ".faq-grid .faq-item:nth-child(3) h3", text: "Có thể làm part-time không?" },
+      { selector: ".faq-grid .faq-item:nth-child(3) p", text: "Có, linh hoạt lịch part-time/full-time theo giai đoạn học kỳ." },
+      { selector: ".skills-grid .skill-card:nth-child(1) h3", text: "Frontend Engineering" },
+      { selector: ".skills-grid .skill-card:nth-child(1) li:nth-child(1)", text: "React, Next.js, TypeScript" },
+      { selector: ".skills-grid .skill-card:nth-child(1) li:nth-child(2)", text: "State management và component architecture" },
+      { selector: ".skills-grid .skill-card:nth-child(1) li:nth-child(3)", text: "Animation có kiểm soát, ưu tiên UX" },
+      { selector: ".skills-grid .skill-card:nth-child(2) h3", text: "UI System & Quality" },
+      { selector: ".skills-grid .skill-card:nth-child(2) li:nth-child(1)", text: "Design tokens, responsive system" },
+      { selector: ".skills-grid .skill-card:nth-child(2) li:nth-child(2)", text: "Accessibility chuẩn thực tế" },
+      { selector: ".skills-grid .skill-card:nth-child(2) li:nth-child(3)", text: "Performance tuning theo Core Web Vitals" },
+      { selector: ".skills-grid .skill-card:nth-child(3) h3", text: "Collaboration" },
+      { selector: ".skills-grid .skill-card:nth-child(3) li:nth-child(1)", text: "Git workflow, review checklist" },
+      { selector: ".skills-grid .skill-card:nth-child(3) li:nth-child(2)", text: "Viết tài liệu kỹ thuật ngắn gọn" },
+      { selector: ".skills-grid .skill-card:nth-child(3) li:nth-child(3)", text: "Làm việc chặt với QA, PM, Designer" },
+      { selector: ".process-grid .process-card:nth-child(1) h3", text: "Hiểu đúng bài toán" },
+      { selector: ".process-grid .process-card:nth-child(1) p", text: "Chốt rõ user flow, success metric, phạm vi và rủi ro." },
+      { selector: ".process-grid .process-card:nth-child(2) h3", text: "Thiết kế kỹ thuật" },
+      { selector: ".process-grid .process-card:nth-child(2) p", text: "Tách component, state, API contract trước khi code." },
+      { selector: ".process-grid .process-card:nth-child(3) h3", text: "Triển khai & review" },
+      { selector: ".process-grid .process-card:nth-child(3) p", text: "Code sạch, test điểm rủi ro cao, review theo checklist." },
+      { selector: ".process-grid .process-card:nth-child(4) h3", text: "Đo lường sau release" },
+      { selector: ".process-grid .process-card:nth-child(4) p", text: "Đọc số liệu thật rồi tối ưu vòng tiếp theo." },
+      { selector: ".timeline .timeline-item:nth-child(1) .timeline-period", text: "2026 - Hiện tại" },
+      { selector: ".timeline .timeline-item:nth-child(1) .timeline-main h3", text: "Sinh viên năm 4 · Xây portfolio hướng tuyển dụng" },
+      { selector: ".timeline .timeline-item:nth-child(1) .timeline-company", text: "Định hướng Frontend / Product Engineering" },
+      {
+        selector: ".timeline .timeline-item:nth-child(1) .timeline-main p:nth-of-type(2)",
+        text: "Tập trung hệ thống hóa 5 case study theo chuẩn recruiter: problem, constraints, kiến trúc, kết quả và bài học kỹ thuật.",
+      },
+      { selector: ".timeline .timeline-item:nth-child(1) li:nth-child(1)", text: "Chuẩn hóa template case-study cho cả public và private repo." },
+      { selector: ".timeline .timeline-item:nth-child(1) li:nth-child(2)", text: "Rèn khả năng trình bày quyết định kỹ thuật ngắn gọn, rõ ràng." },
+      { selector: ".timeline .timeline-item:nth-child(2) .timeline-period", text: "2025 - 2026" },
+      { selector: ".timeline .timeline-item:nth-child(2) .timeline-main h3", text: "Đồ án và dự án nhóm tại trường" },
+      { selector: ".timeline .timeline-item:nth-child(2) .timeline-company", text: "Team 3-6 thành viên" },
+      {
+        selector: ".timeline .timeline-item:nth-child(2) .timeline-main p:nth-of-type(2)",
+        text: "Triển khai các dự án có độ phức tạp tăng dần: dashboard, workflow nội bộ, nền tảng y tế, realtime auction.",
+      },
+      { selector: ".timeline .timeline-item:nth-child(2) li:nth-child(1)", text: "Xây component tái sử dụng và quy ước code review trong nhóm." },
+      { selector: ".timeline .timeline-item:nth-child(2) li:nth-child(2)", text: "Tự kiểm thử responsive, accessibility và hiệu năng cơ bản." },
+      { selector: ".timeline .timeline-item:nth-child(3) .timeline-period", text: "2023 - 2025" },
+      { selector: ".timeline .timeline-item:nth-child(3) .timeline-main h3", text: "Nền tảng kỹ thuật" },
+      { selector: ".timeline .timeline-item:nth-child(3) .timeline-company", text: "Luyện thuật toán + web fundamentals" },
+      {
+        selector: ".timeline .timeline-item:nth-child(3) .timeline-main p:nth-of-type(2)",
+        text: "Rèn nền tảng HTML/CSS/JavaScript, sau đó chuyển sang React và TypeScript để làm các bài toán sản phẩm thực tế hơn.",
+      },
+      { selector: ".timeline .timeline-item:nth-child(3) li:nth-child(1)", text: "Thói quen viết code có tổ chức, tách component rõ ràng." },
+      { selector: ".timeline .timeline-item:nth-child(3) li:nth-child(2)", text: "Luyện tư duy phân tích bài toán trước khi code." },
+      { selector: ".project-filters .filter-btn[data-filter=\"all\"]", text: "Tất cả" },
+      { selector: ".project-filters .filter-btn[data-filter=\"frontend\"]", text: "Frontend" },
+      { selector: ".project-filters .filter-btn[data-filter=\"product\"]", text: "Product" },
+      { selector: ".project-filters .filter-btn[data-filter=\"private\"]", text: "Private / NDA" },
+      {
+        selector: ".projects-note",
+        html: true,
+        text: "Mỗi dự án đều có phần <strong>case study</strong> riêng. Với repo private/NDA, bạn vẫn xem được bối cảnh, kiến trúc, quyết định kỹ thuật và kết quả triển khai.",
+      },
+      { selector: ".contact-quick-actions .btn-primary", text: "Đặt lịch phỏng vấn" },
+      { selector: ".contact-quick-actions .btn-secondary", text: "Trao đổi công việc" },
+      { selector: ".contact-list li:nth-child(1) span", text: "Email" },
+      { selector: ".contact-list li:nth-child(2) span", text: "Điện thoại" },
+      { selector: ".contact-list li:nth-child(3) span", text: "LinkedIn" },
+      { selector: ".contact-list li:nth-child(4) span", text: "GitHub" },
+      { selector: "#contact-form h3", text: "Gửi lời nhắn nhanh" },
+      {
+        selector: "#contact-form .form-note",
+        text: "Form sẽ mở email client với nội dung đã điền, để đảm bảo bạn gửi đúng người ngay lập tức.",
+      },
+      { selector: "#contact-form label[for=\"name\"]", text: "Họ tên" },
+      { selector: "#contact-form label[for=\"email\"]", text: "Email" },
+      { selector: "#contact-form label[for=\"subject\"]", text: "Chủ đề" },
+      { selector: "#contact-form label[for=\"message\"]", text: "Nội dung" },
+      { selector: "#contact-form button[type=\"submit\"]", text: "Mở email để gửi" },
+      {
+        selector: ".site-footer .footer-inner p",
+        html: true,
+        text: "© <span id=\"current-year\"></span> Thư High. Portfolio for recruitment.",
+      },
+      { selector: ".site-footer .back-top", text: "Về đầu trang" },
+    ],
+    en: [
+      { selector: "a.skip-link", text: "Skip navigation" },
+      { selector: ".site-nav .nav-link[href=\"#about\"]", text: "About" },
+      { selector: ".site-nav .nav-link[href=\"#skills\"]", text: "Skills" },
+      { selector: ".site-nav .nav-link[href=\"#cv-document\"]", text: "CV" },
+      { selector: ".site-nav .nav-link[href=\"#projects\"]", text: "Projects" },
+      { selector: ".site-nav .nav-link[href=\"#experience\"]", text: "Journey" },
+      { selector: ".site-nav .nav-link[href=\"#contact\"]", text: "Contact" },
+      { selector: "#mobile-menu .mobile-link[href=\"#about\"]", text: "About" },
+      { selector: "#mobile-menu .mobile-link[href=\"#skills\"]", text: "Skills" },
+      { selector: "#mobile-menu .mobile-link[href=\"#cv-document\"]", text: "CV" },
+      { selector: "#mobile-menu .mobile-link[href=\"#projects\"]", text: "Projects" },
+      { selector: "#mobile-menu .mobile-link[href=\"#experience\"]", text: "Journey" },
+      { selector: "#mobile-menu .mobile-link[href=\"#contact\"]", text: "Contact" },
+      {
+        selector: ".hero-content .eyebrow",
+        text: "Final-year CS Student · Frontend-focused",
+      },
+      {
+        selector: ".hero-content h1",
+        html: true,
+        text: "Junior-ready portfolio: strong design, <span class=\"headline-accent\">solid code</span>, and clear product thinking.",
+      },
+      {
+        selector: ".hero-lead",
+        html: true,
+        text: "I’m <strong>Thu High</strong>, a final-year CS student focused on Frontend. I build real case studies to prove product delivery skills from UI to logic.",
+      },
+      { selector: ".hero-actions .btn-primary", text: "View featured projects" },
+      { selector: ".hero-actions .btn-secondary", text: "View full CV" },
+      { selector: ".hero-actions .btn-tertiary", text: "Download CV PDF" },
+      { selector: ".hero-proof-chips span:nth-child(1)", text: "5 case study projects" },
+      { selector: ".hero-proof-chips span:nth-child(2)", text: "Product-thinking frontend" },
+      { selector: ".hero-proof-chips span:nth-child(3)", text: "Private repo friendly" },
+      { selector: ".hero-proof-chips span:nth-child(4)", text: "Interview ready" },
+      { selector: ".quick-contact span:last-child", text: "Seeking Internship / Junior Frontend opportunities" },
+      { selector: ".panel-title", text: "Quick Summary" },
+      { selector: ".hero-kpi li:nth-child(1) .kpi-value", text: "Final Year" },
+      { selector: ".hero-kpi li:nth-child(1) .kpi-label", text: "Computer Science Student" },
+      { selector: ".hero-kpi li:nth-child(2) .kpi-value", text: "5 case studies" },
+      { selector: ".hero-kpi li:nth-child(2) .kpi-label", text: "4 public + 1 private/NDA project" },
+      { selector: ".hero-kpi li:nth-child(3) .kpi-value", text: "Core stack" },
+      { selector: ".hero-kpi li:nth-child(3) .kpi-label", text: "React, TypeScript, Next.js, UI System" },
+      { selector: ".availability-text", text: "Available for interview and technical test" },
+      { selector: ".hero-cv-card .hero-rail-title", text: "Recruiter CV" },
+      {
+        selector: ".hero-cv-note",
+        text: "The full recruiter-ready CV is available to view online or download as PDF.",
+      },
+      { selector: ".hero-cv-actions a:nth-child(1)", text: "View CV online" },
+      { selector: ".hero-cv-actions a:nth-child(2)", text: "Download CV PDF" },
+      { selector: ".hero-case-rail .hero-rail-title", text: "Case Preview" },
+      { selector: "#cv-document .section-label", text: "Full CV" },
+      { selector: "#cv-document .section-title", text: "Recruiter-ready CV available instantly" },
+      {
+        selector: "#cv-document .section-subtitle",
+        text: "This CV contains key hiring information. Open it online or download PDF directly.",
+      },
+      { selector: ".lane-card .section-label", text: "Recruiter Fast Lane" },
+      { selector: ".trust-item:nth-child(1) h2", text: "Project-first mindset" },
+      { selector: ".trust-item:nth-child(1) p", text: "Always start from concrete problems and measurable outcomes." },
+      { selector: ".trust-item:nth-child(2) h2", text: "Clean, structured code" },
+      { selector: ".trust-item:nth-child(2) p", text: "Prioritize maintainability, reviewability, and scalability." },
+      { selector: ".trust-item:nth-child(3) h2", text: "Strong team collaboration" },
+      { selector: ".trust-item:nth-child(3) p", text: "Clear communication, fast feedback loops, and rapid iteration." },
+      { selector: ".lane-card h2", text: "Scan this profile in 60 seconds" },
+      {
+        selector: ".lane-card > div p:last-of-type",
+        text: "If you need a fast hiring signal, start with these 3 blocks: CV snapshot, featured case studies, and contact details for private project walkthrough.",
+      },
+      { selector: ".lane-links a:nth-child(1)", text: "1. Full CV" },
+      { selector: ".lane-links a:nth-child(2)", text: "2. Case Studies" },
+      { selector: ".lane-links a:nth-child(3)", text: "3. Contact / Interview" },
+      { selector: "#about .section-label", text: "About" },
+      { selector: "#about .section-title", text: "What can a final-year student contribute right away?" },
+      {
+        selector: "#about .about-content p:nth-child(1)",
+        text: "I do not use this portfolio as decoration. Each project shows context, constraints, technical decisions, and real outcomes.",
+      },
+      {
+        selector: "#about .about-content p:nth-child(2)",
+        text: "In a team, I can handle production-level frontend tasks: building maintainable components, integrating APIs, improving UX, and fixing UI issues with clear quality checklists.",
+      },
+      { selector: "#resume .section-label", text: "CV Snapshot" },
+      { selector: "#resume .section-title", text: "CV information recruiters need in 30 seconds" },
+      { selector: "#fit .section-label", text: "JD Fit" },
+      { selector: "#fit .section-title", text: "Fit for Internship / Junior Frontend roles" },
+      {
+        selector: "#fit .section-subtitle",
+        text: "This matrix helps recruiters map JD expectations to concrete case-study evidence.",
+      },
+      { selector: "#junior-ready .section-label", text: "Why I’m Junior-Ready" },
+      { selector: "#junior-ready .section-title", text: "Why I can contribute from the first sprint" },
+      { selector: "#faq .section-label", text: "Recruiter FAQ" },
+      { selector: "#faq .section-title", text: "Common recruiter questions" },
+      { selector: "#skills .section-label", text: "Skills" },
+      { selector: "#skills .section-title", text: "Stack focused for product environments" },
+      { selector: "#projects .section-label", text: "Projects" },
+      { selector: "#projects .section-title", text: "Case studies for recruiters" },
+      {
+        selector: "#projects .section-subtitle",
+        text: "Focused on problem, solution, and impact. No unnecessary visual noise.",
+      },
+      { selector: "#experience .section-label", text: "Journey" },
+      { selector: "#experience .section-title", text: "Learning and project execution milestones" },
+      { selector: ".process-section .section-label", text: "Work Process" },
+      { selector: ".process-section .section-title", text: "My 4-step process for shipping a feature" },
+      { selector: "#contact .section-label", text: "Contact" },
+      { selector: "#contact .section-title", text: "If the role fits, we can discuss immediately" },
+      {
+        selector: ".contact-lead",
+        text: "I’m seeking Internship / Junior Frontend roles. CV PDF, transcript, and private-project walkthrough can be shared by email.",
+      },
+      { selector: "#about .about-list li:nth-child(1)", text: "I can read existing codebases quickly and break tasks down clearly." },
+      { selector: "#about .about-list li:nth-child(2)", text: "I build structured UI components that others can maintain easily." },
+      { selector: "#about .about-list li:nth-child(3)", text: "I prioritize performance and accessibility from the start." },
+      { selector: ".junior-ready-grid .jr-card:nth-child(1) h3", text: "5 real case studies" },
+      { selector: ".junior-ready-grid .jr-card:nth-child(1) p", text: "Public and private projects with clear narrative from problem to impact." },
+      { selector: ".junior-ready-grid .jr-card:nth-child(2) h3", text: "Product thinking" },
+      { selector: ".junior-ready-grid .jr-card:nth-child(2) p", text: "I work from user flow, business constraints, and release quality checklists." },
+      { selector: ".junior-ready-grid .jr-card:nth-child(3) h3", text: "UI architecture focus" },
+      { selector: ".junior-ready-grid .jr-card:nth-child(3) p", text: "I build maintainable component systems that support team onboarding." },
+      { selector: ".junior-ready-grid .jr-card:nth-child(4) h3", text: "Ready for code test" },
+      { selector: ".junior-ready-grid .jr-card:nth-child(4) p", text: "Available for test tasks, architecture walkthroughs, and live coding." },
+      { selector: ".github-proof h3", text: "GitHub Proof" },
+      {
+        selector: ".github-proof p",
+        text: "Review repo highlights and commit history to evaluate naming, structure, and maintainability habits.",
+      },
+      { selector: ".github-proof a", text: "View GitHub contributions & repo highlights" },
+      { selector: ".faq-grid .faq-item:nth-child(1) h3", text: "Can you take a technical test?" },
+      { selector: ".faq-grid .faq-item:nth-child(1) p", text: "Yes. I can complete a test task and explain my approach in detail." },
+      { selector: ".faq-grid .faq-item:nth-child(2) h3", text: "Can you demo private projects?" },
+      { selector: ".faq-grid .faq-item:nth-child(2) p", text: "Yes. I can provide a live private walkthrough within NDA scope." },
+      { selector: ".faq-grid .faq-item:nth-child(3) h3", text: "Are you available part-time?" },
+      { selector: ".faq-grid .faq-item:nth-child(3) p", text: "Yes. Flexible part-time/full-time schedule depending on semester timing." },
+      { selector: ".skills-grid .skill-card:nth-child(1) h3", text: "Frontend Engineering" },
+      { selector: ".skills-grid .skill-card:nth-child(1) li:nth-child(1)", text: "React, Next.js, TypeScript" },
+      { selector: ".skills-grid .skill-card:nth-child(1) li:nth-child(2)", text: "State management and component architecture" },
+      { selector: ".skills-grid .skill-card:nth-child(1) li:nth-child(3)", text: "Controlled animation with UX-first priorities" },
+      { selector: ".skills-grid .skill-card:nth-child(2) h3", text: "UI System & Quality" },
+      { selector: ".skills-grid .skill-card:nth-child(2) li:nth-child(1)", text: "Design tokens and responsive systems" },
+      { selector: ".skills-grid .skill-card:nth-child(2) li:nth-child(2)", text: "Practical accessibility standards" },
+      { selector: ".skills-grid .skill-card:nth-child(2) li:nth-child(3)", text: "Performance tuning via Core Web Vitals" },
+      { selector: ".skills-grid .skill-card:nth-child(3) h3", text: "Collaboration" },
+      { selector: ".skills-grid .skill-card:nth-child(3) li:nth-child(1)", text: "Git workflow and review checklist" },
+      { selector: ".skills-grid .skill-card:nth-child(3) li:nth-child(2)", text: "Concise technical documentation" },
+      { selector: ".skills-grid .skill-card:nth-child(3) li:nth-child(3)", text: "Tight collaboration with QA, PM, and Designer" },
+      { selector: ".process-grid .process-card:nth-child(1) h3", text: "Clarify the problem" },
+      { selector: ".process-grid .process-card:nth-child(1) p", text: "Align user flow, success metrics, scope, and risk upfront." },
+      { selector: ".process-grid .process-card:nth-child(2) h3", text: "Design the technical plan" },
+      { selector: ".process-grid .process-card:nth-child(2) p", text: "Split components, state, and API contract before coding." },
+      { selector: ".process-grid .process-card:nth-child(3) h3", text: "Implement & review" },
+      { selector: ".process-grid .process-card:nth-child(3) p", text: "Write clean code, test risk points, and review with checklists." },
+      { selector: ".process-grid .process-card:nth-child(4) h3", text: "Measure after release" },
+      { selector: ".process-grid .process-card:nth-child(4) p", text: "Read real metrics and iterate in the next cycle." },
+      { selector: ".timeline .timeline-item:nth-child(1) .timeline-period", text: "2026 - Present" },
+      { selector: ".timeline .timeline-item:nth-child(1) .timeline-main h3", text: "Final-year student · Building a recruiter-focused portfolio" },
+      { selector: ".timeline .timeline-item:nth-child(1) .timeline-company", text: "Frontend / Product Engineering direction" },
+      {
+        selector: ".timeline .timeline-item:nth-child(1) .timeline-main p:nth-of-type(2)",
+        text: "Structured 5 case studies using recruiter-friendly format: problem, constraints, architecture, impact, and technical lessons.",
+      },
+      { selector: ".timeline .timeline-item:nth-child(1) li:nth-child(1)", text: "Standardized case-study templates for both public and private repos." },
+      { selector: ".timeline .timeline-item:nth-child(1) li:nth-child(2)", text: "Practiced concise and defensible technical decision communication." },
+      { selector: ".timeline .timeline-item:nth-child(2) .timeline-period", text: "2025 - 2026" },
+      { selector: ".timeline .timeline-item:nth-child(2) .timeline-main h3", text: "Capstone and team projects at university" },
+      { selector: ".timeline .timeline-item:nth-child(2) .timeline-company", text: "3-6 member teams" },
+      {
+        selector: ".timeline .timeline-item:nth-child(2) .timeline-main p:nth-of-type(2)",
+        text: "Delivered increasingly complex projects: dashboards, internal workflows, healthcare platform, and realtime auction system.",
+      },
+      { selector: ".timeline .timeline-item:nth-child(2) li:nth-child(1)", text: "Built reusable components and shared code-review conventions." },
+      { selector: ".timeline .timeline-item:nth-child(2) li:nth-child(2)", text: "Performed practical checks for responsive behavior, accessibility, and baseline performance." },
+      { selector: ".timeline .timeline-item:nth-child(3) .timeline-period", text: "2023 - 2025" },
+      { selector: ".timeline .timeline-item:nth-child(3) .timeline-main h3", text: "Technical foundation" },
+      { selector: ".timeline .timeline-item:nth-child(3) .timeline-company", text: "Algorithms + web fundamentals" },
+      {
+        selector: ".timeline .timeline-item:nth-child(3) .timeline-main p:nth-of-type(2)",
+        text: "Built strong HTML/CSS/JavaScript fundamentals, then moved to React and TypeScript for real product-oriented problems.",
+      },
+      { selector: ".timeline .timeline-item:nth-child(3) li:nth-child(1)", text: "Developed disciplined code structure and component separation habits." },
+      { selector: ".timeline .timeline-item:nth-child(3) li:nth-child(2)", text: "Practiced problem analysis before implementation." },
+      { selector: ".project-filters .filter-btn[data-filter=\"all\"]", text: "All" },
+      { selector: ".project-filters .filter-btn[data-filter=\"frontend\"]", text: "Frontend" },
+      { selector: ".project-filters .filter-btn[data-filter=\"product\"]", text: "Product" },
+      { selector: ".project-filters .filter-btn[data-filter=\"private\"]", text: "Private / NDA" },
+      {
+        selector: ".projects-note",
+        html: true,
+        text: "Each project has a dedicated <strong>case study</strong>. For private/NDA repos, you can still review context, architecture, technical decisions, and outcomes.",
+      },
+      { selector: ".contact-quick-actions .btn-primary", text: "Schedule interview" },
+      { selector: ".contact-quick-actions .btn-secondary", text: "Discuss opportunities" },
+      { selector: ".contact-list li:nth-child(1) span", text: "Email" },
+      { selector: ".contact-list li:nth-child(2) span", text: "Phone" },
+      { selector: ".contact-list li:nth-child(3) span", text: "LinkedIn" },
+      { selector: ".contact-list li:nth-child(4) span", text: "GitHub" },
+      { selector: "#contact-form h3", text: "Send a quick message" },
+      {
+        selector: "#contact-form .form-note",
+        text: "This form opens your email client with prefilled content, so you can reach me directly.",
+      },
+      { selector: "#contact-form label[for=\"name\"]", text: "Name" },
+      { selector: "#contact-form label[for=\"email\"]", text: "Email" },
+      { selector: "#contact-form label[for=\"subject\"]", text: "Subject" },
+      { selector: "#contact-form label[for=\"message\"]", text: "Message" },
+      { selector: "#contact-form button[type=\"submit\"]", text: "Open email draft" },
+      {
+        selector: ".site-footer .footer-inner p",
+        html: true,
+        text: "© <span id=\"current-year\"></span> Thu High. Portfolio for recruitment.",
+      },
+      { selector: ".site-footer .back-top", text: "Back to top" },
+    ],
+  };
+
+  const PROJECT_TRANSLATIONS = {
+    vi: [
+      { selector: "a.skip-link", text: "Bỏ qua điều hướng" },
+      { selector: ".site-nav .nav-link[href=\"index.html#projects\"]", text: "Quay lại dự án" },
+      { selector: ".site-nav .nav-link[href=\"index.html#contact\"]", text: "Liên hệ" },
+      { selector: "#mobile-menu .mobile-link[href=\"index.html#home\"]", text: "Trang chủ" },
+      { selector: "#mobile-menu .mobile-link[href=\"index.html#projects\"]", text: "Quay lại dự án" },
+      { selector: "#mobile-menu .mobile-link[href=\"index.html#contact\"]", text: "Liên hệ" },
+      { selector: ".project-back-link", text: "← Quay lại danh sách dự án" },
+      { selector: ".project-case-nav a[href=\"#case-overview\"]", text: "Tổng quan" },
+      { selector: ".project-case-nav a[href=\"#case-story\"]", text: "Story" },
+      { selector: ".project-case-nav a[href=\"#case-details\"]", text: "Chi tiết kỹ thuật" },
+      { selector: ".project-case-nav a[href=\"#case-media\"]", text: "Media" },
+      { selector: ".project-case-nav a[href=\"#case-proof\"]", text: "Kết quả" },
+      { selector: ".project-case-nav a[href=\"#case-security\"]", text: "NDA" },
+      { selector: "#case-story article:nth-child(1) h2", text: "Vấn đề" },
+      { selector: "#case-story article:nth-child(2) h2", text: "Giải pháp" },
+      { selector: "#case-story article:nth-child(3) h2", text: "Tác động" },
+      { selector: "#case-media article:nth-child(1) h2", text: "Video demo" },
+      { selector: "#case-media article:nth-child(2) h2", text: "Ảnh minh hoạ chính" },
+      { selector: "#case-details article:nth-child(1) h2", text: "Sơ đồ kiến trúc" },
+      { selector: "#case-details article:nth-child(2) h2", text: "Kiến trúc UI & luồng dữ liệu" },
+      { selector: "#case-details article:nth-child(3) h2", text: "Quyết định kỹ thuật" },
+      { selector: "#case-details article:nth-child(4) h2", text: "Phần tôi trực tiếp phụ trách" },
+      { selector: "#case-details article:nth-child(5) h2", text: "Artifacts có thể chia sẻ" },
+      { selector: "#case-details article:nth-child(6) h2", text: "Thách thức kỹ thuật" },
+      { selector: "#case-details article:nth-child(7) h2", text: "Bài học rút ra" },
+      { selector: "#case-security h2", text: "Phạm vi bảo mật / NDA" },
+      { selector: ".project-footer-cta .btn-secondary", text: "Quay lại portfolio" },
+      {
+        selector: ".project-footer-cta .btn-primary",
+        text: "Yêu cầu demo riêng / phỏng vấn kỹ thuật",
+      },
+      {
+        selector: ".site-footer .footer-inner p",
+        html: true,
+        text: "© <span id=\"current-year\"></span> Thư High. Case Study.",
+      },
+      { selector: ".site-footer .back-top", text: "Về trang chính" },
+    ],
+    en: [
+      { selector: "a.skip-link", text: "Skip navigation" },
+      { selector: ".site-nav .nav-link[href=\"index.html#projects\"]", text: "Back to Projects" },
+      { selector: ".site-nav .nav-link[href=\"index.html#contact\"]", text: "Contact" },
+      { selector: "#mobile-menu .mobile-link[href=\"index.html#home\"]", text: "Home" },
+      { selector: "#mobile-menu .mobile-link[href=\"index.html#projects\"]", text: "Back to Projects" },
+      { selector: "#mobile-menu .mobile-link[href=\"index.html#contact\"]", text: "Contact" },
+      { selector: ".project-back-link", text: "← Back to project list" },
+      { selector: ".project-case-nav a[href=\"#case-overview\"]", text: "Overview" },
+      { selector: ".project-case-nav a[href=\"#case-story\"]", text: "Story" },
+      { selector: ".project-case-nav a[href=\"#case-details\"]", text: "Technical Details" },
+      { selector: ".project-case-nav a[href=\"#case-media\"]", text: "Media" },
+      { selector: ".project-case-nav a[href=\"#case-proof\"]", text: "Results" },
+      { selector: ".project-case-nav a[href=\"#case-security\"]", text: "NDA" },
+      { selector: "#case-story article:nth-child(1) h2", text: "Problem" },
+      { selector: "#case-story article:nth-child(2) h2", text: "Solution" },
+      { selector: "#case-story article:nth-child(3) h2", text: "Impact" },
+      { selector: "#case-media article:nth-child(1) h2", text: "Video Walkthrough" },
+      { selector: "#case-media article:nth-child(2) h2", text: "Key Screenshots" },
+      { selector: "#case-details article:nth-child(1) h2", text: "Architecture Diagram" },
+      { selector: "#case-details article:nth-child(2) h2", text: "UI Architecture & Data Flow" },
+      { selector: "#case-details article:nth-child(3) h2", text: "Technical Decisions" },
+      { selector: "#case-details article:nth-child(4) h2", text: "My Ownership Scope" },
+      { selector: "#case-details article:nth-child(5) h2", text: "Shareable Artifacts" },
+      { selector: "#case-details article:nth-child(6) h2", text: "Engineering Challenges" },
+      { selector: "#case-details article:nth-child(7) h2", text: "Lessons Learned" },
+      { selector: "#case-security h2", text: "Security Scope / NDA" },
+      { selector: ".project-footer-cta .btn-secondary", text: "Back to portfolio" },
+      {
+        selector: ".project-footer-cta .btn-primary",
+        text: "Request private demo / technical interview",
+      },
+      {
+        selector: ".site-footer .footer-inner p",
+        html: true,
+        text: "© <span id=\"current-year\"></span> Thu High. Case Study.",
+      },
+      { selector: ".site-footer .back-top", text: "Back to home" },
+    ],
+  };
+
+  const t = (key) => {
+    return UI_TEXT[currentLanguage]?.[key] || UI_TEXT.vi[key] || key;
+  };
+
+  const mergeProjectCaseByLanguage = (projectId) => {
+    const base = PROJECT_CASES[projectId];
+    if (!base) return null;
+    if (currentLanguage !== "en") return base;
+
+    const override = PROJECT_CASES_EN[projectId];
+    if (!override) return base;
+
+    return {
+      ...base,
+      ...override,
+      meta: override.meta || base.meta,
+      proof: override.proof || base.proof,
+      architecture: override.architecture || base.architecture,
+      technicalDecisions: override.technicalDecisions || base.technicalDecisions,
+      impact: override.impact || base.impact,
+      roleScope: override.roleScope || base.roleScope,
+      evidence: override.evidence || base.evidence,
+      challenges: override.challenges || base.challenges,
+      lessons: override.lessons || base.lessons,
+      gallery: override.gallery || base.gallery,
+      links: override.links || base.links,
+    };
+  };
+
+  const applyTranslationEntries = (entries) => {
+    if (!Array.isArray(entries)) return;
+    entries.forEach((entry) => {
+      const node = document.querySelector(entry.selector);
+      if (!node) return;
+      if (entry.html) {
+        node.innerHTML = entry.text;
+      } else {
+        node.textContent = entry.text;
+      }
+    });
+  };
+
+  const updateCvLinksByLanguage = () => {
+    const links = Array.from(document.querySelectorAll('a[href^="cv.html"]'));
+    if (!links.length) return;
+
+    links.forEach((link) => {
+      const rawHref = link.getAttribute("href") || "";
+      if (!rawHref.startsWith("cv.html")) return;
+
+      const url = new URL(rawHref, window.location.href);
+      if (currentLanguage === "en") {
+        url.searchParams.set("lang", "en");
+      } else {
+        url.searchParams.delete("lang");
+      }
+
+      const query = url.searchParams.toString();
+      const hash = url.hash || "";
+      link.setAttribute("href", `cv.html${query ? `?${query}` : ""}${hash}`);
+    });
+  };
+
+  const updateProjectLinksByLanguage = () => {
+    const links = Array.from(document.querySelectorAll('a[href^="project.html"]'));
+    if (!links.length) return;
+
+    links.forEach((link) => {
+      const rawHref = link.getAttribute("href") || "";
+      if (!rawHref.startsWith("project.html")) return;
+
+      const url = new URL(rawHref, window.location.href);
+      if (currentLanguage === "en") {
+        url.searchParams.set("lang", "en");
+      } else {
+        url.searchParams.delete("lang");
+      }
+
+      const query = url.searchParams.toString();
+      const hash = url.hash || "";
+      link.setAttribute("href", `project.html${query ? `?${query}` : ""}${hash}`);
+    });
+  };
+
+  const applyStaticTranslations = () => {
+    const isProjectPage = Boolean(document.getElementById("project-main"));
+    if (isProjectPage) {
+      applyTranslationEntries(PROJECT_TRANSLATIONS[currentLanguage]);
+    } else {
+      applyTranslationEntries(INDEX_TRANSLATIONS[currentLanguage]);
+    }
+
+    if (themeToggle) {
+      const label = currentLanguage === "en" ? "Toggle light/dark theme" : "Đổi giao diện sáng/tối";
+      themeToggle.setAttribute("aria-label", label);
+      const text = themeToggle.querySelector(".theme-text");
+      if (text) {
+        text.textContent = t("themeLabel");
+      }
+    }
+
+    if (languageToggle) {
+      languageToggle.setAttribute(
+        "aria-label",
+        currentLanguage === "en" ? "Choose language" : "Chọn ngôn ngữ",
+      );
+    }
+
+    if (mobileMenu) {
+      mobileMenu.setAttribute("aria-label", t("mobileMenuAria"));
+    }
+
+    if (menuToggle) {
+      const isOpen = mobileMenu?.classList.contains("is-open");
+      menuToggle.setAttribute("aria-label", isOpen ? t("menuClose") : t("menuOpen"));
+    }
+
+    document.documentElement.lang = currentLanguage === "en" ? "en" : "vi";
+    updateCvLinksByLanguage();
+    updateProjectLinksByLanguage();
+    initFooterYear();
+  };
+
+  const setLanguage = (lang, options = {}) => {
+    const { persist = true, rerender = true } = options;
+    if (!SUPPORTED_LANGS.includes(lang)) return;
+    currentLanguage = lang;
+
+    if (persist) {
+      localStorage.setItem(LANGUAGE_KEY, lang);
+    }
+
+    if (languageToggle) {
+      languageToggle.querySelectorAll(".lang-btn").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.lang === lang);
+      });
+    }
+
+    applyStaticTranslations();
+
+    if (!rerender) return;
+
+    renderProjectCards();
+    initProjectFilter();
+    renderProjectPage();
+  };
+
+  const initLanguage = () => {
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = params.get("lang");
+    const saved = localStorage.getItem(LANGUAGE_KEY);
+
+    if (SUPPORTED_LANGS.includes(fromQuery)) {
+      currentLanguage = fromQuery;
+    } else if (SUPPORTED_LANGS.includes(saved)) {
+      currentLanguage = saved;
+    }
+
+    if (languageToggle) {
+      languageToggle.querySelectorAll(".lang-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+          const lang = button.dataset.lang;
+          if (!lang || lang === currentLanguage) return;
+          setLanguage(lang);
+        });
+      });
+    }
+
+    setLanguage(currentLanguage, { persist: false, rerender: false });
   };
 
   const setTheme = (theme) => {
@@ -413,12 +1727,6 @@
         "content",
         THEME_COLORS[theme] || THEME_COLORS.light,
       );
-    }
-    const logoLight = document.getElementById("logo-light");
-    const logoDark = document.getElementById("logo-dark");
-    if (logoLight && logoDark) {
-      logoLight.style.display = theme === "light" ? "" : "none";
-      logoDark.style.display = theme === "dark" ? "" : "none";
     }
   };
 
@@ -441,7 +1749,7 @@
     mobileMenu.classList.toggle("is-open", isOpen);
     menuToggle.classList.toggle("is-open", isOpen);
     menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    menuToggle.setAttribute("aria-label", isOpen ? "Đóng menu" : "Mở menu");
+    menuToggle.setAttribute("aria-label", isOpen ? t("menuClose") : t("menuOpen"));
     document.body.classList.toggle("mobile-menu-open", isOpen);
   };
 
@@ -612,6 +1920,13 @@
 
     if (sections.length === 0 || navLinks.length === 0) return;
 
+    const navOrderIds = navLinks
+      .map((link) => (link.getAttribute("href") || "").replace("#", ""))
+      .filter(Boolean);
+    const sectionIdSet = new Set(sections.map((section) => section.id));
+    const defaultId =
+      navOrderIds.find((id) => sectionIdSet.has(id)) || sections[0].id;
+
     const setActive = (sectionId) => {
       navLinks.forEach((link) => {
         const isActive = link.getAttribute("href") === `#${sectionId}`;
@@ -631,7 +1946,7 @@
     // Use section nearest to the top anchor line for stable active state.
     const updateActiveByPosition = () => {
       const topAnchor = window.scrollY + header.offsetHeight + 18;
-      let currentId = sections[0].id;
+      let currentId = defaultId;
 
       sections.forEach((section) => {
         if (section.offsetTop <= topAnchor) {
@@ -715,15 +2030,136 @@
     setActive(items[0].id);
   };
 
+  const extractStackFromMeta = (detail) => {
+    const stackItem = (detail.meta || []).find((item) => item.startsWith("Stack:"));
+    if (!stackItem) return t("stackFallback");
+    return stackItem.replace(/^Stack:\s*/, "").replace(/\s*\+\s*/g, " · ");
+  };
+
+  const resolveCasePreview = (detail) => {
+    const media = (detail.gallery || []).find(
+      (item) => typeof item.image === "string" && item.image.trim().length > 0,
+    );
+    return {
+      src: media?.image || "",
+      alt: media?.alt || `Preview case study ${detail.title}`,
+    };
+  };
+
+  const createProjectAction = (item) => {
+    if (item.href) {
+      const link = document.createElement("a");
+      link.className = "project-link";
+      link.href = item.href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = item.label;
+      return link;
+    }
+
+    const placeholder = document.createElement("span");
+    placeholder.className = "project-link is-disabled";
+    placeholder.setAttribute("aria-disabled", "true");
+    placeholder.textContent = item.label;
+    return placeholder;
+  };
+
+  const renderProjectCards = () => {
+    const grid = document.getElementById("project-grid");
+    if (!grid) return;
+
+    grid.innerHTML = "";
+
+    PROJECT_CARD_ORDER.forEach((projectId, index) => {
+      const detail = mergeProjectCaseByLanguage(projectId);
+      if (!detail) return;
+
+      const card = document.createElement("article");
+      card.className = "project-card";
+      card.dataset.projectType = (detail.filters || []).join(" ");
+      card.dataset.projectId = projectId;
+      card.setAttribute("data-reveal", "up");
+      if (index === 1) card.setAttribute("data-delay", "80");
+      if (index === 2) card.setAttribute("data-delay", "160");
+
+      const top = document.createElement("div");
+      top.className = "project-top";
+      const badge = document.createElement("span");
+      badge.className = "project-badge";
+      badge.textContent = detail.cardBadge || "Case Study";
+      const year = document.createElement("span");
+      year.className = "project-year";
+      year.textContent = detail.year || "N/A";
+      top.appendChild(badge);
+      top.appendChild(year);
+
+      const visual = document.createElement("div");
+      visual.className = "project-visual";
+      const preview = resolveCasePreview(detail);
+      if (preview.src) {
+        const img = document.createElement("img");
+        img.src = preview.src;
+        img.alt = preview.alt;
+        img.loading = "lazy";
+        img.decoding = "async";
+        visual.appendChild(img);
+      }
+      const visualTag = document.createElement("span");
+      visualTag.className = "project-visual-tag";
+      visualTag.textContent = detail.previewTag || "Case Study";
+      visual.appendChild(visualTag);
+
+      const title = document.createElement("h3");
+      title.textContent = detail.title;
+
+      const summary = document.createElement("p");
+      summary.textContent = detail.summary;
+
+      const points = document.createElement("ul");
+      points.className = "project-points";
+      (detail.impact || detail.technicalDecisions || []).slice(0, 3).forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        points.appendChild(li);
+      });
+
+      const stack = document.createElement("div");
+      stack.className = "project-stack";
+      stack.textContent = extractStackFromMeta(detail);
+
+      const actions = document.createElement("div");
+      actions.className = "project-actions";
+      const detailLink = document.createElement("a");
+      detailLink.href =
+        currentLanguage === "en"
+          ? `project.html?id=${projectId}&lang=en`
+          : `project.html?id=${projectId}`;
+      detailLink.className = "project-link project-detail-btn";
+      detailLink.textContent = t("detailButton");
+      actions.appendChild(detailLink);
+      (detail.links || []).forEach((item) => {
+        actions.appendChild(createProjectAction(item));
+      });
+
+      card.appendChild(top);
+      card.appendChild(visual);
+      card.appendChild(title);
+      card.appendChild(summary);
+      card.appendChild(points);
+      card.appendChild(stack);
+      card.appendChild(actions);
+      grid.appendChild(card);
+    });
+  };
+
   const initProjectFilter = () => {
     const buttons = Array.from(document.querySelectorAll(".filter-btn"));
-    const cards = Array.from(document.querySelectorAll(".project-card"));
-
-    if (buttons.length === 0 || cards.length === 0) return;
+    if (buttons.length === 0) return;
 
     buttons.forEach((button) => {
-      button.addEventListener("click", () => {
+      button.onclick = () => {
         const filter = button.dataset.filter || "all";
+        const cards = Array.from(document.querySelectorAll(".project-card"));
 
         buttons.forEach((btn) =>
           btn.classList.toggle("active", btn === button),
@@ -739,7 +2175,7 @@
           const match = type.split(" ").includes(filter);
           card.classList.toggle("is-hidden", !match);
         });
-      });
+      };
     });
   };
 
@@ -762,10 +2198,12 @@
       fallback.className = "proof-item";
 
       const value = document.createElement("strong");
-      value.textContent = "Case Study";
+      value.textContent = currentLanguage === "en" ? "Case Study" : "Case Study";
       const label = document.createElement("span");
       label.textContent =
-        "Chi tiết kết quả sẽ được cập nhật theo dữ liệu thực tế.";
+        currentLanguage === "en"
+          ? "Detailed impact metrics will be updated with real production data."
+          : "Chi tiết kết quả sẽ được cập nhật theo dữ liệu thực tế.";
 
       fallback.appendChild(value);
       fallback.appendChild(label);
@@ -794,7 +2232,7 @@
 
     const params = new URLSearchParams(window.location.search);
     const projectId = params.get("id") || "";
-    const detail = PROJECT_CASES[projectId];
+    const detail = mergeProjectCaseByLanguage(projectId);
 
     const setText = (id, value) => {
       const el = document.getElementById(id);
@@ -802,11 +2240,8 @@
     };
 
     if (!detail) {
-      setText("project-case-title", "Không tìm thấy case study");
-      setText(
-        "project-case-summary",
-        "ID dự án không hợp lệ hoặc chưa được cấu hình. Vui lòng quay lại trang chính để chọn dự án hợp lệ.",
-      );
+      setText("project-case-title", t("notFoundTitle"));
+      setText("project-case-summary", t("notFoundSummary"));
       return;
     }
 
@@ -853,7 +2288,9 @@
         const fallback = document.createElement("div");
         fallback.className = "project-hero-media-fallback";
         fallback.textContent =
-          "Case preview media sẽ hiển thị tại đây khi bạn thêm ảnh cover.";
+          currentLanguage === "en"
+            ? "Case preview media will appear here when a cover image is added."
+            : "Case preview media sẽ hiển thị tại đây khi bạn thêm ảnh cover.";
         heroMedia.appendChild(fallback);
       }
     }
@@ -875,7 +2312,9 @@
     if (architectureCaption) {
       architectureCaption.textContent =
         detail.architectureCaption ||
-        "Sơ đồ kiến trúc minh họa cấu trúc UI, data flow và các quyết định tổ chức module.";
+        (currentLanguage === "en"
+          ? "Architecture diagram illustrating UI structure, data flow, and module organization decisions."
+          : "Sơ đồ kiến trúc minh họa cấu trúc UI, data flow và các quyết định tổ chức module.");
     }
 
     renderProof(
@@ -917,7 +2356,9 @@
         video.appendChild(source);
         video.appendChild(
           document.createTextNode(
-            "Trình duyệt không hỗ trợ phát video cho định dạng này.",
+            currentLanguage === "en"
+              ? "Your browser does not support this video format."
+              : "Trình duyệt không hỗ trợ phát video cho định dạng này.",
           ),
         );
 
@@ -936,10 +2377,13 @@
         placeholder.className = "video-placeholder";
 
         const strong = document.createElement("strong");
-        strong.textContent = "Video không public";
+        strong.textContent =
+          currentLanguage === "en" ? "Video not publicly available" : "Video không public";
         const note = document.createElement("span");
         note.textContent =
-          "Dự án thuộc phạm vi private/NDA. Có thể demo trực tiếp khi phỏng vấn.";
+          currentLanguage === "en"
+            ? "This case is private/NDA. A live walkthrough can be provided during interview."
+            : "Dự án thuộc phạm vi private/NDA. Có thể demo trực tiếp khi phỏng vấn.";
 
         placeholder.appendChild(strong);
         placeholder.appendChild(note);
@@ -1028,8 +2472,7 @@
       const message = String(formData.get("message") || "").trim();
 
       if (!name || !email || !subject || !message) {
-        if (status)
-          status.textContent = "Vui lòng điền đầy đủ thông tin trước khi gửi.";
+        if (status) status.textContent = t("formMissing");
         return;
       }
 
@@ -1044,10 +2487,10 @@
       const mailtoBody = encodeURIComponent(bodyLines.join("\n"));
 
       if (status) {
-        status.textContent = "Đang mở ứng dụng email...";
+        status.textContent = t("formOpening");
       }
 
-      window.location.href = `mailto:thu.high.dev@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+      window.location.href = `mailto:a01204496068@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
     });
   };
 
@@ -1060,10 +2503,12 @@
 
   const init = () => {
     initTheme();
+    initLanguage();
     initMobileMenu();
     initHomeAnchorBehavior();
     initHeaderScroll();
     initScrollProgress();
+    renderProjectCards();
     initSpotlightCards();
     initReveal();
     initActiveNav();
@@ -1072,6 +2517,7 @@
     renderProjectPage();
     initContactForm();
     initFooterYear();
+    applyStaticTranslations();
 
     if (themeToggle) {
       themeToggle.addEventListener("click", toggleTheme);

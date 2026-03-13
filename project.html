@@ -10,10 +10,11 @@
     />
     <meta name="theme-color" content="#f4f6f8" id="theme-color-meta" />
 
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=Caveat:wght@600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -37,8 +38,7 @@
     <header class="site-header" id="site-header">
       <div class="container header-inner">
         <a href="index.html#home" class="brand" aria-label="Về trang chính">
-          <span class="brand-dot"></span>
-          <span class="brand-text">TH</span>
+          <span class="brand-signature">ThnkThuHigh</span>
         </a>
 
         <nav class="site-nav" aria-label="Điều hướng case study">
@@ -47,6 +47,15 @@
         </nav>
 
         <div class="header-actions">
+          <div
+            class="language-toggle"
+            id="language-toggle"
+            role="group"
+            aria-label="Chọn ngôn ngữ"
+          >
+            <button type="button" class="lang-btn" data-lang="vi">VI</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
           <button
             type="button"
             class="theme-toggle"

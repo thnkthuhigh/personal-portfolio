@@ -1,0 +1,585 @@
+﻿<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV | Thư High</title>
+    <meta
+      name="description"
+      content="CV tuyển dụng của Thư High - Internship / Junior Frontend."
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #eef2f6;
+        --paper: #ffffff;
+        --text: #111b27;
+        --muted: #4a5b6d;
+        --line: #d7e1ea;
+        --brand: #0f3d63;
+        --accent: #188a7a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: linear-gradient(160deg, #e8eff5, #f6f8fb 45%, #ecf2f8);
+        color: var(--text);
+        font-family: "IBM Plex Sans", sans-serif;
+      }
+
+      .cv-toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid var(--line);
+        background: color-mix(in srgb, #f6f8fb 88%, transparent);
+        backdrop-filter: blur(8px);
+      }
+
+      .cv-toolbar-inner {
+        width: min(100% - 28px, 980px);
+        margin: 0 auto;
+        min-height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .cv-toolbar-title {
+        font-family: "Sora", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .cv-toolbar-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .cv-lang-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+      }
+
+      .cv-lang-btn {
+        border: 0;
+        border-radius: 999px;
+        min-width: 38px;
+        padding: 6px 9px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+      }
+
+      .cv-lang-btn.is-active {
+        background: #e8eef5;
+        color: var(--text);
+      }
+
+      .cv-btn {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 9px 14px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: inherit;
+        background: #fff;
+      }
+
+      .cv-btn-primary {
+        border-color: color-mix(in srgb, var(--brand) 65%, transparent);
+        color: #fff;
+        background: linear-gradient(120deg, var(--brand), var(--accent));
+      }
+
+      .cv-wrap {
+        width: min(100% - 28px, 980px);
+        margin: 22px auto 50px;
+      }
+
+      .cv-sheet {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--paper);
+        box-shadow: 0 20px 56px rgba(16, 37, 58, 0.14);
+        padding: 34px;
+      }
+
+      .cv-header {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: 18px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: "Sora", sans-serif;
+      }
+
+      h1 {
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
+      }
+
+      .cv-role {
+        margin-top: 8px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .cv-summary {
+        margin-top: 12px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .cv-contact {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #f7fafc;
+        padding: 14px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .cv-contact div {
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+
+      .cv-contact strong {
+        color: var(--text);
+      }
+
+      .cv-contact a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .cv-contact a:hover {
+        color: var(--brand);
+      }
+
+      .cv-grid {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .cv-card {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px;
+        background: #fff;
+      }
+
+      .cv-card h3 {
+        font-size: 1rem;
+      }
+
+      .cv-card p {
+        margin: 8px 0 0;
+        color: var(--muted);
+      }
+
+      .cv-card ul {
+        margin: 8px 0 0;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+
+      .cv-card li + li {
+        margin-top: 6px;
+      }
+
+      .cv-card-wide {
+        grid-column: 1 / -1;
+      }
+
+      @media (max-width: 760px) {
+        .cv-sheet {
+          padding: 20px;
+        }
+
+        .cv-header {
+          grid-template-columns: 1fr;
+        }
+
+        .cv-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .cv-toolbar {
+          display: none;
+        }
+
+        .cv-wrap {
+          width: 100%;
+          margin: 0;
+        }
+
+        .cv-sheet {
+          border: 0;
+          border-radius: 0;
+          box-shadow: none;
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="cv-toolbar">
+      <div class="cv-toolbar-inner">
+        <div class="cv-toolbar-title">CV · Thư High</div>
+        <div class="cv-toolbar-actions">
+          <div class="cv-lang-toggle" id="cv-lang-toggle" aria-label="Language switch">
+            <button type="button" class="cv-lang-btn" data-lang="vi">VI</button>
+            <button type="button" class="cv-lang-btn" data-lang="en">EN</button>
+          </div>
+          <a class="cv-btn" href="index.html#cv-document">Quay lại portfolio</a>
+          <a class="cv-btn cv-btn-primary" href="#" id="print-cv">Tải PDF</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="cv-wrap">
+      <article class="cv-sheet" id="cv-sheet">
+        <section class="cv-header">
+          <div>
+            <h1>Thư High</h1>
+            <p class="cv-role">Ứng tuyển Internship / Junior Frontend</p>
+            <p class="cv-summary">
+              Sinh viên năm 4 ngành CNTT, tập trung Frontend Product Engineering.
+              Có 5 case-study (4 public + 1 private/NDA), trình bày rõ từ Problem đến
+              Solution, Impact và Technical Decisions.
+            </p>
+          </div>
+          <aside class="cv-contact">
+            <div>
+              <strong>Email:</strong>
+              <a href="mailto:a01204496068@gmail.com">a01204496068@gmail.com</a>
+            </div>
+            <div>
+              <strong>Điện thoại:</strong> <a href="tel:0359498968">0359498968</a>
+            </div>
+            <div>
+              <strong>LinkedIn:</strong>
+              <a href="https://www.linkedin.com/in/thnkthuhigh/" target="_blank" rel="noopener noreferrer"
+                >linkedin.com/in/thnkthuhigh</a
+              >
+            </div>
+            <div>
+              <strong>GitHub:</strong>
+              <a href="https://github.com/thnkthuhigh" target="_blank" rel="noopener noreferrer"
+                >github.com/thnkthuhigh</a
+              >
+            </div>
+            <div><strong>Địa điểm:</strong> Việt Nam</div>
+            <div><strong>Sẵn sàng:</strong> Technical test / interview</div>
+          </aside>
+        </section>
+
+        <section class="cv-grid">
+          <article class="cv-card">
+            <h3>Core Stack</h3>
+            <ul>
+              <li>React, Next.js, TypeScript</li>
+              <li>Component systems, state/data flow</li>
+              <li>Responsive + accessibility thực dụng</li>
+              <li>Performance awareness khi release</li>
+            </ul>
+          </article>
+
+          <article class="cv-card">
+            <h3>Education</h3>
+            <p>Sinh viên năm 4 · Khoa học máy tính</p>
+            <ul>
+              <li>Định hướng Frontend / Product Engineering</li>
+              <li>Tập trung case-study thực tế thay vì mô phỏng</li>
+            </ul>
+          </article>
+
+          <article class="cv-card cv-card-wide">
+            <h3>Case Study Highlights</h3>
+            <ul>
+              <li>
+                Language Center SaaS (Public): nền tảng production đa vai trò, có
+                realtime workflow.
+              </li>
+              <li>
+                Healthcare Clinic System (Public): doctor queue + consultation flow
+                có phân quyền rõ ràng.
+              </li>
+              <li>
+                RealTime Auction System (Public): đấu giá realtime với Socket.IO,
+                Redis và bid history.
+              </li>
+              <li>
+                Cloud Clipboard (Public): self-hosted utility lưu text/ảnh, hỗ trợ
+                drag-drop và đồng bộ đa thiết bị.
+              </li>
+              <li>
+                Private Workflow Suite (NDA): schema-driven forms + role-based
+                logic cho nghiệp vụ nội bộ.
+              </li>
+            </ul>
+          </article>
+
+          <article class="cv-card">
+            <h3>Engineering Strengths</h3>
+            <ul>
+              <li>UI architecture rõ, dễ maintain</li>
+              <li>Tách module theo domain hợp lý</li>
+              <li>Trình bày decision log ngắn gọn</li>
+            </ul>
+          </article>
+
+          <article class="cv-card">
+            <h3>Availability</h3>
+            <ul>
+              <li>Seeking Internship / Junior Frontend</li>
+              <li>Linh hoạt lịch part-time/full-time</li>
+              <li>Có thể demo project private khi phỏng vấn</li>
+            </ul>
+          </article>
+        </section>
+      </article>
+    </main>
+
+    <script>
+      (function () {
+        const CV_TRANSLATIONS = {
+          vi: [
+            { selector: ".cv-toolbar-title", text: "CV · Thư High" },
+            { selector: ".cv-toolbar-actions .cv-btn:not(.cv-btn-primary)", text: "Quay lại portfolio" },
+            { selector: ".cv-btn-primary", text: "Tải PDF" },
+            { selector: "h1", text: "Thư High" },
+            { selector: ".cv-role", text: "Ứng tuyển Internship / Junior Frontend" },
+            {
+              selector: ".cv-summary",
+              text: "Sinh viên năm 4 ngành CNTT, tập trung Frontend Product Engineering. Có 5 case-study (4 public + 1 private/NDA), trình bày rõ từ Problem đến Solution, Impact và Technical Decisions.",
+            },
+            { selector: ".cv-contact div:nth-child(1) strong", text: "Email:" },
+            { selector: ".cv-contact div:nth-child(2) strong", text: "Điện thoại:" },
+            { selector: ".cv-contact div:nth-child(3) strong", text: "LinkedIn:" },
+            { selector: ".cv-contact div:nth-child(4) strong", text: "GitHub:" },
+            { selector: ".cv-contact div:nth-child(5) strong", text: "Địa điểm:" },
+            { selector: ".cv-contact div:nth-child(6) strong", text: "Sẵn sàng:" },
+            { selector: ".cv-contact div:nth-child(5)", html: true, text: "<strong>Địa điểm:</strong> Việt Nam" },
+            { selector: ".cv-contact div:nth-child(6)", html: true, text: "<strong>Sẵn sàng:</strong> Technical test / interview" },
+            { selector: ".cv-card:nth-child(1) h3", text: "Core Stack" },
+            { selector: ".cv-card:nth-child(2) h3", text: "Education" },
+            { selector: ".cv-card:nth-child(2) p", text: "Sinh viên năm 4 · Khoa học máy tính" },
+            { selector: ".cv-card.cv-card-wide h3", text: "Case Study Highlights" },
+            { selector: ".cv-card:nth-child(4) h3", text: "Engineering Strengths" },
+            { selector: ".cv-card:nth-child(5) h3", text: "Availability" },
+          ],
+          en: [
+            { selector: ".cv-toolbar-title", text: "CV · Thu High" },
+            { selector: ".cv-toolbar-actions .cv-btn:not(.cv-btn-primary)", text: "Back to portfolio" },
+            { selector: ".cv-btn-primary", text: "Download PDF" },
+            { selector: "h1", text: "Thu High" },
+            { selector: ".cv-role", text: "Applying for Internship / Junior Frontend" },
+            {
+              selector: ".cv-summary",
+              text: "Final-year Computer Science student focused on Frontend Product Engineering. Built 5 case studies (4 public + 1 private/NDA) and can clearly explain Problem, Solution, Impact, and Technical Decisions.",
+            },
+            { selector: ".cv-contact div:nth-child(1) strong", text: "Email:" },
+            { selector: ".cv-contact div:nth-child(2) strong", text: "Phone:" },
+            { selector: ".cv-contact div:nth-child(3) strong", text: "LinkedIn:" },
+            { selector: ".cv-contact div:nth-child(4) strong", text: "GitHub:" },
+            { selector: ".cv-contact div:nth-child(5) strong", text: "Location:" },
+            { selector: ".cv-contact div:nth-child(6) strong", text: "Available for:" },
+            { selector: ".cv-contact div:nth-child(5)", html: true, text: "<strong>Location:</strong> Vietnam" },
+            { selector: ".cv-contact div:nth-child(6)", html: true, text: "<strong>Available for:</strong> Technical test / interview" },
+            { selector: ".cv-card:nth-child(1) h3", text: "Core Stack" },
+            { selector: ".cv-card:nth-child(2) h3", text: "Education" },
+            { selector: ".cv-card:nth-child(2) p", text: "Final-year student · Computer Science" },
+            { selector: ".cv-card.cv-card-wide h3", text: "Case Study Highlights" },
+            { selector: ".cv-card:nth-child(4) h3", text: "Engineering Strengths" },
+            { selector: ".cv-card:nth-child(5) h3", text: "Availability" },
+          ],
+        };
+
+        const translateListItems = (lang) => {
+          const listMaps = {
+            vi: {
+              core: [
+                "React, Next.js, TypeScript",
+                "Component systems, state/data flow",
+                "Responsive + accessibility thực dụng",
+                "Performance awareness khi release",
+              ],
+              edu: [
+                "Định hướng Frontend / Product Engineering",
+                "Tập trung case-study thực tế thay vì mô phỏng",
+              ],
+              case: [
+                "Language Center SaaS (Public): nền tảng production đa vai trò, có realtime workflow.",
+                "Healthcare Clinic System (Public): doctor queue + consultation flow có phân quyền rõ ràng.",
+                "RealTime Auction System (Public): đấu giá realtime với Socket.IO, Redis và bid history.",
+                "Cloud Clipboard (Public): self-hosted utility lưu text/ảnh, hỗ trợ drag-drop và đồng bộ đa thiết bị.",
+                "Private Workflow Suite (NDA): schema-driven forms + role-based logic cho nghiệp vụ nội bộ.",
+              ],
+              strength: [
+                "UI architecture rõ, dễ maintain",
+                "Tách module theo domain hợp lý",
+                "Trình bày decision log ngắn gọn",
+              ],
+              availability: [
+                "Seeking Internship / Junior Frontend",
+                "Linh hoạt lịch part-time/full-time",
+                "Có thể demo project private khi phỏng vấn",
+              ],
+            },
+            en: {
+              core: [
+                "React, Next.js, TypeScript",
+                "Component systems and clear state/data flow",
+                "Practical responsive and accessibility standards",
+                "Performance awareness before release",
+              ],
+              edu: [
+                "Focused on Frontend / Product Engineering",
+                "Built real case studies instead of mock-only coursework",
+              ],
+              case: [
+                "Language Center SaaS (Public): production multi-role platform with realtime workflows.",
+                "Healthcare Clinic System (Public): doctor queue and consultation flow with role-based access.",
+                "RealTime Auction System (Public): realtime bidding with Socket.IO, Redis, and bid history.",
+                "Cloud Clipboard (Public): self-hosted text/image utility with drag-drop and multi-device access.",
+                "Private Workflow Suite (NDA): schema-driven forms and role-based internal logic.",
+              ],
+              strength: [
+                "Clear UI architecture with maintainable structure",
+                "Domain-oriented module boundaries",
+                "Concise and defensible technical decision logs",
+              ],
+              availability: [
+                "Seeking Internship / Junior Frontend role",
+                "Flexible part-time/full-time schedule",
+                "Can demo private projects during interview",
+              ],
+            },
+          };
+
+          const lists = {
+            core: document.querySelector(".cv-card:nth-child(1) ul"),
+            edu: document.querySelector(".cv-card:nth-child(2) ul"),
+            case: document.querySelector(".cv-card.cv-card-wide ul"),
+            strength: document.querySelector(".cv-card:nth-child(4) ul"),
+            availability: document.querySelector(".cv-card:nth-child(5) ul"),
+          };
+
+          Object.entries(lists).forEach(([key, listEl]) => {
+            if (!listEl) return;
+            const items = listMaps[lang][key] || [];
+            listEl.innerHTML = "";
+            items.forEach((item) => {
+              const li = document.createElement("li");
+              li.textContent = item;
+              listEl.appendChild(li);
+            });
+          });
+        };
+
+        const applyCvLanguage = (lang) => {
+          const resolved = lang === "en" ? "en" : "vi";
+          localStorage.setItem("portfolio_lang", resolved);
+
+          const params = new URLSearchParams(window.location.search);
+          if (resolved === "en") {
+            params.set("lang", "en");
+          } else {
+            params.delete("lang");
+          }
+          const nextQuery = params.toString();
+          const nextUrl = `${window.location.pathname}${nextQuery ? `?${nextQuery}` : ""}`;
+          window.history.replaceState(null, "", nextUrl);
+
+          document.documentElement.lang = resolved;
+          document.title = resolved === "en" ? "CV | Thu High" : "CV | Thư High";
+
+          (CV_TRANSLATIONS[resolved] || []).forEach((entry) => {
+            const node = document.querySelector(entry.selector);
+            if (!node) return;
+            if (entry.html) {
+              node.innerHTML = entry.text;
+            } else {
+              node.textContent = entry.text;
+            }
+          });
+
+          translateListItems(resolved);
+
+          const toggle = document.getElementById("cv-lang-toggle");
+          if (toggle) {
+            toggle.querySelectorAll(".cv-lang-btn").forEach((button) => {
+              button.classList.toggle("is-active", button.dataset.lang === resolved);
+            });
+          }
+        };
+
+        const initialParams = new URLSearchParams(window.location.search);
+        const initialLang = initialParams.get("lang") || localStorage.getItem("portfolio_lang") || "vi";
+        applyCvLanguage(initialLang);
+
+        const langToggle = document.getElementById("cv-lang-toggle");
+        if (langToggle) {
+          langToggle.querySelectorAll(".cv-lang-btn").forEach((button) => {
+            button.addEventListener("click", () => {
+              applyCvLanguage(button.dataset.lang || "vi");
+            });
+          });
+        }
+
+        const printBtn = document.getElementById("print-cv");
+        if (printBtn) {
+          printBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            window.print();
+          });
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("print") === "1") {
+          window.addEventListener("load", () => {
+            setTimeout(() => window.print(), 250);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
+
