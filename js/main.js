@@ -28,8 +28,8 @@
       summary:
         "Nền tảng SaaS quản lý trung tâm tiếng Anh đang chạy production, tập trung vào dashboard đa vai trò, quy trình tài chính và đồng bộ thời gian thực.",
       meta: [
-        "Vai trò: Frontend/Product Contributor",
-        "Team: Nhiều vai trò (Owner/Admin/Teacher/Accountant)",
+        "Vai trò: Frontend Engineer (API/DevOps-aware)",
+        "Team: Solo builder",
         "Thời gian: Nhiều tháng phát triển liên tục",
         "Stack: React + TypeScript + Node.js + MongoDB + Socket.IO",
       ],
@@ -70,7 +70,8 @@
       ],
       evidence: [
         "Live demo production: englishforkids.me.",
-        "Repository công khai kèm tài liệu kiến trúc chi tiết.",
+        "Public repository: thnkthuhigh/language-center-saas.",
+        "Repository công khai kèm tài liệu kiến trúc và hướng dẫn triển khai.",
         "Testing và quality metrics thể hiện trực tiếp trong README.",
       ],
       challenges: [
@@ -83,7 +84,7 @@
         "Documentation tốt giúp team onboard và review dễ hơn.",
         "Quality gates cần được thiết kế từ giai đoạn đầu.",
       ],
-      nda: "Source code công khai trên GitHub, dữ liệu người dùng thật và thông tin vận hành production đã được bảo mật.",
+      nda: "Repo public được dùng để trình bày kỹ thuật; dữ liệu thật và chi tiết vận hành production đã được bảo mật.",
       videoEmbed: "",
       videoFile: "",
       videoPoster: "",
@@ -124,6 +125,121 @@
       ],
     },
 
+    "ai-doc-formatter": {
+      badge: "Core Case · Private Core + Public Showcase",
+      title: "AI Doc Formatter / Proze AI",
+      year: "2026",
+      filters: ["frontend", "product", "private"],
+      cardBadge: "Hybrid",
+      previewTag: "Core Project",
+      summary:
+        "Nền tảng AI định dạng tài liệu theo chuẩn production: AI editor, export pipeline bất đồng bộ, CI/CD nhiều tầng, deploy DigitalOcean và observability stack đầy đủ.",
+      meta: [
+        "Vai trò: Frontend Engineer (API/DevOps-aware)",
+        "Team: Solo builder",
+        "Thời gian: Nhiều tháng phát triển + hardening",
+        "Stack: Next.js + TypeScript + FastAPI + Redis + Celery + Docker + GitHub Actions",
+      ],
+      proof: [
+        { value: "10 CI jobs", label: "Quality + security + e2e gates" },
+        {
+          value: "2 Deploy jobs",
+          label: "DO deploy + health check + rollback",
+        },
+        {
+          value: "6 Compose variants",
+          label: "dev/prod/staging/light/monitoring/blue-green",
+        },
+        {
+          value: "6 SLOs",
+          label: "latency, error rate, availability, circuit-breaker",
+        },
+      ],
+      problem:
+        "Người dùng cần biến nội dung thô thành tài liệu chuyên nghiệp nhanh chóng, nhưng luồng soạn thảo + AI + export thường rời rạc và khó đảm bảo chất lượng đầu ra.",
+      solution:
+        "Xây nền tảng hợp nhất: AI analysis + block editor + export queue, kèm CI/CD 10 jobs, branch-protection gates, deploy pipeline có health-check/rollback và monitoring Prometheus/Grafana/Loki.",
+      storyImpact:
+        "Tạo một workflow end-to-end từ raw text đến tài liệu hoàn chỉnh, giảm thao tác thủ công và tăng tính nhất quán giữa trải nghiệm editor và output export.",
+      architectureDiagram: "assets/diagrams/task-workspace-arch.svg",
+      architectureCaption:
+        "Kiến trúc fullstack tách rõ frontend editor, backend AI/export services và lớp job processing bất đồng bộ.",
+      architecture: [
+        "Frontend Next.js + TipTap cho editor và AI-assisted authoring flow.",
+        "Backend FastAPI phân tách routers: AI, document, export, research.",
+        "Redis + Celery cho export jobs; Docker Compose cho nhiều môi trường; Nginx reverse proxy trước production services.",
+      ],
+      technicalDecisions: [
+        "Ưu tiên strict TypeScript + schema validation để giảm lỗi biên dữ liệu.",
+        "Thiết kế middleware bảo mật nhiều lớp (CSRF, rate limit, security headers).",
+        "Chuẩn hóa CI quality gates (lint/test/build/audit/e2e) + deploy workflow có rollback tự động khi health-check fail.",
+      ],
+      impact: [
+        "Workflow từ commit đến production rõ ràng hơn, giảm rủi ro release thủ công.",
+        "Độ tin cậy export tăng nhờ queue + preflight + health-check gates.",
+        "Quan sát hệ thống tốt hơn với metrics/logs/alerts theo SLO.",
+      ],
+      roleScope: [
+        "Thiết kế và triển khai toàn bộ kiến trúc frontend/backend cốt lõi.",
+        "Xây AI text features, editor workflows và export pipelines.",
+        "Thiết lập release discipline: CI gates, deploy scripts, runbook, checklist, branch protection.",
+      ],
+      evidence: [
+        "Private repo chính: thnkthuhigh/ai-doc-formatter (source core).",
+        "Public showcase: thnkthuhigh/proze-ai (10-job CI, 2-job deploy, 6 SLO, 6 compose variants).",
+        "Artifacts DevOps: deploy-do.sh, Deployment Runbook, Blue-Green strategy, monitoring stack docs.",
+      ],
+      challenges: [
+        "Giữ output export fidelity cao giữa editor preview và file thật.",
+        "Kiểm soát trạng thái realtime khi AI streaming và user chỉnh sửa song song.",
+        "Cân bằng tốc độ phát triển tính năng và độ ổn định production qua release gates.",
+      ],
+      lessons: [
+        "AI product không chỉ là gọi model, mà là bài toán reliability + UX.",
+        "Kiến trúc module và docs tốt giúp scale project solo bền vững hơn.",
+        "Quality gates từ sớm giảm mạnh chi phí sửa lỗi về sau.",
+      ],
+      nda: "Public repo `proze-ai` là showcase giới thiệu; source code production chính nằm ở private repo `ai-doc-formatter` và có thể walkthrough trực tiếp khi phỏng vấn.",
+      videoEmbed: "",
+      videoFile: "",
+      videoPoster: "",
+      videoNote:
+        "Demo public có thể xem qua showcase; chi tiết source core sẽ trình bày trong technical walkthrough.",
+      gallery: [
+        {
+          title: "AI Editor Workspace",
+          desc: "Không gian soạn thảo kết hợp block editor và AI assistance.",
+          image: "assets/cases/ops-table.svg",
+          alt: "AI document editor workspace preview",
+        },
+        {
+          title: "Document Intelligence",
+          desc: "Luồng phân tích cấu trúc và quality scoring cho tài liệu.",
+          image: "assets/cases/ops-analytics.svg",
+          alt: "AI document intelligence preview",
+        },
+        {
+          title: "Export Pipeline",
+          desc: "Pipeline xuất PDF/DOCX/Markdown/HTML với kiểm soát trạng thái.",
+          image: "assets/cases/task-board.svg",
+          alt: "AI document export pipeline preview",
+        },
+        {
+          title: "Architecture & Ops",
+          desc: "Góc nhìn kỹ thuật về module boundaries, security và CI/CD.",
+          image: "assets/cases/task-insight.svg",
+          alt: "AI document architecture and operations preview",
+        },
+      ],
+      links: [
+        { label: "Private Core (Walkthrough on request)" },
+        {
+          label: "Public Showcase",
+          href: "https://github.com/thnkthuhigh/proze-ai",
+        },
+      ],
+    },
+
     "b2b-workflow": {
       badge: "Private Case · NDA",
       title: "Private Internal Workflow Suite (NDA)",
@@ -134,8 +250,8 @@
       summary:
         "Case study cho dự án nội bộ không public: xử lý form nghiệp vụ nhiều bước, phân quyền theo phòng ban và rule engine cho UI.",
       meta: [
-        "Vai trò: Frontend Contributor (Core Workflow)",
-        "Team: 6 người",
+        "Vai trò: Frontend Engineer (API/DevOps-aware)",
+        "Team: Nhóm 6 người (cross-functional)",
         "Thời gian: 7 tháng",
         "Stack: Next.js + TypeScript",
       ],
@@ -225,7 +341,7 @@
     },
 
     "hiring-landing": {
-      badge: "Public Case · Fullstack Monorepo",
+      badge: "Public Case · Product Monorepo",
       title: "Healthcare Clinic System",
       year: "2026",
       filters: ["frontend", "product"],
@@ -339,8 +455,8 @@
       summary:
         "Nền tảng đấu giá thời gian thực với phòng đấu giá live, cập nhật giá tức thì qua Socket.IO và luồng xử lý bid history có kiểm soát.",
       meta: [
-        "Vai trò: Frontend Contributor (Auction Room UI)",
-        "Team: 5 người",
+        "Vai trò: Frontend Engineer (API/DevOps-aware)",
+        "Team: Nhóm 5 người",
         "Thời gian: Dự án chuyên ngành năm 4",
         "Stack: React + TypeScript + Socket.IO + Redis + PostgreSQL",
       ],
@@ -444,7 +560,7 @@
       summary:
         "Ứng dụng clipboard tự host cho phép lưu text/ảnh, drag-drop upload và đồng bộ nhanh giữa nhiều thiết bị.",
       meta: [
-        "Vai trò: Fullstack Developer",
+        "Vai trò: Frontend-focused Developer",
         "Team: Solo",
         "Thời gian: Triển khai theo từng iteration ngắn",
         "Stack: Node.js + Express + SQLite + Vanilla JS",
@@ -547,8 +663,8 @@
       summary:
         "A production SaaS platform for language centers, focused on role-based dashboards, finance workflows, and real-time synchronization.",
       meta: [
-        "Role: Frontend/Product Contributor",
-        "Team: Multi-role (Owner/Admin/Teacher/Accountant)",
+        "Role: Frontend Engineer (API/DevOps-aware)",
+        "Team: Solo builder",
         "Duration: Multi-month iterative development",
         "Stack: React + TypeScript + Node.js + MongoDB + Socket.IO",
       ],
@@ -588,7 +704,8 @@
       ],
       evidence: [
         "Live production demo at englishforkids.me.",
-        "Public repository with architecture documentation.",
+        "Public repository: thnkthuhigh/language-center-saas.",
+        "Public repository with architecture and deployment documentation.",
         "Test and quality metrics documented in README.",
       ],
       challenges: [
@@ -601,7 +718,7 @@
         "Documentation quality is a force multiplier.",
         "Quality gates must be designed from the beginning.",
       ],
-      nda: "Repository is public; real user data and production operational details remain protected.",
+      nda: "Public repo is used for technical showcase; real user data and production operational details remain protected.",
       videoNote:
         "You can set `videoEmbed` (YouTube) or `videoFile` (local MP4) to display a walkthrough.",
       gallery: [
@@ -639,14 +756,121 @@
       ],
     },
 
+    "ai-doc-formatter": {
+      badge: "Core Case · Private Core + Public Showcase",
+      title: "AI Doc Formatter / Proze AI",
+      summary:
+        "An AI document platform built with production discipline: AI editor, async export pipeline, multi-stage CI/CD, DigitalOcean deployment, and full observability.",
+      meta: [
+        "Role: Frontend Engineer (API/DevOps-aware)",
+        "Team: Solo builder",
+        "Duration: Multi-month implementation and hardening",
+        "Stack: Next.js + TypeScript + FastAPI + Redis + Celery + Docker + GitHub Actions",
+      ],
+      proof: [
+        { value: "10 CI jobs", label: "Quality, security, and e2e gates" },
+        {
+          value: "2 Deploy jobs",
+          label: "DO deploy with health-check + rollback",
+        },
+        {
+          value: "6 Compose variants",
+          label: "dev/prod/staging/light/monitoring/blue-green",
+        },
+        {
+          value: "6 SLOs",
+          label: "latency, error rate, availability, circuit breaker",
+        },
+      ],
+      problem:
+        "Users need to turn raw drafts into polished documents quickly, but authoring, AI assistance, and export are often disconnected in typical tools.",
+      solution:
+        "Built a unified platform: AI analysis + block editor + async exports, backed by 10-job CI, branch-protection gates, deployment runbooks, and automated health-check rollback.",
+      storyImpact:
+        "Created an end-to-end writing workflow from raw input to publication-ready output with better consistency and lower manual effort.",
+      architectureCaption:
+        "A clear fullstack split between editor UX, AI/export backend services, and asynchronous job processing.",
+      architecture: [
+        "Next.js + TipTap frontend for authoring and AI-assisted editing.",
+        "FastAPI backend with separated routers for AI, document, export, and research.",
+        "Redis + Celery for background jobs, Docker Compose environment overlays, and Nginx reverse-proxy in production.",
+      ],
+      technicalDecisions: [
+        "Strict TypeScript and schema validation to reduce boundary errors.",
+        "Layered security middleware (CSRF, rate limiting, security headers).",
+        "Multi-stage CI gates (lint/test/build/audit/e2e) with deploy rollback on failed health checks.",
+      ],
+      impact: [
+        "Reduced deployment risk through formal release gates and runbooks.",
+        "Improved export reliability with queue-based processing and preflight checks.",
+        "Increased operational confidence via metrics, logs, and alert-driven monitoring.",
+      ],
+      roleScope: [
+        "Designed and implemented core frontend/backend architecture.",
+        "Built AI text operations, editor workflows, and export pipeline logic.",
+        "Established release discipline: CI checks, branch protection, deploy scripts, and incident-oriented docs.",
+      ],
+      evidence: [
+        "Private core repository: thnkthuhigh/ai-doc-formatter.",
+        "Public showcase repository: thnkthuhigh/proze-ai (10 CI jobs, 2 deploy jobs, 6 SLOs).",
+        "DevOps artifacts: deploy-do.sh, deployment runbook, blue-green strategy, monitoring docs.",
+      ],
+      challenges: [
+        "Maintaining high export fidelity between editor preview and output files.",
+        "Handling state stability during AI streaming and concurrent editing.",
+        "Balancing rapid feature delivery with production reliability.",
+      ],
+      lessons: [
+        "AI products require reliability and UX discipline beyond model calls.",
+        "Strong module boundaries and docs scale solo execution effectively.",
+        "Early quality gates reduce downstream bug-fix cost significantly.",
+      ],
+      nda: "`proze-ai` is the public showcase repository; the production core source is private in `ai-doc-formatter` and can be reviewed via technical walkthrough.",
+      videoNote:
+        "Public showcase is available; private core implementation can be presented in interview walkthrough.",
+      gallery: [
+        {
+          title: "AI Editor Workspace",
+          desc: "Block-based editing workspace with AI-assisted authoring.",
+          image: "assets/cases/ops-table.svg",
+          alt: "AI document editor workspace preview",
+        },
+        {
+          title: "Document Intelligence",
+          desc: "Document analysis and quality scoring workflow.",
+          image: "assets/cases/ops-analytics.svg",
+          alt: "AI document intelligence preview",
+        },
+        {
+          title: "Export Pipeline",
+          desc: "Status-aware multi-format export flow.",
+          image: "assets/cases/task-board.svg",
+          alt: "AI document export pipeline preview",
+        },
+        {
+          title: "Architecture & Ops",
+          desc: "Operational view of architecture, security, and CI/CD.",
+          image: "assets/cases/task-insight.svg",
+          alt: "AI document architecture and operations preview",
+        },
+      ],
+      links: [
+        { label: "Private Core (Walkthrough on request)" },
+        {
+          label: "Public Showcase",
+          href: "https://github.com/thnkthuhigh/proze-ai",
+        },
+      ],
+    },
+
     "b2b-workflow": {
       badge: "Private Case · NDA",
       title: "Private Internal Workflow Suite (NDA)",
       summary:
         "A private multi-step workflow system with schema-driven forms and role-based access controls.",
       meta: [
-        "Role: Frontend Contributor (Core Workflow)",
-        "Team: 6 members",
+        "Role: Frontend Engineer (API/DevOps-aware)",
+        "Team: 6-member cross-functional team",
         "Duration: 7 months",
         "Stack: Next.js + TypeScript",
       ],
@@ -709,7 +933,7 @@
     },
 
     "hiring-landing": {
-      badge: "Public Case · Fullstack Monorepo",
+      badge: "Public Case · Product Monorepo",
       title: "Healthcare Clinic System",
       summary:
         "A multi-role clinic management system with doctor dashboard, smart queue handling, and consultation/prescription workflows.",
@@ -811,8 +1035,8 @@
       summary:
         "A real-time auction platform with live room updates, bid stream synchronization, and event-driven UI states.",
       meta: [
-        "Role: Frontend Contributor (Auction Room UI)",
-        "Team: 5 members",
+        "Role: Frontend Engineer (API/DevOps-aware)",
+        "Team: 5-member project team",
         "Duration: Final-year specialization project",
         "Stack: React + TypeScript + Socket.IO + Redis + PostgreSQL",
       ],
@@ -908,7 +1132,7 @@
       summary:
         "A self-hosted cloud clipboard for storing text and images, with fast upload and multi-device access.",
       meta: [
-        "Role: Fullstack Developer",
+        "Role: Frontend-focused Developer",
         "Team: Solo",
         "Duration: Incremental short iterations",
         "Stack: Node.js + Express + SQLite + Vanilla JS",
@@ -1002,6 +1226,7 @@
 
   const PROJECT_CARD_ORDER = [
     "ops-dashboard",
+    "ai-doc-formatter",
     "hiring-landing",
     "task-workspace",
     "cloud-clipboard",
@@ -1042,7 +1267,7 @@
       { selector: "a.skip-link", text: "Bỏ qua điều hướng" },
       { selector: '.site-nav .nav-link[href="#about"]', text: "Giới thiệu" },
       { selector: '.site-nav .nav-link[href="#skills"]', text: "Kỹ năng" },
-      { selector: '.site-nav .nav-link[href="#cv-document"]', text: "CV" },
+      { selector: '.site-nav .nav-link[href="cv.html"]', text: "CV" },
       { selector: '.site-nav .nav-link[href="#projects"]', text: "Dự án" },
       {
         selector: '.site-nav .nav-link[href="#experience"]',
@@ -1058,7 +1283,7 @@
         text: "Kỹ năng",
       },
       {
-        selector: '#mobile-menu .mobile-link[href="#cv-document"]',
+        selector: '#mobile-menu .mobile-link[href="cv.html"]',
         text: "CV",
       },
       {
@@ -1080,23 +1305,23 @@
       {
         selector: ".hero-content h1",
         html: true,
-        text: 'Junior-ready portfolio: thiết kế tốt, <span class="headline-accent">code chắc</span>, và tư duy sản phẩm rõ ràng.',
+        text: 'Portfolio thực tập Frontend: <span class="headline-accent">code chắc</span>, UI rõ, ship feature ổn định.',
       },
       {
         selector: ".hero-lead",
         html: true,
-        text: "Mình là <strong>Thư High</strong>, sinh viên năm 4 ngành CNTT. Mình tập trung vào Frontend và xây các case-study thực tế để chứng minh năng lực triển khai sản phẩm từ UI đến logic.",
+        text: "Mình là <strong>Nguyễn Chí Thanh</strong>, sinh viên năm 4 ngành CNTT. Mình tập trung Frontend Product Engineering; có backend implementation (API/realtime/queue) và DevOps đủ để đưa feature lên production.",
       },
       { selector: ".hero-actions .btn-primary", text: "Xem dự án nổi bật" },
-      { selector: ".hero-actions .btn-secondary", text: "Xem CV đầy đủ" },
+      { selector: ".hero-actions .btn-secondary", text: "Mở CV ngay" },
       { selector: ".hero-actions .btn-tertiary", text: "Tải CV PDF" },
       {
         selector: ".hero-proof-chips span:nth-child(1)",
-        text: "5 case study projects",
+        text: "6 case study projects",
       },
       {
         selector: ".hero-proof-chips span:nth-child(2)",
-        text: "Product-thinking frontend",
+        text: "Frontend + delivery discipline",
       },
       {
         selector: ".hero-proof-chips span:nth-child(3)",
@@ -1118,29 +1343,59 @@
       },
       {
         selector: ".hero-kpi li:nth-child(2) .kpi-value",
-        text: "5 case study",
+        text: "6 case studies",
       },
       {
         selector: ".hero-kpi li:nth-child(2) .kpi-label",
-        text: "4 public + 1 private/NDA project",
+        text: "8 public repos + 2 private cores",
       },
-      { selector: ".hero-kpi li:nth-child(3) .kpi-value", text: "Core stack" },
+      { selector: ".hero-kpi li:nth-child(3) .kpi-value", text: "Stack chính" },
       {
         selector: ".hero-kpi li:nth-child(3) .kpi-label",
-        text: "React, TypeScript, Next.js, UI System",
+        text: "React, Next.js, TypeScript, API/Realtime integration",
       },
       {
         selector: ".availability-text",
-        text: "Sẵn sàng phỏng vấn và test task",
+        text: "Sẵn sàng phỏng vấn + test kỹ thuật",
       },
-      { selector: ".hero-cv-card .hero-rail-title", text: "CV Recruiter" },
+      {
+        selector: ".hero-verified-note",
+        text: "Số liệu public được đối chiếu từ GitHub Repositories tab.",
+      },
+      { selector: ".hero-cv-card .hero-rail-title", text: "CV nhanh" },
       {
         selector: ".hero-cv-note",
-        text: "CV bản đầy đủ đã sẵn sàng để xem online hoặc tải PDF ngay.",
+        text: "CV tuyển dụng: mở online hoặc tải PDF ngay (1 click).",
       },
-      { selector: ".hero-cv-actions a:nth-child(1)", text: "Xem CV online" },
-      { selector: ".hero-cv-actions a:nth-child(2)", text: "Tải CV PDF" },
-      { selector: ".hero-case-rail .hero-rail-title", text: "Case preview" },
+      { selector: ".hero-cv-actions a:nth-child(1)", text: "CV ATS-safe" },
+      { selector: ".hero-cv-actions a:nth-child(2)", text: "CV Premium" },
+      {
+        selector: ".hero-cv-actions a:nth-child(3)",
+        text: "CV English",
+      },
+      {
+        selector: ".hero-cv-actions a:nth-child(4)",
+        text: "CV ATS English",
+      },
+      {
+        selector: ".hero-cv-actions a:nth-child(5)",
+        text: "Tải CV PDF (1 click)",
+      },
+      { selector: ".hero-case-rail .hero-rail-title", text: "Case nổi bật" },
+      { selector: ".cv-inline-actions a:nth-child(1)", text: "CV ATS-safe" },
+      { selector: ".cv-inline-actions a:nth-child(2)", text: "CV Premium" },
+      {
+        selector: ".cv-inline-actions a:nth-child(3)",
+        text: "CV English",
+      },
+      {
+        selector: ".cv-inline-actions a:nth-child(4)",
+        text: "CV ATS English",
+      },
+      {
+        selector: ".cv-inline-actions a:nth-child(5)",
+        text: "Tải PDF (1 click)",
+      },
       { selector: "#cv-document .section-label", text: "CV Đầy Đủ" },
       {
         selector: "#cv-document .section-title",
@@ -1208,7 +1463,7 @@
       },
       {
         selector: "#fit .section-subtitle",
-        text: "Bảng này giúp recruiter đối chiếu nhanh yêu cầu JD với bằng chứng từ case study.",
+        text: "Frontend là trọng tâm; backend implementation được chứng minh qua case study thực tế.",
       },
       {
         selector:
@@ -1261,7 +1516,7 @@
       },
       {
         selector: ".contact-lead",
-        text: "Mình ưu tiên vị trí Internship / Junior Frontend. Có thể gửi CV PDF, transcript và walkthrough dự án private qua email theo yêu cầu.",
+        text: "Mình ưu tiên vị trí Internship / Junior Frontend theo hướng Product Engineering. Có thể gửi CV PDF, transcript và walkthrough dự án private qua email theo yêu cầu.",
       },
       {
         selector: "#about .about-list li:nth-child(1)",
@@ -1277,7 +1532,7 @@
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(1) h3",
-        text: "5 real case studies",
+        text: "6 real case studies",
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(1) p",
@@ -1285,19 +1540,19 @@
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(2) h3",
-        text: "Product thinking",
+        text: "Backend implementation strength",
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(2) p",
-        text: "Luôn đi theo user flow, business constraints và release quality checklist.",
+        text: "Không chỉ làm UI: triển khai được API, realtime/queue flow và giữ release discipline ở mức production cơ bản.",
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(3) h3",
-        text: "UI architecture focus",
+        text: "Production architecture focus",
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(3) p",
-        text: "Xây component system rõ ràng, dễ maintain và dễ onboard trong team.",
+        text: "Tổ chức code theo module, ưu tiên maintainability và release safety khi dự án tăng độ phức tạp.",
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(4) h3",
@@ -1310,9 +1565,12 @@
       { selector: ".github-proof h3", text: "GitHub Proof" },
       {
         selector: ".github-proof p",
-        text: "Có thể xem repo highlights và commit history để đánh giá thói quen code, cách đặt tên, structure và khả năng maintain.",
+        text: "Có thể xem thẳng docs/repo để xác minh CI jobs, deploy workflow, Docker variants, health-check/rollback và monitoring artifacts.",
       },
-      { selector: ".github-proof a", text: "Xem GitHub và repo nổi bật" },
+      {
+        selector: ".github-proof a",
+        text: "Xem GitHub contributions, CI/CD & deploy evidence",
+      },
       {
         selector: ".faq-grid .faq-item:nth-child(1) h3",
         text: "Có thể làm bài test kỹ thuật không?",
@@ -1432,7 +1690,7 @@
       {
         selector:
           ".timeline .timeline-item:nth-child(1) .timeline-main p:nth-of-type(2)",
-        text: "Tập trung hệ thống hóa 5 case study theo chuẩn recruiter: problem, constraints, kiến trúc, kết quả và bài học kỹ thuật.",
+        text: "Tập trung hệ thống hóa 6 case study theo chuẩn recruiter: problem, constraints, kiến trúc, kết quả và bài học kỹ thuật.",
       },
       {
         selector: ".timeline .timeline-item:nth-child(1) li:nth-child(1)",
@@ -1541,7 +1799,7 @@
       {
         selector: ".site-footer .footer-inner p",
         html: true,
-        text: '© <span id="current-year"></span> Thư High. Portfolio for recruitment.',
+        text: '© <span id="current-year"></span> Nguyễn Chí Thanh. Portfolio for recruitment.',
       },
       { selector: ".site-footer .back-top", text: "Về đầu trang" },
     ],
@@ -1549,14 +1807,14 @@
       { selector: "a.skip-link", text: "Skip navigation" },
       { selector: '.site-nav .nav-link[href="#about"]', text: "About" },
       { selector: '.site-nav .nav-link[href="#skills"]', text: "Skills" },
-      { selector: '.site-nav .nav-link[href="#cv-document"]', text: "CV" },
+      { selector: '.site-nav .nav-link[href="cv.html"]', text: "CV" },
       { selector: '.site-nav .nav-link[href="#projects"]', text: "Projects" },
       { selector: '.site-nav .nav-link[href="#experience"]', text: "Journey" },
       { selector: '.site-nav .nav-link[href="#contact"]', text: "Contact" },
       { selector: '#mobile-menu .mobile-link[href="#about"]', text: "About" },
       { selector: '#mobile-menu .mobile-link[href="#skills"]', text: "Skills" },
       {
-        selector: '#mobile-menu .mobile-link[href="#cv-document"]',
+        selector: '#mobile-menu .mobile-link[href="cv.html"]',
         text: "CV",
       },
       {
@@ -1573,31 +1831,31 @@
       },
       {
         selector: ".hero-content .eyebrow",
-        text: "Final-year CS Student · Frontend-focused",
+        text: "Final-year CS Student · Frontend + Product Engineering",
       },
       {
         selector: ".hero-content h1",
         html: true,
-        text: 'Junior-ready portfolio: strong design, <span class="headline-accent">solid code</span>, and clear product thinking.',
+        text: 'Frontend internship portfolio: <span class="headline-accent">solid code</span>, clear UI, reliable feature delivery.',
       },
       {
         selector: ".hero-lead",
         html: true,
-        text: "I’m <strong>Thu High</strong>, a final-year CS student focused on Frontend. I build real case studies to prove product delivery skills from UI to logic.",
+        text: "I’m <strong>Nguyễn Chí Thanh</strong>, a final-year CS student focused on Frontend Product Engineering. I also implement backend flows (API/realtime/queue) and use DevOps basics to ship features to production.",
       },
       {
         selector: ".hero-actions .btn-primary",
         text: "View featured projects",
       },
-      { selector: ".hero-actions .btn-secondary", text: "View full CV" },
+      { selector: ".hero-actions .btn-secondary", text: "Open CV now" },
       { selector: ".hero-actions .btn-tertiary", text: "Download CV PDF" },
       {
         selector: ".hero-proof-chips span:nth-child(1)",
-        text: "5 case study projects",
+        text: "6 case study projects",
       },
       {
         selector: ".hero-proof-chips span:nth-child(2)",
-        text: "Product-thinking frontend",
+        text: "Frontend + delivery discipline",
       },
       {
         selector: ".hero-proof-chips span:nth-child(3)",
@@ -1619,29 +1877,59 @@
       },
       {
         selector: ".hero-kpi li:nth-child(2) .kpi-value",
-        text: "5 case studies",
+        text: "6 case studies",
       },
       {
         selector: ".hero-kpi li:nth-child(2) .kpi-label",
-        text: "4 public + 1 private/NDA project",
+        text: "8 public repos + 2 private cores",
       },
       { selector: ".hero-kpi li:nth-child(3) .kpi-value", text: "Core stack" },
       {
         selector: ".hero-kpi li:nth-child(3) .kpi-label",
-        text: "React, TypeScript, Next.js, UI System",
+        text: "React, Next.js, TypeScript, API/realtime integration",
       },
       {
         selector: ".availability-text",
         text: "Available for interview and technical test",
       },
-      { selector: ".hero-cv-card .hero-rail-title", text: "Recruiter CV" },
+      {
+        selector: ".hero-verified-note",
+        text: "Public figures are cross-checked from the GitHub Repositories tab.",
+      },
+      { selector: ".hero-cv-card .hero-rail-title", text: "Quick CV" },
       {
         selector: ".hero-cv-note",
-        text: "The full recruiter-ready CV is available to view online or download as PDF.",
+        text: "Recruiter CV: view online or download PDF instantly (1 click).",
       },
-      { selector: ".hero-cv-actions a:nth-child(1)", text: "View CV online" },
-      { selector: ".hero-cv-actions a:nth-child(2)", text: "Download CV PDF" },
-      { selector: ".hero-case-rail .hero-rail-title", text: "Case Preview" },
+      { selector: ".hero-cv-actions a:nth-child(1)", text: "ATS-safe CV" },
+      { selector: ".hero-cv-actions a:nth-child(2)", text: "Premium CV" },
+      {
+        selector: ".hero-cv-actions a:nth-child(3)",
+        text: "English CV",
+      },
+      {
+        selector: ".hero-cv-actions a:nth-child(4)",
+        text: "ATS English CV",
+      },
+      {
+        selector: ".hero-cv-actions a:nth-child(5)",
+        text: "Download CV PDF (1 click)",
+      },
+      { selector: ".hero-case-rail .hero-rail-title", text: "Featured Cases" },
+      { selector: ".cv-inline-actions a:nth-child(1)", text: "ATS-safe CV" },
+      { selector: ".cv-inline-actions a:nth-child(2)", text: "Premium CV" },
+      {
+        selector: ".cv-inline-actions a:nth-child(3)",
+        text: "English CV",
+      },
+      {
+        selector: ".cv-inline-actions a:nth-child(4)",
+        text: "ATS English CV",
+      },
+      {
+        selector: ".cv-inline-actions a:nth-child(5)",
+        text: "Download PDF (1 click)",
+      },
       { selector: "#cv-document .section-label", text: "Full CV" },
       {
         selector: "#cv-document .section-title",
@@ -1712,7 +2000,7 @@
       },
       {
         selector: "#fit .section-subtitle",
-        text: "This matrix helps recruiters map JD expectations to concrete case-study evidence.",
+        text: "Frontend is the primary track; backend implementation is evidenced through real case studies.",
       },
       {
         selector:
@@ -1762,7 +2050,7 @@
       },
       {
         selector: ".contact-lead",
-        text: "I’m seeking Internship / Junior Frontend roles. CV PDF, transcript, and private-project walkthrough can be shared by email.",
+        text: "I’m seeking Internship / Junior Frontend roles with strong product engineering ownership. CV PDF, transcript, and private-project walkthrough can be shared by email.",
       },
       {
         selector: "#about .about-list li:nth-child(1)",
@@ -1778,7 +2066,7 @@
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(1) h3",
-        text: "5 real case studies",
+        text: "6 real case studies",
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(1) p",
@@ -1786,19 +2074,19 @@
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(2) h3",
-        text: "Product thinking",
+        text: "Backend implementation strength",
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(2) p",
-        text: "I work from user flow, business constraints, and release quality checklists.",
+        text: "Beyond UI delivery, I can implement API/realtime/queue flows and keep release discipline for production-ready features.",
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(3) h3",
-        text: "UI architecture focus",
+        text: "Production architecture focus",
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(3) p",
-        text: "I build maintainable component systems that support team onboarding.",
+        text: "I structure code in modules, prioritizing maintainability and release safety as project complexity grows.",
       },
       {
         selector: ".junior-ready-grid .jr-card:nth-child(4) h3",
@@ -1811,11 +2099,11 @@
       { selector: ".github-proof h3", text: "GitHub Proof" },
       {
         selector: ".github-proof p",
-        text: "Review repo highlights and commit history to evaluate naming, structure, and maintainability habits.",
+        text: "You can directly verify CI jobs, deployment workflow, Docker variants, health-check/rollback flow, and monitoring artifacts from the repos/docs.",
       },
       {
         selector: ".github-proof a",
-        text: "View GitHub contributions & repo highlights",
+        text: "View GitHub contributions, CI/CD & deployment evidence",
       },
       {
         selector: ".faq-grid .faq-item:nth-child(1) h3",
@@ -1936,7 +2224,7 @@
       {
         selector:
           ".timeline .timeline-item:nth-child(1) .timeline-main p:nth-of-type(2)",
-        text: "Structured 5 case studies using recruiter-friendly format: problem, constraints, architecture, impact, and technical lessons.",
+        text: "Structured 6 case studies using recruiter-friendly format: problem, constraints, architecture, impact, and technical lessons.",
       },
       {
         selector: ".timeline .timeline-item:nth-child(1) li:nth-child(1)",
@@ -2045,7 +2333,7 @@
       {
         selector: ".site-footer .footer-inner p",
         html: true,
-        text: '© <span id="current-year"></span> Thu High. Portfolio for recruitment.',
+        text: '© <span id="current-year"></span> Nguyễn Chí Thanh. Portfolio for recruitment.',
       },
       { selector: ".site-footer .back-top", text: "Back to top" },
     ],
@@ -2135,7 +2423,7 @@
       {
         selector: ".site-footer .footer-inner p",
         html: true,
-        text: '© <span id="current-year"></span> Thư High. Case Study.',
+        text: '© <span id="current-year"></span> Nguyễn Chí Thanh. Case Study.',
       },
       { selector: ".site-footer .back-top", text: "Về trang chính" },
     ],
@@ -2225,7 +2513,7 @@
       {
         selector: ".site-footer .footer-inner p",
         html: true,
-        text: '© <span id="current-year"></span> Thu High. Case Study.',
+        text: '© <span id="current-year"></span> Nguyễn Chí Thanh. Case Study.',
       },
       { selector: ".site-footer .back-top", text: "Back to home" },
     ],
@@ -2275,23 +2563,26 @@
   };
 
   const updateCvLinksByLanguage = () => {
-    const links = Array.from(document.querySelectorAll('a[href^="cv.html"]'));
+    const links = Array.from(
+      document.querySelectorAll('a[href^="cv.html"], a[href^="cv-en.html"]'),
+    );
     if (!links.length) return;
 
     links.forEach((link) => {
       const rawHref = link.getAttribute("href") || "";
-      if (!rawHref.startsWith("cv.html")) return;
+      if (!rawHref.startsWith("cv.html") && !rawHref.startsWith("cv-en.html"))
+        return;
 
       const url = new URL(rawHref, window.location.href);
-      if (currentLanguage === "en") {
-        url.searchParams.set("lang", "en");
-      } else {
-        url.searchParams.delete("lang");
-      }
+      url.searchParams.delete("lang");
 
       const query = url.searchParams.toString();
       const hash = url.hash || "";
-      link.setAttribute("href", `cv.html${query ? `?${query}` : ""}${hash}`);
+      const basePath = currentLanguage === "en" ? "cv-en.html" : "cv.html";
+      link.setAttribute(
+        "href",
+        `${basePath}${query ? `?${query}` : ""}${hash}`,
+      );
     });
   };
 

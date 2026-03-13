@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV ATS | Nguyễn Chí Thanh</title>
+    <meta
+      name="description"
+      content="CV ATS-safe của Nguyễn Chí Thanh, định dạng A4 tối giản cho hệ thống lọc hồ sơ."
+    />
+    <style>
+      :root {
+        --paper: #ffffff;
+        --ink: #111111;
+        --muted: #3f3f3f;
+        --line: #cfcfcf;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #f1f1f1;
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.35;
+      }
+
+      .sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 8mm auto;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 10mm 11mm;
+      }
+
+      @page {
+        size: A4;
+        margin: 8mm;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      .header {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 4mm;
+        margin-bottom: 4mm;
+      }
+
+      .name {
+        font-size: 20pt;
+        line-height: 1.1;
+        font-weight: 700;
+      }
+
+      .title {
+        margin-top: 1.5mm;
+        font-size: 11.5pt;
+        font-weight: 700;
+      }
+
+      .alias {
+        margin-top: 1mm;
+        font-size: 9.8pt;
+        color: var(--muted);
+      }
+
+      .contacts {
+        margin-top: 2.5mm;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1mm 6mm;
+        font-size: 10pt;
+      }
+
+      .section {
+        margin-top: 3.5mm;
+      }
+
+      .section-title {
+        font-size: 11pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding-bottom: 1mm;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-body {
+        margin-top: 1.8mm;
+      }
+
+      .summary {
+        color: var(--ink);
+      }
+
+      .label {
+        margin-top: 1.3mm;
+        font-weight: 700;
+      }
+
+      ul {
+        margin: 1mm 0 0;
+        padding-left: 4.5mm;
+      }
+
+      li {
+        margin-top: 0.7mm;
+      }
+
+      .entry {
+        display: grid;
+        grid-template-columns: 31mm minmax(0, 1fr);
+        gap: 3mm;
+        margin-top: 1.7mm;
+      }
+
+      .period {
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .entry-title {
+        font-weight: 700;
+      }
+
+      .entry-sub {
+        color: var(--muted);
+      }
+
+      .contacts a,
+      .entry-sub a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1mm 6mm;
+      }
+
+      .skills li {
+        margin-top: 0.4mm;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+          margin: 0;
+        }
+
+        .sheet {
+          width: auto;
+          min-height: auto;
+          margin: 0;
+          border: 0;
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="sheet">
+      <header class="header">
+        <h1 class="name">Nguyễn Chí Thanh</h1>
+        <p class="title">Frontend Intern</p>
+        <div class="contacts">
+          <div>Ngày sinh: 22/10/2004</div>
+          <div>Điện thoại: 0359 498 968</div>
+          <div>
+            Email:
+            <a href="mailto:a01204496068@gmail.com">a01204496068@gmail.com</a>
+          </div>
+          <div>
+            LinkedIn:
+            <a
+              href="https://www.linkedin.com/in/thnkthuhigh/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >linkedin.com/in/thnkthuhigh</a
+            >
+          </div>
+          <div>Địa chỉ: Thủ Đức, Hồ Chí Minh</div>
+          <div>
+            GitHub:
+            <a
+              href="https://github.com/thnkthuhigh"
+              target="_blank"
+              rel="noopener noreferrer"
+              >github.com/thnkthuhigh</a
+            >
+          </div>
+          <div>
+            Portfolio:
+            <a
+              href="https://thnkthuhigh.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >thnkthuhigh.dev</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2 class="section-title">Mục tiêu nghề nghiệp</h2>
+        <div class="section-body">
+          <p class="summary">
+            Sinh viên năm 4 CNTT định hướng Frontend/Product Engineering, có
+            kinh nghiệm backend API, realtime, CI/CD và vận hành production. Mục
+            tiêu: ứng tuyển Frontend Intern có khả năng phối hợp full-stack,
+            đóng góp hiệu quả ngay từ sprint đầu với tư duy sản phẩm và
+            ownership cao.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Học vấn</h2>
+        <div class="section-body">
+          <article class="entry">
+            <div class="period">2022 – 2026</div>
+            <div>
+              <p class="entry-title">
+                Đại học Công nghệ TP.HCM (HUTECH)
+                <span class="entry-sub">| Công nghệ thông tin</span>
+              </p>
+              <ul>
+                <li>GPA hiện tại: 3.2/4.0.</li>
+                <li>
+                  Trọng tâm: Software Engineering, Web Development, System
+                  Design cơ bản.
+                </li>
+                <li>
+                  Tập trung xây dựng dự án production có evidence kỹ thuật công
+                  khai.
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Dự án GitHub nổi bật</h2>
+        <div class="section-body">
+          <p class="summary">
+            Hai dự án trọng điểm dưới đây đại diện rõ nhất cho năng lực xây dựng
+            sản phẩm production end-to-end.
+          </p>
+          <article class="entry">
+            <div class="period">12/2025 – Nay</div>
+            <div>
+              <p class="entry-title">
+                Proze AI + AI Doc Formatter
+                <span class="entry-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/proze-ai"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/proze-ai</a
+                  ></span
+                >
+              </p>
+              <p class="label">Vai trò: Solo builder end-to-end</p>
+              <p class="label">
+                Mô tả ngắn: Nền tảng AI xử lý tài liệu cho soạn thảo, cộng tác
+                và xuất bản đa định dạng.
+              </p>
+              <p class="label">
+                Tech Stack: Next.js, TypeScript, FastAPI, Redis, Celery, Docker,
+                GitHub Actions
+              </p>
+              <p class="label">
+                Deployment: 10-job CI + 2-job deploy workflow, 6 SLOs, 6 Docker
+                Compose variants
+              </p>
+              <ul>
+                <li>
+                  AI document platform production-grade với AI editor, async
+                  export queue (PDF/DOCX/Markdown/HTML), realtime collaboration;
+                  73,000+ LOC, 579+ frontend tests, 33 backend test files, 50+
+                  API endpoints, 10-job CI, 2-job deploy, 6 SLOs, 6 compose
+                  variants.
+                </li>
+                <li>
+                  Product live:
+                  <a
+                    href="https://proze.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >https://proze.app/</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="period">06/2025 – 01/2026</div>
+            <div>
+              <p class="entry-title">
+                Language Center SaaS
+                <span class="entry-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/language-center-saas"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/language-center-saas</a
+                  ></span
+                >
+              </p>
+              <p class="label">Vai trò: Solo builder end-to-end</p>
+              <p class="label">
+                Mô tả ngắn: SaaS quản lý trung tâm ngoại ngữ cho lớp học, tài
+                chính, điểm danh và luồng realtime.
+              </p>
+              <p class="label">
+                Tech Stack: React, TypeScript, Node.js, Express, MongoDB, Redis,
+                Socket.IO, Docker, Nginx, Cloudflare
+              </p>
+              <p class="label">
+                Deployment: DigitalOcean VPS + Docker Compose + Nginx reverse
+                proxy + Cloudflare Full (Strict) SSL + Azure Mail + AWS EC2
+                document storage
+              </p>
+              <ul>
+                <li>
+                  Production live tại englishforkids.me với hệ thống RBAC 4 vai
+                  trò (Owner/Admin/Teacher/Accountant); quy mô 50,000+ LOC, 200+
+                  API endpoints, 822+ automated tests, 90%+ coverage.
+                </li>
+                <li>
+                  Realtime attendance/payment/salary qua Socket.IO; CI/CD GitHub
+                  Actions với release pipeline rõ ràng.
+                </li>
+                <li>
+                  Product live:
+                  <a
+                    href="https://www.englishforkids.me/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >https://www.englishforkids.me/</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Kỹ năng</h2>
+        <div class="section-body">
+          <ul class="skills">
+            <li>Frontend: React, Next.js, TypeScript</li>
+            <li>Backend: Node.js, Express, FastAPI, REST API</li>
+            <li>Database/Cache: PostgreSQL, MongoDB, Redis</li>
+            <li>Testing & Realtime: Vitest, Playwright, Socket.IO</li>
+            <li>Deployment: Docker, Nginx, Cloudflare, GitHub Actions</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
