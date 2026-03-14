@@ -39,6 +39,11 @@
     gap: 20px;
   }
 
+  #about.section {
+    padding-top: 84px;
+    padding-bottom: 64px;
+  }
+
   .skills-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -209,6 +214,11 @@
 
   .hero-panel {
     padding: 20px;
+  }
+
+  #about.section {
+    padding-top: 72px;
+    padding-bottom: 54px;
   }
 
   .project-card {
@@ -394,11 +404,12 @@
   }
 
   .project-footer-cta {
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
 
   .project-footer-cta .btn {
-    width: 100%;
+    width: auto;
   }
 
   .footer-inner {
@@ -410,6 +421,15 @@
 @media (max-width: 560px) {
   .container {
     width: min(100% - 20px, var(--container));
+  }
+
+  .project-footer-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .project-footer-cta .btn {
+    width: 100%;
   }
 
   .header-inner {
