@@ -143,6 +143,10 @@
         text-decoration: none;
       }
 
+      .contacts .contact-highlight {
+        font-weight: 700;
+      }
+
       .skills {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -157,6 +161,8 @@
         body {
           background: #fff;
           margin: 0;
+          font-size: 10pt;
+          line-height: 1.28;
         }
 
         .sheet {
@@ -166,6 +172,54 @@
           border: 0;
           padding: 0;
         }
+
+        .header {
+          padding-bottom: 3mm;
+          margin-bottom: 3mm;
+        }
+
+        .contacts {
+          margin-top: 2mm;
+          gap: 0.7mm 5mm;
+          font-size: 9.7pt;
+        }
+
+        .section {
+          margin-top: 2.6mm;
+        }
+
+        .section-title {
+          font-size: 10.6pt;
+          padding-bottom: 0.7mm;
+        }
+
+        .section-body {
+          margin-top: 1.2mm;
+        }
+
+        .label {
+          margin-top: 1mm;
+        }
+
+        .entry {
+          grid-template-columns: 29mm minmax(0, 1fr);
+          gap: 2.2mm;
+          margin-top: 1.2mm;
+        }
+
+        ul {
+          margin: 0.7mm 0 0;
+          padding-left: 4mm;
+        }
+
+        li {
+          margin-top: 0.45mm;
+          line-height: 1.24;
+        }
+
+        .skills {
+          gap: 0.6mm 5mm;
+        }
       }
     </style>
   </head>
@@ -173,25 +227,15 @@
     <main class="sheet">
       <header class="header">
         <h1 class="name">Nguyễn Chí Thanh</h1>
-        <p class="title">Frontend Intern</p>
+        <p class="title">Software Engineer Intern</p>
         <div class="contacts">
-          <div>Date of birth: 22/10/2004</div>
           <div>Phone: 0359 498 968</div>
           <div>
             Email:
             <a href="mailto:a01204496068@gmail.com">a01204496068@gmail.com</a>
           </div>
-          <div>
-            LinkedIn:
-            <a
-              href="https://www.linkedin.com/in/thnkthuhigh/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >linkedin.com/in/thnkthuhigh</a
-            >
-          </div>
           <div>Address: Thu Duc, Ho Chi Minh City</div>
-          <div>
+          <div class="contact-highlight">
             GitHub:
             <a
               href="https://github.com/thnkthuhigh"
@@ -199,9 +243,7 @@
               rel="noopener noreferrer"
               >github.com/thnkthuhigh</a
             >
-          </div>
-          <div>
-            Portfolio:
+            | Portfolio:
             <a
               href="https://thnkthuhigh.dev/"
               target="_blank"
@@ -216,53 +258,65 @@
         <h2 class="section-title">Career Objective</h2>
         <div class="section-body">
           <p class="summary">
-            Final-year Computer Science student focused on Frontend/Product
-            Engineering with practical backend API, realtime, CI/CD, and
-            production operations experience. Objective: win a Frontend Intern
-            role with strong full-stack collaboration capability and deliver
-            impact from sprint one through reliable execution, product thinking,
-            and ownership.
+            Final-year student oriented toward Software Engineering/Fullstack.
+            Strong in system architecture thinking, API optimization, and
+            operations automation. Objective: take an Intern/Fresher role to
+            immediately apply deployment best practices (Docker, CI/CD) to real
+            product problems while improving teamwork and end-to-end code
+            lifecycle management under enterprise Agile/Scrum standards.
           </p>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">Education</h2>
-        <div class="section-body">
-          <article class="entry">
-            <div class="period">2022 – 2026</div>
-            <div>
-              <p class="entry-title">
-                Ho Chi Minh City University of Technology (HUTECH)
-                <span class="entry-sub">| Information Technology</span>
-              </p>
-              <ul>
-                <li>Current GPA: 3.2/4.0.</li>
-                <li>
-                  Focus: Software Engineering, Web Application Development, and
-                  fundamental System Design.
-                </li>
-                <li>
-                  Built production projects with public technical evidence.
-                </li>
-              </ul>
-            </div>
-          </article>
         </div>
       </section>
 
       <section class="section">
         <h2 class="section-title">Featured GitHub Projects</h2>
         <div class="section-body">
-          <p class="summary">
-            These two flagship projects best represent my ability to build and
-            operate production systems end-to-end.
-          </p>
+          <article class="entry">
+            <div class="period">&nbsp;</div>
+            <div>
+              <p class="entry-title">
+                Healthcare Clinic System
+                <span class="entry-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/healthcare-clinic-system"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/healthcare-clinic-system</a
+                  ></span
+                >
+              </p>
+              <p class="label">
+                Role: Core Maintainer & Reviewer (5-member team)
+              </p>
+              <p class="label">
+                Description: Multi-role healthcare clinic management system
+                (Doctor, Patient, Admin).
+              </p>
+              <p class="label">
+                Tech Stack: TypeScript, Java, PostgreSQL, Docker, Husky
+              </p>
+              <ul>
+                <li>
+                  Set up <strong>Monorepo</strong> architecture
+                  (<strong>apps</strong>, <strong>packages/shared</strong>) and
+                  standardized <strong>local</strong> environments.
+                </li>
+                <li>
+                  Acted as <strong>Core Maintainer</strong>, reviewed
+                  <strong>Pull Requests</strong>, managed
+                  <strong>Git Flow</strong>, and enforced
+                  <strong>pre-commit hooks</strong>.
+                </li>
+              </ul>
+            </div>
+          </article>
+
           <article class="entry">
             <div class="period">12/2025 – Present</div>
             <div>
               <p class="entry-title">
-                Proze AI + AI Doc Formatter
+                Proze AI (Public Showcase)
                 <span class="entry-sub"
                   >|
                   <a
@@ -273,35 +327,26 @@
                   ></span
                 >
               </p>
-              <p class="label">Role: Solo builder end-to-end</p>
+              <p class="label">Role: Fullstack Developer</p>
               <p class="label">
-                Short description: AI document platform for drafting,
-                collaboration, and multi-format publishing workflows.
+                Description: AI platform supporting automated document
+                processing, drafting, and publishing.
               </p>
               <p class="label">
                 Tech Stack: Next.js, TypeScript, FastAPI, Redis, Celery, Docker,
                 GitHub Actions
               </p>
-              <p class="label">
-                Deployment: 10-job CI + 2-job deploy workflow, 6 SLOs, 6 Docker
-                Compose variants
-              </p>
               <ul>
                 <li>
-                  Production-grade AI document platform with AI editor, async
-                  export queue (PDF/DOCX/Markdown/HTML), realtime collaboration;
-                  73,000+ LOC, 579+ frontend tests, 33 backend test files, 50+
-                  API endpoints, 10-job CI, 2-job deploy, 6 SLOs, 6 compose
-                  variants.
+                  Implemented layered architecture (<strong
+                    >Frontend SSR/SSG</strong
+                  >
+                  & <strong>Backend FastAPI</strong>) with asynchronous task
+                  processing via Celery/Redis.
                 </li>
                 <li>
-                  Product live:
-                  <a
-                    href="https://proze.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >https://proze.app/</a
-                  >
+                  Built a platform for automated document processing, drafting,
+                  and publishing workflows.
                 </li>
               </ul>
             </div>
@@ -322,38 +367,25 @@
                   ></span
                 >
               </p>
-              <p class="label">Role: Solo builder end-to-end</p>
+              <p class="label">Role: Fullstack Developer</p>
               <p class="label">
-                Short description: SaaS platform for language-center class
-                operations, finance workflows, attendance, and realtime events.
+                Description: SaaS application for class management, finance, and
+                language-center operations.
               </p>
               <p class="label">
-                Tech Stack: React, TypeScript, Node.js, Express, MongoDB, Redis,
-                Socket.IO, Docker, Nginx, Cloudflare
-              </p>
-              <p class="label">
-                Deployment: DigitalOcean VPS + Docker Compose + Nginx reverse
-                proxy + Cloudflare Full (Strict) SSL + Azure Mail + AWS EC2
-                document storage
+                Tech Stack: React, Node.js, Express, MongoDB, Socket.IO, Nginx,
+                Cloudflare
               </p>
               <ul>
                 <li>
-                  Production live at englishforkids.me with 4-role RBAC
-                  (Owner/Admin/Teacher/Accountant); scale: 50,000+ LOC, 200+ API
-                  endpoints, 822+ automated tests, 90%+ coverage.
+                  Built <strong>RESTful APIs</strong> and integrated
+                  <strong>Socket.IO</strong> for
+                  <strong>realtime</strong> workflows (attendance, payments).
                 </li>
                 <li>
-                  Socket.IO realtime attendance/payment/salary and GitHub
-                  Actions CI/CD release pipeline.
-                </li>
-                <li>
-                  Product live:
-                  <a
-                    href="https://www.englishforkids.me/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >https://www.englishforkids.me/</a
-                  >
+                  Operated production on <strong>DigitalOcean VPS</strong> and
+                  optimized <strong>Reverse Proxy</strong> setup with
+                  <strong>Nginx</strong>.
                 </li>
               </ul>
             </div>
@@ -362,15 +394,45 @@
       </section>
 
       <section class="section">
-        <h2 class="section-title">Skills</h2>
+        <h2 class="section-title">Technical Skills</h2>
         <div class="section-body">
           <ul class="skills">
-            <li>Frontend: React, Next.js, TypeScript</li>
-            <li>Backend: Node.js, Express, FastAPI, REST API</li>
-            <li>Database/Cache: PostgreSQL, MongoDB, Redis</li>
-            <li>Testing & Realtime: Vitest, Playwright, Socket.IO</li>
-            <li>Deployment: Docker, Nginx, Cloudflare, GitHub Actions</li>
+            <li>Core Languages: TypeScript, JavaScript, Python, Java.</li>
+            <li>
+              Ops/Infrastructure: Docker, Nginx, Cloudflare, GitHub Actions,
+              Nginx Reverse Proxy.
+            </li>
+            <li>
+              Development & Testing Methodology: Agile/Scrum, Git Flow, CI/CD,
+              Automated Tests (Vitest/Playwright).
+            </li>
+            <li>
+              Programming Techniques: Clean Code, Monorepo, Socket.IO, RBAC,
+              RESTful API.
+            </li>
           </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="section-body">
+          <article class="entry">
+            <div class="period">2022 – 2026</div>
+            <div>
+              <p class="entry-title">
+                Ho Chi Minh City University of Technology (HUTECH)
+                <span class="entry-sub">| Information Technology</span>
+              </p>
+              <ul>
+                <li>Current GPA: 3.2/4.0.</li>
+                <li>
+                  Focus: Software Engineering, Web Application Development, and
+                  fundamental System Design.
+                </li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
     </main>

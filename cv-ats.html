@@ -99,6 +99,10 @@
         margin-top: 1.8mm;
       }
 
+      .section-body p {
+        line-height: 1.45;
+      }
+
       .summary {
         color: var(--ink);
       }
@@ -115,6 +119,9 @@
 
       li {
         margin-top: 0.7mm;
+        line-height: 1.45;
+        margin-bottom: 4px;
+        font-size: 9.75pt;
       }
 
       .entry {
@@ -122,6 +129,10 @@
         grid-template-columns: 31mm minmax(0, 1fr);
         gap: 3mm;
         margin-top: 1.7mm;
+      }
+
+      .entry:first-child {
+        margin-bottom: 18px;
       }
 
       .period {
@@ -143,6 +154,10 @@
         text-decoration: none;
       }
 
+      .contacts .contact-highlight {
+        font-weight: 700;
+      }
+
       .skills {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -157,6 +172,8 @@
         body {
           background: #fff;
           margin: 0;
+          font-size: 10pt;
+          line-height: 1.28;
         }
 
         .sheet {
@@ -166,6 +183,54 @@
           border: 0;
           padding: 0;
         }
+
+        .header {
+          padding-bottom: 3mm;
+          margin-bottom: 3mm;
+        }
+
+        .contacts {
+          margin-top: 2mm;
+          gap: 0.7mm 5mm;
+          font-size: 9.7pt;
+        }
+
+        .section {
+          margin-top: 2.6mm;
+        }
+
+        .section-title {
+          font-size: 10.6pt;
+          padding-bottom: 0.7mm;
+        }
+
+        .section-body {
+          margin-top: 1.2mm;
+        }
+
+        .label {
+          margin-top: 1mm;
+        }
+
+        .entry {
+          grid-template-columns: 29mm minmax(0, 1fr);
+          gap: 2.2mm;
+          margin-top: 1.2mm;
+        }
+
+        ul {
+          margin: 0.7mm 0 0;
+          padding-left: 4mm;
+        }
+
+        li {
+          margin-top: 0.45mm;
+          line-height: 1.24;
+        }
+
+        .skills {
+          gap: 0.6mm 5mm;
+        }
       }
     </style>
   </head>
@@ -173,25 +238,15 @@
     <main class="sheet">
       <header class="header">
         <h1 class="name">Nguyễn Chí Thanh</h1>
-        <p class="title">Frontend Intern</p>
+        <p class="title">Software Engineer Intern</p>
         <div class="contacts">
-          <div>Ngày sinh: 22/10/2004</div>
           <div>Điện thoại: 0359 498 968</div>
           <div>
             Email:
             <a href="mailto:a01204496068@gmail.com">a01204496068@gmail.com</a>
           </div>
-          <div>
-            LinkedIn:
-            <a
-              href="https://www.linkedin.com/in/thnkthuhigh/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >linkedin.com/in/thnkthuhigh</a
-            >
-          </div>
-          <div>Địa chỉ: Thủ Đức, Hồ Chí Minh</div>
-          <div>
+          <div>Thủ Đức, Hồ Chí Minh</div>
+          <div class="contact-highlight">
             GitHub:
             <a
               href="https://github.com/thnkthuhigh"
@@ -199,9 +254,7 @@
               rel="noopener noreferrer"
               >github.com/thnkthuhigh</a
             >
-          </div>
-          <div>
-            Portfolio:
+            | Portfolio:
             <a
               href="https://thnkthuhigh.dev/"
               target="_blank"
@@ -216,53 +269,66 @@
         <h2 class="section-title">Mục tiêu nghề nghiệp</h2>
         <div class="section-body">
           <p class="summary">
-            Sinh viên năm 4 CNTT định hướng Frontend/Product Engineering, có
-            kinh nghiệm backend API, realtime, CI/CD và vận hành production. Mục
-            tiêu: ứng tuyển Frontend Intern có khả năng phối hợp full-stack,
-            đóng góp hiệu quả ngay từ sprint đầu với tư duy sản phẩm và
-            ownership cao.
+            Sinh viên năm 4 định hướng Software Engineering/Fullstack. Nổi bật
+            với tư duy kiến trúc hệ thống (System Architecture), tối ưu hóa API
+            và tự động hóa luồng vận hành. Mục tiêu: Đảm nhận vị trí
+            Intern/Fresher để áp dụng ngay các best-practices về deployment vào
+            bài toán thực tế, đồng thời hoàn thiện khả năng phối hợp nhóm và
+            quản lý vòng đời mã nguồn theo chuẩn Agile/Scrum của doanh nghiệp.
           </p>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">Học vấn</h2>
-        <div class="section-body">
-          <article class="entry">
-            <div class="period">2022 – 2026</div>
-            <div>
-              <p class="entry-title">
-                Đại học Công nghệ TP.HCM (HUTECH)
-                <span class="entry-sub">| Công nghệ thông tin</span>
-              </p>
-              <ul>
-                <li>GPA hiện tại: 3.2/4.0.</li>
-                <li>
-                  Trọng tâm: Software Engineering, Web Development, System
-                  Design cơ bản.
-                </li>
-                <li>
-                  Tập trung xây dựng dự án production có evidence kỹ thuật công
-                  khai.
-                </li>
-              </ul>
-            </div>
-          </article>
         </div>
       </section>
 
       <section class="section">
         <h2 class="section-title">Dự án GitHub nổi bật</h2>
         <div class="section-body">
-          <p class="summary">
-            Hai dự án trọng điểm dưới đây đại diện rõ nhất cho năng lực xây dựng
-            sản phẩm production end-to-end.
-          </p>
+          <article class="entry">
+            <div class="period">01/2026 – Nay</div>
+            <div>
+              <p class="entry-title">
+                Healthcare Clinic System
+                <span class="entry-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/healthcare-clinic-system"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/healthcare-clinic-system</a
+                  ></span
+                >
+              </p>
+              <p class="label">
+                Vai trò: Core Maintainer & Reviewer (Team 5 thành viên)
+              </p>
+              <p class="label">
+                Mô tả: Hệ thống quản lý phòng khám đa khoa phân quyền đa người
+                dùng (Bác sĩ, Bệnh nhân, Quản trị).
+              </p>
+              <p class="label">
+                Công nghệ: TypeScript, Java, PostgreSQL, Docker, Husky.
+              </p>
+              <ul>
+                <li>
+                  Thiết lập kiến trúc
+                  <strong>Monorepo</strong> (<strong>apps</strong>,
+                  <strong>packages/shared</strong>) và chuẩn hóa môi trường
+                  <strong>local</strong>.
+                </li>
+                <li>
+                  Đảm nhiệm vai trò <strong>Core Maintainer</strong>, review
+                  source code (<strong>Pull Requests</strong>), quản lý
+                  <strong>Git Flow</strong> và
+                  <strong>pre-commit hooks</strong>.
+                </li>
+              </ul>
+            </div>
+          </article>
+
           <article class="entry">
             <div class="period">12/2025 – Nay</div>
             <div>
               <p class="entry-title">
-                Proze AI + AI Doc Formatter
+                Proze AI (Public Showcase)
                 <span class="entry-sub"
                   >|
                   <a
@@ -273,35 +339,20 @@
                   ></span
                 >
               </p>
-              <p class="label">Vai trò: Solo builder end-to-end</p>
+              <p class="label">Vai trò: Fullstack Developer</p>
               <p class="label">
-                Mô tả ngắn: Nền tảng AI xử lý tài liệu cho soạn thảo, cộng tác
-                và xuất bản đa định dạng.
+                Mô tả: Nền tảng AI hỗ trợ xử lý, soạn thảo và xuất bản tài liệu
+                tự động.
               </p>
               <p class="label">
-                Tech Stack: Next.js, TypeScript, FastAPI, Redis, Celery, Docker,
-                GitHub Actions
-              </p>
-              <p class="label">
-                Deployment: 10-job CI + 2-job deploy workflow, 6 SLOs, 6 Docker
-                Compose variants
+                Tech Stack: Next.js, TypeScript, FastAPI, Redis, Celery, GitHub
+                Actions
               </p>
               <ul>
                 <li>
-                  AI document platform production-grade với AI editor, async
-                  export queue (PDF/DOCX/Markdown/HTML), realtime collaboration;
-                  73,000+ LOC, 579+ frontend tests, 33 backend test files, 50+
-                  API endpoints, 10-job CI, 2-job deploy, 6 SLOs, 6 compose
-                  variants.
-                </li>
-                <li>
-                  Product live:
-                  <a
-                    href="https://proze.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >https://proze.app/</a
-                  >
+                  Triển khai kiến trúc <strong>microservices</strong> tách lớp
+                  (<strong>Frontend SSR/SSG</strong> &
+                  <strong>Backend FastAPI</strong>).
                 </li>
               </ul>
             </div>
@@ -322,38 +373,25 @@
                   ></span
                 >
               </p>
-              <p class="label">Vai trò: Solo builder end-to-end</p>
+              <p class="label">Vai trò: Fullstack Developer</p>
               <p class="label">
-                Mô tả ngắn: SaaS quản lý trung tâm ngoại ngữ cho lớp học, tài
-                chính, điểm danh và luồng realtime.
+                Mô tả: Ứng dụng SaaS quản lý lớp học, tài chính và nghiệp vụ
+                trung tâm ngoại ngữ.
               </p>
               <p class="label">
-                Tech Stack: React, TypeScript, Node.js, Express, MongoDB, Redis,
-                Socket.IO, Docker, Nginx, Cloudflare
-              </p>
-              <p class="label">
-                Deployment: DigitalOcean VPS + Docker Compose + Nginx reverse
-                proxy + Cloudflare Full (Strict) SSL + Azure Mail + AWS EC2
-                document storage
+                Tech Stack: React, Node.js, Express, MongoDB, Socket.IO, Nginx,
+                Cloudflare
               </p>
               <ul>
                 <li>
-                  Production live tại englishforkids.me với hệ thống RBAC 4 vai
-                  trò (Owner/Admin/Teacher/Accountant); quy mô 50,000+ LOC, 200+
-                  API endpoints, 822+ automated tests, 90%+ coverage.
+                  Xây dựng <strong>RESTful API</strong> và tích hợp
+                  <strong>Socket.IO</strong> để xử lý luồng
+                  <strong>realtime</strong> (điểm danh, thanh toán).
                 </li>
                 <li>
-                  Realtime attendance/payment/salary qua Socket.IO; CI/CD GitHub
-                  Actions với release pipeline rõ ràng.
-                </li>
-                <li>
-                  Product live:
-                  <a
-                    href="https://www.englishforkids.me/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >https://www.englishforkids.me/</a
-                  >
+                  Vận hành thực tế trên <strong>VPS DigitalOcean</strong>, tối
+                  ưu hóa <strong>Reverse Proxy</strong> kết hợp
+                  <strong>Nginx</strong>.
                 </li>
               </ul>
             </div>
@@ -362,15 +400,45 @@
       </section>
 
       <section class="section">
-        <h2 class="section-title">Kỹ năng</h2>
+        <h2 class="section-title">Kỹ năng kỹ thuật</h2>
         <div class="section-body">
           <ul class="skills">
-            <li>Frontend: React, Next.js, TypeScript</li>
-            <li>Backend: Node.js, Express, FastAPI, REST API</li>
-            <li>Database/Cache: PostgreSQL, MongoDB, Redis</li>
-            <li>Testing & Realtime: Vitest, Playwright, Socket.IO</li>
-            <li>Deployment: Docker, Nginx, Cloudflare, GitHub Actions</li>
+            <li>Core Languages: TypeScript, JavaScript, Python, Java.</li>
+            <li>
+              Kỹ thuật vận hành (Ops/Infrastructure): Docker, Nginx, Cloudflare,
+              GitHub Actions, Nginx Reverse Proxy.
+            </li>
+            <li>
+              Phương pháp phát triển & Test: Agile/Scrum, Git Flow, CI/CD,
+              Automated Tests (Vitest/Playwright).
+            </li>
+            <li>
+              Kỹ thuật lập trình: Clean Code, Monorepo, Socket.IO, RBAC, RESTful
+              API.
+            </li>
           </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Học vấn</h2>
+        <div class="section-body">
+          <article class="entry">
+            <div class="period">2022 – 2026</div>
+            <div>
+              <p class="entry-title">
+                Đại học Công nghệ TP.HCM (HUTECH)
+                <span class="entry-sub">| Công nghệ thông tin</span>
+              </p>
+              <ul>
+                <li>GPA hiện tại: 3.2/4.0.</li>
+                <li>
+                  Trọng tâm: Software Engineering, Web Development, System
+                  Design cơ bản.
+                </li>
+              </ul>
+            </div>
+          </article>
         </div>
       </section>
     </main>

@@ -1831,12 +1831,12 @@
       },
       {
         selector: ".hero-content .eyebrow",
-        text: "Final-year CS Student · Frontend + Product Engineering",
+        text: "Final-year CS Student · Software Engineer Intern Track",
       },
       {
         selector: ".hero-content h1",
         html: true,
-        text: 'Frontend internship portfolio: <span class="headline-accent">solid code</span>, clear UI, reliable feature delivery.',
+        text: 'Software Engineer internship portfolio: <span class="headline-accent">solid code</span>, clear UI, reliable feature delivery.',
       },
       {
         selector: ".hero-lead",
