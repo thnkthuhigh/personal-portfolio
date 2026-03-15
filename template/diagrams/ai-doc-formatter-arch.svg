@@ -1,0 +1,56 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 640' role='img' aria-labelledby='t d'>
+  <title id='t'>Sơ đồ kiến trúc AI Doc Formatter</title>
+  <desc id='d'>Cloudflare and Nginx edge, Next.js editor, FastAPI AI services, Redis Celery queue, Supabase data, and observability stack</desc>
+  <defs>
+    <linearGradient id='bg' x1='0' y1='0' x2='1' y2='1'>
+      <stop offset='0%' stop-color='#173449'/>
+      <stop offset='100%' stop-color='#2b7f95'/>
+    </linearGradient>
+    <marker id='arrow' markerWidth='8' markerHeight='8' refX='7' refY='4' orient='auto'>
+      <path d='M0,0 L8,4 L0,8 z' fill='#b7d2de'/>
+    </marker>
+  </defs>
+
+  <rect width='1280' height='640' fill='url(#bg)'/>
+  <rect x='52' y='74' width='1176' height='512' rx='28' fill='#0b1622' fill-opacity='0.72' stroke='#86b8c8' stroke-opacity='0.26'/>
+
+  <text x='94' y='124' fill='#e8f5fb' font-size='34' font-family='Sora, Segoe UI, sans-serif' font-weight='800'>Sơ đồ kiến trúc AI Doc Formatter</text>
+
+  <rect x='94' y='164' width='210' height='116' rx='14' fill='#143049' stroke='#89b4c7' stroke-opacity='0.35'/>
+  <text x='120' y='208' fill='#e9f5fb' font-size='24' font-family='Sora, Segoe UI, sans-serif' font-weight='700'>Edge</text>
+  <text x='120' y='238' fill='#b7d2de' font-size='16' font-family='IBM Plex Sans, Segoe UI, sans-serif'>Cloudflare + Nginx</text>
+
+  <rect x='356' y='164' width='244' height='116' rx='14' fill='#143049' stroke='#89b4c7' stroke-opacity='0.35'/>
+  <text x='384' y='208' fill='#e9f5fb' font-size='24' font-family='Sora, Segoe UI, sans-serif' font-weight='700'>Frontend</text>
+  <text x='384' y='238' fill='#b7d2de' font-size='16' font-family='IBM Plex Sans, Segoe UI, sans-serif'>Next.js 16 + TipTap v3</text>
+
+  <rect x='652' y='164' width='254' height='116' rx='14' fill='#143049' stroke='#89b4c7' stroke-opacity='0.35'/>
+  <text x='680' y='208' fill='#e9f5fb' font-size='24' font-family='Sora, Segoe UI, sans-serif' font-weight='700'>API Core</text>
+  <text x='680' y='238' fill='#b7d2de' font-size='16' font-family='IBM Plex Sans, Segoe UI, sans-serif'>FastAPI AI / Export</text>
+
+  <rect x='958' y='164' width='208' height='116' rx='14' fill='#143049' stroke='#89b4c7' stroke-opacity='0.35'/>
+  <text x='984' y='208' fill='#e9f5fb' font-size='24' font-family='Sora, Segoe UI, sans-serif' font-weight='700'>LLM</text>
+  <text x='984' y='238' fill='#b7d2de' font-size='16' font-family='IBM Plex Sans, Segoe UI, sans-serif'>Gemini via SSE</text>
+
+  <path d='M304 222 H356' stroke='#b7d2de' stroke-width='3' marker-end='url(#arrow)'/>
+  <path d='M600 222 H652' stroke='#b7d2de' stroke-width='3' marker-end='url(#arrow)'/>
+  <path d='M906 222 H958' stroke='#b7d2de' stroke-width='3' marker-end='url(#arrow)'/>
+
+  <rect x='94' y='324' width='340' height='118' rx='14' fill='#112a3f' stroke='#86b8c8' stroke-opacity='0.32'/>
+  <text x='122' y='368' fill='#e8f5fb' font-size='24' font-family='Sora, Segoe UI, sans-serif' font-weight='700'>Hàng đợi xuất bất đồng bộ</text>
+  <text x='122' y='398' fill='#b7d2de' font-size='16' font-family='IBM Plex Sans, Segoe UI, sans-serif'>Redis + Celery workers</text>
+
+  <rect x='470' y='324' width='316' height='118' rx='14' fill='#112a3f' stroke='#86b8c8' stroke-opacity='0.32'/>
+  <text x='498' y='368' fill='#e8f5fb' font-size='24' font-family='Sora, Segoe UI, sans-serif' font-weight='700'>Dữ liệu &amp; Xác thực</text>
+  <text x='498' y='398' fill='#b7d2de' font-size='16' font-family='IBM Plex Sans, Segoe UI, sans-serif'>Supabase (DB/Auth/Storage)</text>
+
+  <rect x='824' y='324' width='342' height='118' rx='14' fill='#112a3f' stroke='#86b8c8' stroke-opacity='0.32'/>
+  <text x='852' y='368' fill='#e8f5fb' font-size='24' font-family='Sora, Segoe UI, sans-serif' font-weight='700'>Vận hành &amp; Độ tin cậy</text>
+  <text x='852' y='398' fill='#b7d2de' font-size='16' font-family='IBM Plex Sans, Segoe UI, sans-serif'>CI/CD + SLO + Metrics/Logs</text>
+
+  <path d='M778 280 V324' stroke='#b7d2de' stroke-width='3' marker-end='url(#arrow)'/>
+  <path d='M652 366 H434' stroke='#b7d2de' stroke-width='3' marker-end='url(#arrow)'/>
+  <path d='M786 366 H824' stroke='#b7d2de' stroke-width='3' marker-end='url(#arrow)'/>
+
+  <text x='94' y='552' fill='#a6c7d5' font-size='19' font-family='IBM Plex Sans, Segoe UI, sans-serif'>Cloudflare/Nginx → Next.js + TipTap → FastAPI AI/Export → Redis/Celery/Supabase, kèm cổng kiểm soát CI/CD và khả năng quan sát theo SLO.</text>
+</svg>

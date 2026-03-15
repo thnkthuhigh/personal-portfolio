@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATS CV | Nguyễn Chí Thanh</title>
+    <meta
+      name="description"
+      content="ATS-safe CV of Nguyễn Chí Thanh in minimal A4 format for recruitment systems."
+    />
+    <style>
+      :root {
+        --paper: #ffffff;
+        --ink: #111111;
+        --muted: #3f3f3f;
+        --line: #cfcfcf;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #f1f1f1;
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.35;
+      }
+
+      .sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 8mm auto;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-bottom: none;
+        padding: 10mm 11mm;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      .header {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 4mm;
+        margin-bottom: 4mm;
+      }
+
+      .name {
+        font-size: 20pt;
+        line-height: 1.1;
+        font-weight: 700;
+      }
+
+      .title {
+        margin-top: 1.5mm;
+        font-size: 11.5pt;
+        font-weight: 700;
+      }
+
+      .alias {
+        margin-top: 1mm;
+        font-size: 9.8pt;
+        color: var(--muted);
+      }
+
+      .contacts {
+        margin-top: 2.5mm;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 20px;
+        font-size: 10pt;
+        text-align: left;
+      }
+
+      .section {
+        margin-top: 3.5mm;
+      }
+
+      .section-title {
+        font-size: 11pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding-bottom: 1mm;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-body {
+        margin-top: 1.8mm;
+      }
+
+      .summary {
+        color: var(--ink);
+      }
+
+      .label {
+        margin-top: 1.3mm;
+        font-weight: 700;
+      }
+
+      ul {
+        margin: 1mm 0 0;
+        padding-left: 4.5mm;
+      }
+
+      li {
+        margin-top: 0.7mm;
+      }
+
+      .entry {
+        display: grid;
+        grid-template-columns: 31mm minmax(0, 1fr);
+        gap: 3mm;
+        margin-top: 1.7mm;
+      }
+
+      .period {
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .entry-title {
+        font-weight: 700;
+      }
+
+      .entry-sub {
+        color: var(--muted);
+      }
+
+      .contacts a,
+      .entry-sub a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1mm 6mm;
+      }
+
+      .skills li {
+        margin-top: 0.4mm;
+      }
+
+      @media print {
+        html,
+        body {
+          width: auto;
+          height: auto;
+          margin: 0;
+          padding: 0;
+          background: #fff;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .section {
+          break-inside: auto;
+          page-break-inside: auto;
+        }
+
+        .section-title {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+
+        .entry,
+        .section-body,
+        ul {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        .sheet {
+          width: 100%;
+          min-height: auto;
+          margin: 0;
+          padding: 8.05mm 9.35mm;
+          border: none;
+          box-shadow: none;
+        }
+
+        .header {
+          padding-bottom: 2.45mm;
+          margin-bottom: 2.55mm;
+        }
+
+        .name {
+          font-size: 19pt;
+        }
+
+        .title {
+          margin-top: 1.1mm;
+          font-size: 11pt;
+        }
+
+        .contacts {
+          margin-top: 1.8mm;
+          gap: 3px 14px;
+          font-size: 9.2pt;
+        }
+
+        .section {
+          margin-top: 1.6mm;
+        }
+
+        .section-title {
+          font-size: 10.25pt;
+          padding-bottom: 0.5mm;
+        }
+
+        .section-body {
+          margin-top: 0.95mm;
+          font-size: 9.52pt;
+        }
+
+        .entry {
+          gap: 2.05mm;
+          margin-top: 0.92mm;
+        }
+
+        .entry:first-child {
+          margin-bottom: 4px;
+        }
+
+        .label {
+          margin-top: 0.65mm;
+          font-size: 9.42pt;
+        }
+
+        ul {
+          margin-top: 0.45mm;
+          padding-left: 4mm;
+        }
+
+        li {
+          margin-top: 0.22mm;
+          margin-bottom: 1px;
+          line-height: 1.24;
+          font-size: 9.15pt;
+        }
+
+        .period,
+        .entry-title,
+        .entry-sub {
+          font-size: 9.34pt;
+        }
+
+        .skills {
+          gap: 0.62mm 5mm;
+        }
+
+        .skills li {
+          margin-top: 0.1mm;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="sheet">
+      <header class="header">
+        <h1 class="name">Nguyễn Chí Thanh</h1>
+        <p class="title">Software Engineer Intern</p>
+        <div class="contacts">
+          <div>Phone: 0359 498 968</div>
+          <div>
+            Email:
+            <a href="mailto:a01204496068@gmail.com">a01204496068@gmail.com</a>
+          </div>
+          <div>Address: Thu Duc, Ho Chi Minh City</div>
+          <div>
+            GitHub:
+            <a
+              href="https://github.com/thnkthuhigh"
+              target="_blank"
+              rel="noopener noreferrer"
+              >github.com/thnkthuhigh</a
+            >
+          </div>
+          <div>
+            LinkedIn:
+            <a
+              href="https://www.linkedin.com/in/thnkthuhigh"
+              target="_blank"
+              rel="noopener noreferrer"
+              >linkedin.com/in/thnkthuhigh</a
+            >
+          </div>
+          <div>
+            Portfolio:
+            <a
+              href="https://thnkthuhigh.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >thnkthuhigh.dev</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2 class="section-title">Career Objective</h2>
+        <div class="section-body">
+          <p class="summary">
+            Final-year student oriented toward Software Engineering/Fullstack,
+            with practical experience in frontend implementation and backend
+            integration. Objective: seeking an internship role to contribute to
+            real product features, strengthen engineering fundamentals, and
+            improve collaboration in team delivery workflows.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Featured GitHub Projects</h2>
+        <div class="section-body">
+          <article class="entry">
+            <div class="period">01/2026 – Present</div>
+            <div>
+              <p class="entry-title">
+                Healthcare Clinic System
+                <span class="entry-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/healthcare-clinic-system"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/healthcare-clinic-system</a
+                  ></span
+                >
+              </p>
+              <p class="label">Role: Contributor (5-member team)</p>
+              <p class="label">
+                Description: Multi-role healthcare clinic management system
+                (Doctor, Patient, Admin).
+              </p>
+              <p class="label">
+                Tech Stack: TypeScript, Java, PostgreSQL, Docker, Husky
+              </p>
+              <ul>
+                <li>
+                  Set up <strong>Monorepo</strong> architecture
+                  (<strong>apps</strong>, <strong>packages/shared</strong>) and
+                  standardized <strong>local</strong> environments.
+                </li>
+                <li>
+                  Contributed to <strong>Pull Request reviews</strong>, followed
+                  <strong>Git Flow</strong>, and applied
+                  <strong>pre-commit hooks</strong> in team workflow.
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="period">12/2025 – Present</div>
+            <div>
+              <p class="entry-title">
+                Proze AI (Public Showcase)
+                <span class="entry-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/proze-ai"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/proze-ai</a
+                  ></span
+                >
+              </p>
+              <p class="label">Role: Fullstack Developer</p>
+              <p class="label">
+                Description: AI platform supporting automated document
+                processing, drafting, and publishing.
+              </p>
+              <p class="label">
+                Tech Stack: Next.js, TypeScript, FastAPI, Redis, Celery, GitHub
+                Actions
+              </p>
+              <ul>
+                <li>
+                  Implemented layered architecture (<strong
+                    >Frontend SSR/SSG</strong
+                  >
+                  & <strong>Backend FastAPI</strong>) with asynchronous task
+                  processing via Celery/Redis.
+                </li>
+                <li>
+                  Built a platform for automated document processing, drafting,
+                  and publishing workflows.
+                </li>
+                <li>
+                  Product live:
+                  <a
+                    href="https://proze.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >proze.app</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="period">06/2025 – 01/2026</div>
+            <div>
+              <p class="entry-title">
+                Language Center SaaS
+                <span class="entry-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/language-center-saas"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/language-center-saas</a
+                  ></span
+                >
+              </p>
+              <p class="label">Role: Fullstack Developer</p>
+              <p class="label">
+                Description: SaaS application for class management, finance, and
+                language-center operations.
+              </p>
+              <p class="label">
+                Tech Stack: React, Node.js, Express, MongoDB, Socket.IO, Nginx,
+                Cloudflare
+              </p>
+              <ul>
+                <li>
+                  Built <strong>RESTful APIs</strong> and integrated
+                  <strong>Socket.IO</strong> for
+                  <strong>realtime</strong> workflows (attendance, payments).
+                </li>
+                <li>
+                  Operated production on <strong>DigitalOcean VPS</strong> and
+                  optimized <strong>Reverse Proxy</strong> setup with
+                  <strong>Nginx</strong>.
+                </li>
+                <li>
+                  Product live:
+                  <a
+                    href="https://www.englishforkids.me/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >englishforkids.me</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="section-body">
+          <ul class="skills">
+            <li>
+              Frontend & Core: Languages (TypeScript, JavaScript, Python),
+              Frameworks (React, Next.js App Router), UI & Data Management
+              (Tailwind CSS, TanStack Query).
+            </li>
+            <li>
+              Backend & Systems: Node.js (Express), FastAPI, PostgreSQL,
+              MongoDB, Redis, Realtime & Queue (Socket.IO, Celery).
+            </li>
+            <li>
+              Workflow & Quality Control: CI/CD (GitHub Actions), Testing
+              (Vitest Unit, Playwright E2E), Standard (Git Flow, Husky,
+              lint-staged).
+            </li>
+            <li>
+              System & Integration: Container (Docker, Docker Compose), Web
+              Server (Nginx Reverse Proxy, SSL), Cloud (DigitalOcean VPS,
+              Cloudflare, AWS S3).
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="section-body">
+          <article class="entry">
+            <div class="period">2022 – 2026</div>
+            <div>
+              <p class="entry-title">
+                Ho Chi Minh City University of Technology (HUTECH)
+                <span class="entry-sub">| Information Technology</span>
+              </p>
+              <ul>
+                <li>Current GPA: 3.2/4.0.</li>
+                <li>
+                  Focus: Software Engineering, Web Application Development, and
+                  fundamental System Design.
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("print") !== "1") return;
+
+        window.addEventListener(
+          "load",
+          () => {
+            setTimeout(() => {
+              window.print();
+            }, 250);
+          },
+          { once: true },
+        );
+      })();
+    </script>
+  </body>
+</html>

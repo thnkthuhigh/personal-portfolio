@@ -12,7 +12,7 @@
 
 ## Video setup
 
-In `template/js/main.js` project detail objects, consumed through `src/data/templateData.ts`, support:
+In `src/data/portfolioData.ts` each project supports detail fields that can be rendered in React routes:
 
 - `videoEmbed`: YouTube embed URL (example: `https://www.youtube.com/embed/xxxxx`)
 - `videoFile`: local MP4 path (example: `assets/videos/ops-dashboard-demo.mp4`)

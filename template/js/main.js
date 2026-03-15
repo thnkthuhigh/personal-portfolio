@@ -1348,7 +1348,7 @@
       },
       {
         selector: ".quick-contact span:last-child",
-        text: "Tìm cơ hội Internship / Junior Frontend",
+        text: "Tìm cơ hội thực tập Frontend",
       },
       { selector: ".panel-title", text: "Tóm tắt nhanh" },
       { selector: ".hero-kpi li:nth-child(1) .kpi-value", text: "Năm 4" },
@@ -1418,7 +1418,7 @@
       },
       {
         selector: "#cv-document .section-subtitle",
-        text: "Đây là bản CV gói gọn thông tin cốt lõi cho vị trí internship/junior. Bạn có thể mở online hoặc tải PDF trực tiếp.",
+        text: "Đây là bản CV gói gọn thông tin cốt lõi cho vị trí thực tập Frontend. Bạn có thể mở online hoặc tải PDF trực tiếp.",
       },
       { selector: ".lane-card .section-label", text: "Làn tuyển dụng nhanh" },
       {
@@ -1515,7 +1515,7 @@
       },
       {
         selector: ".contact-lead",
-        text: "Mình đang tìm cơ hội thực tập / junior Frontend theo hướng Product Engineering. Mình có thể gửi CV PDF, transcript và giới thiệu thêm về các dự án private qua email khi cần.",
+        text: "Mình đang tìm cơ hội thực tập Frontend theo hướng Product Engineering. Mình có thể gửi CV PDF, transcript và giới thiệu thêm về các dự án private qua email khi cần.",
       },
       {
         selector: "#about .about-list li:nth-child(1)",
@@ -1841,7 +1841,7 @@
       },
       {
         selector: ".quick-contact span:last-child",
-        text: "Seeking Internship / Junior Frontend opportunities",
+        text: "Seeking Frontend internship opportunities",
       },
       { selector: ".panel-title", text: "Quick Summary" },
       { selector: ".hero-kpi li:nth-child(1) .kpi-value", text: "Final Year" },
@@ -1911,7 +1911,7 @@
       },
       {
         selector: "#cv-document .section-subtitle",
-        text: "This CV summarizes core information for internship/junior roles. You can open it online or download PDF directly.",
+        text: "This CV summarizes core information for frontend internship roles. You can open it online or download PDF directly.",
       },
       { selector: ".lane-card .section-label", text: "Quick Review Lane" },
       {
@@ -2005,7 +2005,7 @@
       },
       {
         selector: ".contact-lead",
-        text: "I’m looking for Internship / Junior Frontend opportunities in product teams. I can share CV PDF, transcript, and private-project walkthrough details by email when needed.",
+        text: "I’m looking for Frontend internship opportunities in product teams. I can share CV PDF, transcript, and private-project walkthrough details by email when needed.",
       },
       {
         selector: "#about .about-list li:nth-child(1)",

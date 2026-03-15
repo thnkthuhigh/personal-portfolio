@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV ATS | Nguyễn Chí Thanh</title>
+    <meta
+      name="description"
+      content="CV ATS-safe của Nguyễn Chí Thanh, định dạng A4 tối giản cho hệ thống lọc hồ sơ."
+    />
+    <style>
+      :root {
+        --paper: #ffffff;
+        --ink: #111111;
+        --muted: #3f3f3f;
+        --line: #cfcfcf;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #f1f1f1;
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.35;
+      }
+
+      .sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 8mm auto;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-bottom: none;
+        padding: 10mm 11mm;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      .header {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 4mm;
+        margin-bottom: 4mm;
+      }
+
+      .name {
+        font-size: 20pt;
+        line-height: 1.1;
+        font-weight: 700;
+      }
+
+      .title {
+        margin-top: 1.5mm;
+        font-size: 11.5pt;
+        font-weight: 700;
+      }
+
+      .alias {
+        margin-top: 1mm;
+        font-size: 9.8pt;
+        color: var(--muted);
+      }
+
+      .contacts {
+        margin-top: 2.5mm;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 20px;
+        font-size: 10pt;
+        text-align: left;
+      }
+
+      .section {
+        margin-top: 3.5mm;
+      }
+
+      .section-title {
+        font-size: 11pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding-bottom: 1mm;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-body {
+        margin-top: 1.8mm;
+      }
+
+      .section-body p {
+        line-height: 1.45;
+      }
+
+      .summary {
+        color: var(--ink);
+      }
+
+      .label {
+        margin-top: 1.3mm;
+        font-weight: 700;
+      }
+
+      ul {
+        margin: 1mm 0 0;
+        padding-left: 4.5mm;
+      }
+
+      li {
+        margin-top: 0.7mm;
+        line-height: 1.45;
+        margin-bottom: 4px;
+        font-size: 9.75pt;
+      }
+
+      .entry {
+        display: grid;
+        grid-template-columns: 31mm minmax(0, 1fr);
+        gap: 3mm;
+        margin-top: 1.7mm;
+      }
+
+      .entry:first-child {
+        margin-bottom: 18px;
+      }
+
+      .period {
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .entry-title {
+        font-weight: 700;
+      }
+
+      .entry-sub {
+        color: var(--muted);
+      }
+
+      .contacts a,
+      .entry-sub a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1mm 6mm;
+      }
+
+      .skills li {
+        margin-top: 0.4mm;
+      }
+
+      @media print {
+        html,
+        body {
+          width: auto;
+          height: auto;
+          margin: 0;
+          padding: 0;
+          background: #fff;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .section {
+          break-inside: auto;
+          page-break-inside: auto;
+        }
+
+        .section-title {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+
+        .entry,
+        .section-body,
+        ul {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        .sheet {
+          width: 100%;
+          min-height: auto;
+          margin: 0;
+          padding: 8.3mm 9.5mm;
+          border: none;
+          box-shadow: none;
+        }
+
+        .header {
+          padding-bottom: 2.55mm;
+          margin-bottom: 2.7mm;
+        }
+
+        .name {
+          font-size: 19.1pt;
+        }
+
+        .title {
+          margin-top: 1.15mm;
+          font-size: 11.05pt;
+        }
+
+        .contacts {
+          margin-top: 1.85mm;
+          gap: 3px 15px;
+          font-size: 9.28pt;
+        }
+
+        .section {
+          margin-top: 1.75mm;
+        }
+
+        .section-title {
+          font-size: 10.3pt;
+          padding-bottom: 0.55mm;
+        }
+
+        .section-body {
+          margin-top: 1.02mm;
+          font-size: 9.62pt;
+        }
+
+        .entry {
+          gap: 2.1mm;
+          margin-top: 1mm;
+        }
+
+        .entry:first-child {
+          margin-bottom: 5px;
+        }
+
+        .label {
+          margin-top: 0.7mm;
+          font-size: 9.55pt;
+        }
+
+        ul {
+          margin-top: 0.5mm;
+          padding-left: 4.1mm;
+        }
+
+        li {
+          margin-top: 0.28mm;
+          margin-bottom: 1px;
+          line-height: 1.26;
+          font-size: 9.3pt;
+        }
+
+        .skills {
+          gap: 0.7mm 5.2mm;
+        }
+
+        .skills li {
+          margin-top: 0.14mm;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="sheet">
+      <header class="header">
+        <h1 class="name">Nguyễn Chí Thanh</h1>
+        <p class="title">Software Engineer Intern</p>
+        <div class="contacts">
+          <div>Điện thoại: 0359 498 968</div>
+          <div>
+            Email:
+            <a href="mailto:a01204496068@gmail.com">a01204496068@gmail.com</a>
+          </div>
+          <div>Thủ Đức, Hồ Chí Minh</div>
+          <div>
+            GitHub:
+            <a
+              href="https://github.com/thnkthuhigh"
+              target="_blank"
+              rel="noopener noreferrer"
+              >github.com/thnkthuhigh</a
+            >
+          </div>
+          <div>
+            LinkedIn:
+            <a
+              href="https://www.linkedin.com/in/thnkthuhigh"
+              target="_blank"
+              rel="noopener noreferrer"
+              >linkedin.com/in/thnkthuhigh</a
+            >
+          </div>
+          <div>
+            Portfolio:
+            <a
+              href="https://thnkthuhigh.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >thnkthuhigh.dev</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2 class="section-title">Mục tiêu nghề nghiệp</h2>
+        <div class="section-body">
+          <p class="summary">
+            Sinh viên năm 4 định hướng Software Engineering/Fullstack, có kinh
+            nghiệm triển khai frontend và tích hợp backend trong các dự án thực
+            tế. Mục tiêu: tìm cơ hội thực tập để đóng góp vào tính năng sản
+            phẩm, củng cố nền tảng kỹ thuật và nâng cao khả năng phối hợp trong
+            quy trình làm việc nhóm.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Dự án GitHub nổi bật</h2>
+        <div class="section-body">
+          <article class="entry">
+            <div class="period">01/2026 – Nay</div>
+            <div>
+              <p class="entry-title">
+                Healthcare Clinic System
+                <span class="entry-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/healthcare-clinic-system"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/healthcare-clinic-system</a
+                  ></span
+                >
+              </p>
+              <p class="label">
+                Vai trò: Thành viên phát triển (Team 5 thành viên)
+              </p>
+              <p class="label">
+                Mô tả: Hệ thống quản lý phòng khám đa khoa phân quyền đa người
+                dùng (Bác sĩ, Bệnh nhân, Quản trị).
+              </p>
+              <p class="label">
+                Công nghệ: TypeScript, Java, PostgreSQL, Docker, Husky.
+              </p>
+              <ul>
+                <li>
+                  Thiết lập kiến trúc
+                  <strong>Monorepo</strong> (<strong>apps</strong>,
+                  <strong>packages/shared</strong>) và chuẩn hóa môi trường
+                  <strong>local</strong>.
+                </li>
+                <li>
+                  Tham gia review source code (<strong>Pull Requests</strong>),
+                  tuân thủ <strong>Git Flow</strong> và áp dụng
+                  <strong>pre-commit hooks</strong> trong quy trình nhóm.
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="period">12/2025 – Nay</div>
+            <div>
+              <p class="entry-title">
+                Proze AI (Public Showcase)
+                <span class="entry-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/proze-ai"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/proze-ai</a
+                  ></span
+                >
+              </p>
+              <p class="label">Vai trò: Fullstack Developer</p>
+              <p class="label">
+                Mô tả: Nền tảng AI hỗ trợ xử lý, soạn thảo và xuất bản tài liệu
+                tự động.
+              </p>
+              <p class="label">
+                Tech Stack: Next.js, TypeScript, FastAPI, Redis, Celery, GitHub
+                Actions
+              </p>
+              <ul>
+                <li>
+                  Triển khai kiến trúc <strong>microservices</strong> tách lớp
+                  (<strong>Frontend SSR/SSG</strong> &
+                  <strong>Backend FastAPI</strong>).
+                </li>
+                <li>
+                  Product live:
+                  <a
+                    href="https://proze.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >proze.app</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="period">06/2025 – 01/2026</div>
+            <div>
+              <p class="entry-title">
+                Language Center SaaS
+                <span class="entry-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/language-center-saas"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/language-center-saas</a
+                  ></span
+                >
+              </p>
+              <p class="label">Vai trò: Fullstack Developer</p>
+              <p class="label">
+                Mô tả: Ứng dụng SaaS quản lý lớp học, tài chính và nghiệp vụ
+                trung tâm ngoại ngữ.
+              </p>
+              <p class="label">
+                Tech Stack: React, Node.js, Express, MongoDB, Socket.IO, Nginx,
+                Cloudflare
+              </p>
+              <ul>
+                <li>
+                  Xây dựng <strong>RESTful API</strong> và tích hợp
+                  <strong>Socket.IO</strong> để xử lý luồng
+                  <strong>realtime</strong> (điểm danh, thanh toán).
+                </li>
+                <li>
+                  Vận hành thực tế trên <strong>VPS DigitalOcean</strong>, tối
+                  ưu hóa <strong>Reverse Proxy</strong> kết hợp
+                  <strong>Nginx</strong>.
+                </li>
+                <li>
+                  Product live:
+                  <a
+                    href="https://www.englishforkids.me/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >englishforkids.me</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Kỹ năng kỹ thuật</h2>
+        <div class="section-body">
+          <ul class="skills">
+            <li>
+              Frontend & Core: Languages (TypeScript, JavaScript, Python),
+              Frameworks (React, Next.js App Router), UI & Data Management
+              (Tailwind CSS, TanStack Query).
+            </li>
+            <li>
+              Backend & Systems: Node.js (Express), FastAPI, PostgreSQL,
+              MongoDB, Redis, Realtime & Queue (Socket.IO, Celery).
+            </li>
+            <li>
+              Workflow & Quality Control: CI/CD (GitHub Actions), Testing
+              (Vitest Unit, Playwright E2E), Standard (Git Flow, Husky,
+              lint-staged).
+            </li>
+            <li>
+              System & Integration: Container (Docker, Docker Compose), Web
+              Server (Nginx Reverse Proxy, SSL), Cloud (DigitalOcean VPS,
+              Cloudflare, AWS S3).
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Học vấn</h2>
+        <div class="section-body">
+          <article class="entry">
+            <div class="period">2022 – 2026</div>
+            <div>
+              <p class="entry-title">
+                Đại học Công nghệ TP.HCM (HUTECH)
+                <span class="entry-sub">| Công nghệ thông tin</span>
+              </p>
+              <ul>
+                <li>GPA hiện tại: 3.2/4.0.</li>
+                <li>
+                  Trọng tâm: Software Engineering, Web Development, System
+                  Design cơ bản.
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("print") !== "1") return;
+
+        window.addEventListener(
+          "load",
+          () => {
+            setTimeout(() => {
+              window.print();
+            }, 250);
+          },
+          { once: true },
+        );
+      })();
+    </script>
+  </body>
+</html>

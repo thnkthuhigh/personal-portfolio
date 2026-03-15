@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV | Nguyễn Chí Thanh</title>
+    <meta
+      name="description"
+      content="CV Software Engineer Intern của Nguyễn Chí Thanh, định dạng A4 chuẩn để nộp tuyển dụng và in PDF."
+    />
+    <style>
+      :root {
+        --paper: #ffffff;
+        --ink: #172a3f;
+        --muted: #4b5d71;
+        --line: #d5dbe2;
+        --section-bg: #f3f5f7;
+        --avatar-pos-x: 50%;
+        --avatar-pos-y: 34%;
+        --avatar-zoom: 1;
+        --avatar-shift-x: 0.5mm;
+        --avatar-shift-y: -3mm;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #e9edf2;
+        color: var(--ink);
+        font-family: "Calibri", "Arial", "Helvetica", sans-serif;
+        font-size: 10.4pt;
+        line-height: 1.34;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .cv-wrap {
+        width: 210mm;
+        margin: 8mm auto;
+      }
+
+      .cv-sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-bottom: none;
+        box-shadow: 0 10px 26px rgba(16, 34, 56, 0.12);
+        overflow: hidden;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      .cv-header {
+        display: grid;
+        grid-template-columns: 124px minmax(0, 1fr);
+        gap: 8.5mm;
+        padding: 9.6mm 11mm 4.8mm;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .avatar {
+        width: 28.5mm;
+        height: 28.5mm;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid #cfd6df;
+        background: #f4f7fa;
+        display: grid;
+        place-items: center;
+        margin-top: -1mm;
+        color: #6a7887;
+        font-weight: 700;
+        font-size: 9.5pt;
+      }
+
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: var(--avatar-pos-x) var(--avatar-pos-y);
+        transform: translate(var(--avatar-shift-x), var(--avatar-shift-y))
+          scale(var(--avatar-zoom));
+        transform-origin: center;
+        border-radius: 50%;
+        display: block;
+      }
+
+      .name {
+        margin: 0;
+        font-size: 20pt;
+        line-height: 1.05;
+        letter-spacing: 0.01em;
+      }
+
+      .role {
+        margin: 1.5mm 0 2.5mm;
+        font-size: 11.4pt;
+        font-weight: 700;
+      }
+
+      .alias {
+        margin: -1.2mm 0 2.3mm;
+        font-size: 9.8pt;
+        color: var(--muted);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 20px;
+        font-size: 9.6pt;
+        text-align: left;
+      }
+
+      .contact-item {
+        color: var(--ink);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .contact-item a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .section-title {
+        margin: 0 0 2.1mm;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background: var(--section-bg);
+        text-align: center;
+        font-size: 11.2pt;
+        letter-spacing: 0.075em;
+        font-weight: 800;
+        color: #153758;
+        padding: 1.4mm 0;
+      }
+
+      .section-body {
+        padding: 0 11mm 2.2mm;
+        font-size: 10.1pt;
+      }
+
+      .section-body p {
+        margin: 0.9mm 0;
+        line-height: 1.45;
+      }
+
+      .bullet-list {
+        margin: 1.2mm 0 0;
+        padding-left: 4.5mm;
+      }
+
+      .timeline-main .bullet-list {
+        margin-top: 0.55mm;
+      }
+
+      .bullet-list li {
+        margin-top: 0.7mm;
+        line-height: 1.4;
+        margin-bottom: 4px;
+        font-size: 9.85pt;
+      }
+
+      .timeline-item:first-child {
+        margin-bottom: 4.8mm;
+      }
+
+      .bullet-list li::marker,
+      .skills-grid li::marker,
+      .cert-list li::marker {
+        color: #345677;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 1.6mm;
+      }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 33mm minmax(0, 1fr);
+        gap: 2.5mm;
+      }
+
+      .timeline-period {
+        font-weight: 700;
+        color: #2c4762;
+        padding-top: 0.5mm;
+        font-size: 10.1pt;
+      }
+
+      .timeline-main {
+        line-height: 1.3;
+      }
+
+      .timeline-head {
+        font-weight: 700;
+      }
+
+      .timeline-sub {
+        color: var(--muted);
+        margin-left: 4px;
+        font-size: 9.7pt;
+      }
+
+      .timeline-sub a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.7mm 5mm;
+        margin: 0;
+        padding: 0 0 0 4.5mm;
+      }
+
+      .skills-grid li {
+        margin-top: 0.6mm;
+        line-height: 1.3;
+      }
+
+      .cert-list {
+        margin: 0;
+        padding-left: 4.5mm;
+      }
+
+      .cert-list li {
+        margin-top: 0.6mm;
+        line-height: 1.3;
+      }
+
+      section + section {
+        margin-top: 2.4mm;
+      }
+
+      strong {
+        font-weight: 700;
+      }
+
+      section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      @media print {
+        html,
+        body {
+          width: auto;
+          height: auto;
+          margin: 0;
+          padding: 0;
+          background: #fff;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        section {
+          break-inside: auto;
+          page-break-inside: auto;
+        }
+
+        .section-title {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+
+        .timeline-item,
+        .bullet-list,
+        .skills-grid,
+        .section-body {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        .cv-wrap {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        .cv-sheet {
+          width: 100%;
+          min-height: auto;
+          margin: 0;
+          box-shadow: none;
+        }
+
+        .cv-header {
+          padding: 9.1mm 10.9mm 4.3mm;
+        }
+
+        .contact-grid {
+          gap: 4px 18px;
+          font-size: 9.45pt;
+        }
+
+        .section-title {
+          margin: 0 0 1.45mm;
+          padding: 1.12mm 0;
+        }
+
+        section + section {
+          margin-top: 1.35mm;
+        }
+
+        .section-body {
+          padding: 0 9.8mm 1.25mm;
+          font-size: 10pt;
+        }
+
+        .section-body p {
+          margin: 0.72mm 0;
+          line-height: 1.37;
+        }
+
+        .timeline {
+          gap: 1.18mm;
+        }
+
+        .timeline-item:first-child {
+          margin-bottom: 2.8mm;
+        }
+
+        .bullet-list li {
+          margin-top: 0.48mm;
+          margin-bottom: 1px;
+          line-height: 1.31;
+          font-size: 9.72pt;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="cv-wrap">
+      <article class="cv-sheet">
+        <header class="cv-header">
+          <div class="avatar">
+            <img src="ava.jpg" alt="Nguyễn Chí Thanh" />
+          </div>
+          <div>
+            <h1 class="name">Nguyễn Chí Thanh</h1>
+            <p class="role">Software Engineer Intern</p>
+
+            <div class="contact-grid">
+              <div class="contact-item">Điện thoại: 0359 498 968</div>
+              <div class="contact-item">
+                Email:
+                <a href="mailto:a01204496068@gmail.com"
+                  >a01204496068@gmail.com</a
+                >
+              </div>
+              <div class="contact-item">Thủ Đức, Hồ Chí Minh</div>
+              <div class="contact-item">
+                GitHub:
+                <a
+                  href="https://github.com/thnkthuhigh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >github.com/thnkthuhigh</a
+                >
+              </div>
+              <div class="contact-item">
+                LinkedIn:
+                <a
+                  href="https://www.linkedin.com/in/thnkthuhigh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >linkedin.com/in/thnkthuhigh</a
+                >
+              </div>
+              <div class="contact-item">
+                Portfolio:
+                <a
+                  href="https://thnkthuhigh.dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >thnkthuhigh.dev</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section>
+          <h2 class="section-title">MỤC TIÊU NGHỀ NGHIỆP</h2>
+          <div class="section-body">
+            <p>
+              <strong>Sinh viên năm 4</strong> định hướng
+              <strong>Software Engineering/Fullstack</strong>, có kinh nghiệm
+              triển khai frontend và tích hợp backend trong các dự án thực tế.
+              Mục tiêu: tìm cơ hội thực tập để đóng góp vào tính năng sản phẩm,
+              củng cố nền tảng kỹ thuật và nâng cao khả năng phối hợp trong quy
+              trình làm việc nhóm.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="section-title">DỰ ÁN GITHUB NỔI BẬT</h2>
+          <div class="section-body timeline">
+            <article class="timeline-item">
+              <div class="timeline-period">01/2026 – Nay</div>
+              <div class="timeline-main">
+                <span class="timeline-head">Healthcare Clinic System</span>
+                <span class="timeline-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/healthcare-clinic-system"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/healthcare-clinic-system</a
+                  ></span
+                >
+                <ul class="bullet-list">
+                  <li>Vai trò: Thành viên phát triển (Team 5 thành viên).</li>
+                  <li>
+                    Mô tả: Hệ thống quản lý phòng khám đa khoa phân quyền (Bác
+                    sĩ, Bệnh nhân, Admin).
+                  </li>
+                  <li>
+                    Công nghệ: TypeScript, Java, PostgreSQL, Docker, Husky.
+                  </li>
+                  <li>
+                    Thiết lập kiến trúc <strong>Monorepo</strong> và chuẩn hóa
+                    môi trường local bằng <strong>Docker</strong>.
+                  </li>
+                  <li>
+                    Thực thi <strong>Git Flow</strong>, cấu hình
+                    <strong>pre-commit hooks</strong> (Husky, ESLint, Prettier)
+                    để chuẩn hóa mã nguồn.
+                  </li>
+                  <li>
+                    Tham gia review Pull Requests, xử lý merge conflict và phối
+                    hợp theo quy trình làm việc của nhóm.
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-period">12/2025 – Nay</div>
+              <div class="timeline-main">
+                <span class="timeline-head">Proze AI (Public Showcase)</span>
+                <span class="timeline-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/proze-ai"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/proze-ai</a
+                  ></span
+                >
+                <ul class="bullet-list">
+                  <li>Vai trò: Fullstack Developer.</li>
+                  <li>
+                    Mô tả: Nền tảng AI hỗ trợ xử lý, soạn thảo và xuất bản tài
+                    liệu tự động.
+                  </li>
+                  <li>
+                    Công nghệ: Next.js, TypeScript, FastAPI, Redis, Celery,
+                    GitHub Actions.
+                  </li>
+                  <li>
+                    Triển khai <strong>kiến trúc tách lớp</strong>
+                    <strong>(Next.js SSR/SSG & FastAPI)</strong> và xử lý tác vụ
+                    AI <strong>bất đồng bộ</strong> qua
+                    <strong>Celery/Redis</strong>.
+                  </li>
+                  <li>
+                    Product live:
+                    <a
+                      href="https://proze.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >proze.app</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <div class="timeline-period">06/2025 – 01/2026</div>
+              <div class="timeline-main">
+                <span class="timeline-head">Language Center SaaS</span>
+                <span class="timeline-sub"
+                  >|
+                  <a
+                    href="https://github.com/thnkthuhigh/language-center-saas"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >github.com/thnkthuhigh/language-center-saas</a
+                  ></span
+                >
+                <ul class="bullet-list">
+                  <li>Vai trò: Fullstack Developer.</li>
+                  <li>
+                    Mô tả: Ứng dụng SaaS quản lý lớp học, tài chính và nghiệp vụ
+                    trung tâm ngoại ngữ.
+                  </li>
+                  <li>
+                    Công nghệ: React, Node.js, Express, MongoDB, Socket.IO,
+                    Nginx, Cloudflare.
+                  </li>
+                  <li>
+                    Xây dựng <strong>RESTful API</strong> và tích hợp
+                    <strong>Socket.IO</strong> xử lý
+                    <strong>realtime</strong> (điểm danh, thanh toán).
+                  </li>
+                  <li>
+                    Vận hành thực tế trên <strong>VPS DigitalOcean</strong>, tối
+                    ưu hóa <strong>Reverse Proxy</strong> kết hợp
+                    <strong>Nginx</strong>.
+                  </li>
+                  <li>
+                    Product live:
+                    <a
+                      href="https://www.englishforkids.me/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >englishforkids.me</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-skills">
+          <h2 class="section-title">KỸ NĂNG KỸ THUẬT</h2>
+          <div class="section-body">
+            <ul class="skills-grid">
+              <li>
+                Frontend & Core: Languages (TypeScript, JavaScript, Python),
+                Frameworks (React, Next.js App Router), UI & Data Management
+                (Tailwind CSS, TanStack Query).
+              </li>
+              <li>
+                Backend & Systems: Node.js (Express), FastAPI, PostgreSQL,
+                MongoDB, Redis, Realtime & Queue (Socket.IO, Celery).
+              </li>
+              <li>
+                Workflow & Quality Control: CI/CD (GitHub Actions), Testing
+                (Vitest Unit, Playwright E2E), Standard (Git Flow, Husky,
+                lint-staged).
+              </li>
+              <li>
+                System & Integration: Container (Docker, Docker Compose), Web
+                Server (Nginx Reverse Proxy, SSL), Cloud (DigitalOcean VPS,
+                Cloudflare, AWS S3).
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="section-title">HỌC VẤN</h2>
+          <div class="section-body timeline">
+            <article class="timeline-item">
+              <div class="timeline-period">2022 – 2026</div>
+              <div class="timeline-main">
+                <span class="timeline-head"
+                  >Đại học Công nghệ TP.HCM (HUTECH)</span
+                >
+                <span class="timeline-sub">| Công nghệ thông tin</span>
+                <ul class="bullet-list">
+                  <li>GPA hiện tại: 3.2/4.0.</li>
+                  <li>
+                    Trọng tâm: Software Engineering, Web Application Development
+                    và System Design cơ bản.
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+      </article>
+    </main>
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("print") !== "1") return;
+
+        window.addEventListener(
+          "load",
+          () => {
+            setTimeout(() => {
+              window.print();
+            }, 250);
+          },
+          { once: true },
+        );
+      })();
+    </script>
+  </body>
+</html>
